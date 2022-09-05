@@ -2,9 +2,10 @@ export class PhysicsExperimentSystem {
     constructor(id) {
         this.id = id;
         this.$exp_sys = $(`#` + id);
-        this.$exp_sys.append(`
-            <div>Hello World!</div>
-        `);
+
+        //静电场实验
+        this.electrostatic_field = new ElectrostaticField(this);
+        this.electrostatic_field.show();
         this.start();
     }
 
