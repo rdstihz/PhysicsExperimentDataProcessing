@@ -5,12 +5,14 @@ class ElectrostaticButtonGroup {
             <div class="electrostatic-field-button-group">
                 <button class="electrostatic-field-button">数据输入</button>
                 <button class="electrostatic-field-button" id="electrostatic-field-button-process">数据处理</button>
-                <button class="electrostatic-field-button">返回</button>
+                <button class="electrostatic-field-button" id="electrostatic-field-button-return">返回</button>
                 <button class="electrostatic-field-button">退出</button>
             </div>`);
         this.electrostatic_field.$electrostatic_field.append(this.$button_group);
 
         this.$bt_process = this.$button_group.find("#electrostatic-field-button-process")
+
+        this.$bt_return = this.$button_group.find("#electrostatic-field-button-return");
 
         this.start();
     }
@@ -27,6 +29,15 @@ class ElectrostaticButtonGroup {
                 outer.wrok();
             }
         });
+
+        //点击"返回"， 回到菜单
+        this.$bt_return.click(function (e) {
+            if(e.which === 1) {
+                outer.electrostatic_field.hide();
+                outer.electrostatic_field.root.menu.show();
+            }
+        });
+
     }
 
     //计算结果并绘图
@@ -414,14 +425,53 @@ class ElectrostaticButtonGroup {
         console.log(this.datainput.getInputData());
     }
 
+}class ExperimentMenu {
+    constructor(root) {
+        this.root = root;
+        this.$menu = $(`
+<div class="experiment-menu">
+    <div class="experiment-menu-item" id="experiment-menu-item-electrostatic-field">静电场测绘实验</div>
+    <div class="experiment-menu-item">实验名称</div>
+    <div class="experiment-menu-item">实验名称</div>
+    <div class="experiment-menu-item">实验名称</div>
+    <div class="experiment-menu-item">实验名称</div>
+    <div class="experiment-menu-item">实验名称</div>
+</div>
+        `);
+
+        this.root.$exp_sys.append(this.$menu);
+
+        this.$item_electrostatic_field = this.$menu.find("#experiment-menu-item-electrostatic-field");
+        this.start();
+    }
+
+    start() {
+        let outer = this;
+        this.$item_electrostatic_field.click(function (e) {
+            outer.hide();
+            outer.root.electrostatic_field.show();
+        });
+    }
+
+    show() {
+        this.$menu.show();
+    }
+
+    hide() {
+        this.$menu.hide();
+    }
+
 }export class PhysicsExperimentSystem {
     constructor(id) {
         this.id = id;
         this.$exp_sys = $(`#` + id);
 
+        //菜单页面
+        this.menu = new ExperimentMenu(this);
+        this.menu.show();
         //静电场实验
         this.electrostatic_field = new ElectrostaticField(this);
-        this.electrostatic_field.show();
+        //this.electrostatic_field.show();
         this.start();
     }
 
