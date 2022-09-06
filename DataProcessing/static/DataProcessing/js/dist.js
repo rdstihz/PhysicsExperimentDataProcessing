@@ -208,7 +208,6 @@ class ElectrostaticButtonGroup {
 
         this.ctx.canvas.width = this.$figure.width();
         this.ctx.canvas.height = this.$figure.height();
-        console.log(this.ctx.canvas.width, this.ctx.canvas.height);
 
 
         this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;
@@ -394,6 +393,7 @@ class ElectrostaticButtonGroup {
         this.root = root;
         this.$electrostatic_field = $(`
  <div class="electrostatic-field">
+ <h1 class="experiment-name-title">静电场测绘实验数据处理（同轴电缆）</h1>
 </div>
         `);
         this.hide();
@@ -425,13 +425,258 @@ class ElectrostaticButtonGroup {
         console.log(this.datainput.getInputData());
     }
 
+}class ViscosityCoefficientButtonGroup {
+    constructor(viscosity_coefficient) {
+        this.viscosity_coefficient = viscosity_coefficient;
+        this.$button_group = $(`
+            <div class="viscosity-coefficient-button-group">
+                <button class="viscosity-coefficient-button" id="viscosity-coefficient-button-process">数据处理</button>
+                <button class="viscosity-coefficient-button" id="viscosity-coefficient-button-return">返回</button>
+            </div>`);
+        this.viscosity_coefficient.$viscosity_coefficient.append(this.$button_group);
+
+        this.$bt_process = this.$button_group.find("#viscosity-coefficient-button-process")
+
+        this.$bt_return = this.$button_group.find("#viscosity-coefficient-button-return");
+
+        this.start();
+    }
+
+    start() {
+        this.add_event_listener();
+    }
+
+    add_event_listener() {
+        let outer = this;
+        //鼠标左键点击“数据处理按键”
+        this.$bt_process.on("click", function (e) {
+            if (e.which === 1) {
+                outer.work();
+            }
+        });
+
+        //点击"返回"， 回到菜单
+        this.$bt_return.click(function (e) {
+            if(e.which === 1) {
+                outer.viscosity_coefficient.hide();
+                outer.viscosity_coefficient.root.menu.show();
+            }
+        });
+
+    }
+
+    work() {
+        let data = this.viscosity_coefficient.datainput.getInputData();
+        let D = data.D, d = data.d, t = data.t;
+        let x = [], y = [];
+        for (let i = 0; i < 6; i++) {
+            x.push(d[i] / D[i] / 10);
+            y.push(t[i]);
+        }
+
+
+        //最小二乘法拟合直线
+        let sx = 0, sy = 0;
+        let sxx = 0, syy = 0, sxy = 0;
+        let n = 6;
+        for(let i = 0; i < n; i++) {
+            sx += x[i], sy += y[i];
+            sxx += x[i] * x[i], syy += y[i] * y[i];
+            sxy += x[i] * y[i];
+        }
+
+        //斜率
+        let k = (sxy - sx * sy / n) / (sxx - sx * sx / n);
+        //截距
+        let b = sy / n - k * sx / n;
+        //相关系数
+        let r = (n * sxy - sx  * sy) / (Math.sqrt(n * sxx - sx * sx) * Math.sqrt(n * syy - sy * sy));
+        //填写结果
+        console.log(b, r);
+        this.viscosity_coefficient.result.filldata(k, b, r);
+
+        //this.viscosity_coefficient.figure.setdata(k, b, x, y, n);
+
+    }
+
+
+
+}class ViscosityCoefficientDataInput {
+    constructor(viscosity_coefficient) {
+        this.viscosity_coefficient = viscosity_coefficient;
+        this.$datainput = $(`
+<div>
+    <h2>数据输入</h2>
+    <table border="1" class="viscosity-coefficient-datainput-table">
+        <tr>
+            <td>
+                次数
+            </td>
+            <td>圆筒直径D(cm)</td>
+            <td>小球直径d(mm)</td>
+            <td>下落时间t(S)</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><input type="number" value="1.400" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data1-D"></td>
+            <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data1-d"></td>
+            <td><input type="number" value="57.72" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data1-t"></td>
+        </tr>
+
+        <tr>
+            <td>2</td>
+            <td><input type="number" value="1.900" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data2-D"></td>
+            <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data2-d"></td>
+            <td><input type="number" value="55.54" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data2-t"></td>
+        </tr>
+
+        <tr>
+            <td>3</td>
+            <td><input type="number" value="2.400" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data3-D"></td>
+            <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data3-d"></td>
+            <td><input type="number" value="54.18" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data3-t"></td>
+        </tr>
+
+        <tr>
+            <td>4</td>
+            <td><input type="number" value="3.400" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data4-D"></td>
+            <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data4-d"></td>
+            <td><input type="number" value="52.70" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data4-t"></td>
+        </tr>
+
+        <tr>
+            <td>5</td>
+            <td><input type="number" value="4.000" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data5-D"></td>
+            <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data5-d"></td>
+            <td><input type="number" value="52.23" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data5-t"></td>
+        </tr>
+
+        <tr>
+            <td>6</td>
+            <td><input type="number" value="5.000" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data6-D"></td>
+            <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data6-d"></td>
+            <td><input type="number" value="51.65" class="viscosity-coefficient-dataiinput-cell" id="viscosity-coefficient-dataiinput-data6-t"></td>
+        </tr>
+
+    </table>
+</div>
+        `);
+
+        this.viscosity_coefficient.$viscosity_coefficient.append(this.$datainput);
+
+    }
+
+    getInputData() {
+        let D = [], d = [], t = [];
+
+        for(let i = 1; i <= 6; i++) {
+            D.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-D`).val());
+            d.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-d`).val());
+            t.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-t`).val());
+        }
+
+        return {
+            'D' : D,
+            'd' : d,
+            't' : t,
+        }
+    }
+
+}class ViscosityCoefficientFigure {
+    constructor(viscosity_coefficient) {
+        this.viscosity_coefficient = viscosity_coefficient;
+        this.$figure = $(`
+<div class="viscosity_coefficient_figure">
+    <canvas class="viscosity_coefficient_figure_canvas" style="background: aqua"></canvas>
+</div>
+        `);
+        this.$canvas = this.$figure.find(".viscosity_coefficient_figure_canvas");
+        this.ctx = this.$canvas[0].getContext('2d'); //2D画布
+        this.viscosity_coefficient.$viscosity_coefficient.append(this.$figure);
+
+        this.ctx.canvas.width = this.$figure.width();
+        this.ctx.canvas.height = this.$figure.height();
+
+        this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;
+
+        this.start();
+    }
+
+    start() {
+
+        this.redraw();
+    }
+
+    redraw() {
+
+    }
+
+}class ViscosityCoefficientResult {
+    constructor(viscosity_coefficient) {
+        this.viscosity_coefficient = viscosity_coefficient;
+        this.$result = $(`
+<div class="viscosity_coefficient_result">
+    <h2>计算结果</h2>
+    
+    <div>关系式</div>
+    <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_equal"></div>
+    
+    <div>无限广延液体中小球下落时间</div>
+    <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_t0"></div>
+    
+    <div>相关系数</div>
+    <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_r"></div>
+</div>
+        `);
+
+        this.viscosity_coefficient.$viscosity_coefficient.append(this.$result);
+
+        this.$result_value_equal = this.$result.find("#viscosity_coefficient_result_vaule_equal");
+        this.$result_value_t0 = this.$result.find("#viscosity_coefficient_result_vaule_t0");
+        this.$result_value_r = this.$result.find("#viscosity_coefficient_result_vaule_r");
+    }
+
+    filldata(k, t0, r) {
+        this.$result_value_equal.html("t = " + k.toFixed(2) + " * d / D + " + t0.toFixed(2));
+        this.$result_value_t0.html(t0.toFixed(2) + 's');
+        this.$result_value_r.html(r.toFixed(6));
+    }
+}class ViscosityCoefficient {
+    constructor(root) {
+        this.root = root;
+        this.$viscosity_coefficient = $(`
+<div class="viscosity_coefficient">
+    <h1 class="experiment-name-title">粘滞系数实验数据处理</h1>
+</div>
+        `);
+        this.datainput = new ViscosityCoefficientDataInput(this);
+        this.result = new ViscosityCoefficientResult(this);
+        this.figure = new ViscosityCoefficientFigure(this);
+        this.buttongroup = new ViscosityCoefficientButtonGroup(this);
+
+        this.root.$exp_sys.append(this.$viscosity_coefficient);
+
+        this.start();
+    }
+
+    start() {
+
+    }
+
+    show() {
+        this.$viscosity_coefficient.show();
+    }
+
+    hide() {
+        this.$viscosity_coefficient.hide();
+    }
 }class ExperimentMenu {
     constructor(root) {
         this.root = root;
         this.$menu = $(`
 <div class="experiment-menu">
-    <div class="experiment-menu-item" id="experiment-menu-item-electrostatic-field">静电场测绘实验</div>
-    <div class="experiment-menu-item">实验名称</div>
+    <div class="experiment-menu-item" id="experiment-menu-item-electrostatic-field">静电场测绘实验数据处理</div>
+    <div class="experiment-menu-item" id="experiment-menu-item-viscosity-coefficient">粘滞系数实验数据处理</div>
     <div class="experiment-menu-item">实验名称</div>
     <div class="experiment-menu-item">实验名称</div>
     <div class="experiment-menu-item">实验名称</div>
@@ -442,6 +687,7 @@ class ElectrostaticButtonGroup {
         this.root.$exp_sys.append(this.$menu);
 
         this.$item_electrostatic_field = this.$menu.find("#experiment-menu-item-electrostatic-field");
+        this.$item_viscosity_coefficient = this.$menu.find("#experiment-menu-item-viscosity-coefficient");
         this.start();
     }
 
@@ -450,6 +696,11 @@ class ElectrostaticButtonGroup {
         this.$item_electrostatic_field.click(function (e) {
             outer.hide();
             outer.root.electrostatic_field.show();
+        });
+
+        this.$item_viscosity_coefficient.click(function (e) {
+            outer.hide();
+            outer.root.viscosity_coefficient.show();
         });
     }
 
@@ -468,10 +719,13 @@ class ElectrostaticButtonGroup {
 
         //菜单页面
         this.menu = new ExperimentMenu(this);
-        this.menu.show();
+        this.menu.hide();
         //静电场实验
         this.electrostatic_field = new ElectrostaticField(this);
-        //this.electrostatic_field.show();
+        //粘滞系数实验
+        this.viscosity_coefficient = new ViscosityCoefficient(this);
+        this.viscosity_coefficient.show();
+
         this.start();
     }
 

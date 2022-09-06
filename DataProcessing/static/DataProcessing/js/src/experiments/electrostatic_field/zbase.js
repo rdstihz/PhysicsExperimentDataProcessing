@@ -3,6 +3,7 @@ class ElectrostaticField {
         this.root = root;
         this.$electrostatic_field = $(`
  <div class="electrostatic-field">
+ <h1 class="experiment-name-title">静电场测绘实验数据处理（同轴电缆）</h1>
 </div>
         `);
         this.hide();

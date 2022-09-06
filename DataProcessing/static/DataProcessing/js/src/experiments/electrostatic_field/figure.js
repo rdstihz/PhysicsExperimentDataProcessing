@@ -13,7 +13,6 @@ class ElectrostaticFieldFigure {
 
         this.ctx.canvas.width = this.$figure.width();
         this.ctx.canvas.height = this.$figure.height();
-        console.log(this.ctx.canvas.width, this.ctx.canvas.height);
 
 
         this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;

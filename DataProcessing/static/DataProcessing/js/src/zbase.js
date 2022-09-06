@@ -5,10 +5,13 @@ export class PhysicsExperimentSystem {
 
         //菜单页面
         this.menu = new ExperimentMenu(this);
-        this.menu.show();
+        this.menu.hide();
         //静电场实验
         this.electrostatic_field = new ElectrostaticField(this);
-        //this.electrostatic_field.show();
+        //粘滞系数实验
+        this.viscosity_coefficient = new ViscosityCoefficient(this);
+        this.viscosity_coefficient.show();
+
         this.start();
     }
 
