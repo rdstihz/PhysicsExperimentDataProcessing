@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-{#    <link rel="stylesheet" href="https://cdn.acwing.com/static/jquery-ui-dist/jquery-ui.min.css">#}
+    {#    <link rel="stylesheet" href="https://cdn.acwing.com/static/jquery-ui-dist/jquery-ui.min.css">#}
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-
+    <link rel="stylesheet" href="{% static 'DataProcessing/css/style.css' %}">
 </head>
 <body>
 
@@ -15,7 +15,8 @@
 <div id="physics-experiment-system-31312"></div>
 <script type="module">
     import {PhysicsExperimentSystem} from "{% static 'DataProcessing/js/dist.js' %}"
-    $(document).ready(function (){
+
+    $(document).ready(function () {
         let phyexp_sys = new PhysicsExperimentSystem("physics-experiment-system-31312");
     })
 </script>

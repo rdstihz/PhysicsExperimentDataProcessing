@@ -1,0 +1,33 @@
+.electrostatic-field-result-cell {
+    width: 50px;
+    height: 20px;
+}
+
+.electrostatic-field-figure {
+    position: absolute;
+    right: 100px;
+    top: 100px;
+    height: 500px;
+    width: 500px;
+}
+
+h2 {
+    color: blue;
+    font-family: "楷体"
+}
+
+.electrostatic-field-datainput-cell-red {
+    color: red;
+}
+
+.electrostatic-field-datainput-cell-blue {
+    color: blue;
+}
+
+#electrostatic-field-result-data1-x0 electrostatic-field-result-data1-y0 electrostatic-field-result-data1-r {
+    color: red;
+}
+
+#electrostatic-field-result-data3-x0 electrostatic-field-result-data3-y0 electrostatic-field-result-data3-r {
+    color: blue;
+}

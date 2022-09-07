@@ -11,8 +11,8 @@ class ViscosityCoefficient {
         this.figure = new ViscosityCoefficientFigure(this);
         this.buttongroup = new ViscosityCoefficientButtonGroup(this);
 
+        this.$viscosity_coefficient.hide();
         this.root.$exp_sys.append(this.$viscosity_coefficient);
-
         this.start();
     }
 
