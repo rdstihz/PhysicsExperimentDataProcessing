@@ -3,7 +3,7 @@ class ViscosityCoefficientDataInput {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$datainput = $(`
 <div class="viscosity-coefficient-dataiinput">
-    <h2>数据输入</h2>
+    <h2 class="part-title">数据输入</h2>
     <table border="1" class="viscosity-coefficient-datainput-table">
         <tr>
             <td>

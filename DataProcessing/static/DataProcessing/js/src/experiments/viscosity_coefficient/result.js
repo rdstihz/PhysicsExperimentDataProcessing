@@ -3,15 +3,15 @@ class ViscosityCoefficientResult {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$result = $(`
 <div class="viscosity_coefficient_result">
-    <h2>计算结果</h2>
+    <h2 class="part-title">计算结果</h2>
     
-    <div>关系式</div>
+    <div class="result-title">关系式</div>
     <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_equal"></div>
     
-    <div>无限广延液体中小球下落时间</div>
+    <div class="result-title">无限广延液体中小球下落时间</div>
     <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_t0"></div>
     
-    <div>相关系数</div>
+    <div class="result-title">相关系数</div>
     <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_r"></div>
 </div>
         `);

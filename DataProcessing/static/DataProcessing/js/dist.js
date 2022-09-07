@@ -142,17 +142,17 @@ class ElectrostaticButtonGroup {
             let $line = $(`
             <tr>
                 <td>${i}</td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-red"
                            id="electrostatic-field-datainput-data${i}-x1" value="${x1[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-red"
                            id="electrostatic-field-datainput-data${i}-y1" value="${y1[i - 1]}"></td>
                 <td><input type="number" class="electrostatic-field-datainput-cell"
                            id="electrostatic-field-datainput-data${i}-x2" value="${x2[i - 1]}"></td>
                 <td><input type="number" class="electrostatic-field-datainput-cell"
                            id="electrostatic-field-datainput-data${i}-y2" value="${y2[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-blue"
                            id="electrostatic-field-datainput-data${i}-x3" value="${x3[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-blue"
                            id="electrostatic-field-datainput-data${i}-y3" value="${y3[i - 1]}"></td>
             </tr>`);
             this.$datatable.append($line);
@@ -197,8 +197,8 @@ class ElectrostaticButtonGroup {
     constructor(electrostatic_field) {
         this.electrostatic_field = electrostatic_field;
         this.$figure = $(`
-            <div class="electrostatic-field-figure" style="width: 300px; height: 300px">
-                <canvas class="electrostatic-field-figure-canvas" style="background: aqua; width: 100%; height: 100%"></canvas>
+            <div class="electrostatic-field-figure">
+                <canvas class="electrostatic-field-figure-canvas" ></canvas>
             </div>
 `);
         this.$canvas = this.$figure.find(".electrostatic-field-figure-canvas");
@@ -209,19 +209,20 @@ class ElectrostaticButtonGroup {
         this.ctx.canvas.width = this.$figure.width();
         this.ctx.canvas.height = this.$figure.height();
 
-
         this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;
         this.data = null;
         this.start();
     }
 
     start() {
-        // this.$figure.resize(function (e) {
-        //     this.ctx.canvas.width = this.$figure.width;
-        //     this.ctx.canvas.height = this.$figure.height;
+        let outer = this;
+        // $(window).resize(function (e) {
+        //     outer.ctx.canvas.width = outer.$figure.width();
+        //     outer.ctx.canvas.height = outer.$figure.height();
         //
-        //     this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 30;
-        //     this.redraw();
+        //     console.log(this.$figure.width(), this.$figure.height());
+        //     outer.scale = Math.min(outer.ctx.canvas.width, outer.ctx.canvas.height) / 30;
+        //     outer.redraw();
         // });
         this.redraw();
     }
@@ -273,7 +274,6 @@ class ElectrostaticButtonGroup {
     }
 
     drawRectangle() {
-        console.log("Draw");
         //白色背景
         this.ctx.fillStyle = "rgba(255, 255, 255, 1)";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
@@ -301,7 +301,6 @@ class ElectrostaticButtonGroup {
 
         let scale = this.scale;
         let x0 = this.ctx.canvas.width / 2, y0 = this.ctx.canvas.height / 2;
-        console.log(x, y);
         //画圆
         this.ctx.beginPath();
         this.ctx.arc(x * scale + x0, y * scale + y0, r * scale, 0, Math.PI * 2, false);
@@ -344,23 +343,23 @@ class ElectrostaticButtonGroup {
                 <table border="1">
                     <tr>
                         <td>X0</td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data1-x0"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red" id="electrostatic-field-result-data1-x0"></td>
                         <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-x0"></td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data3-x0"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue" id="electrostatic-field-result-data3-x0"></td>
                     </tr>
         
                     <tr>
                         <td>Y0</td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data1-y0"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red" id="electrostatic-field-result-data1-y0"></td>
                         <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-y0"></td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data3-y0"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue" id="electrostatic-field-result-data3-y0"></td>
                     </tr>
         
                     <tr>
                         <td>R</td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data1-r"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red" id="electrostatic-field-result-data1-r"></td>
                         <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-r"></td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data3-r"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue" id="electrostatic-field-result-data3-r"></td>
                     </tr>
         
         
@@ -506,7 +505,7 @@ class ElectrostaticButtonGroup {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$datainput = $(`
 <div class="viscosity-coefficient-dataiinput">
-    <h2>数据输入</h2>
+    <h2 class="part-title">数据输入</h2>
     <table border="1" class="viscosity-coefficient-datainput-table">
         <tr>
             <td>
@@ -643,15 +642,15 @@ class ElectrostaticButtonGroup {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$result = $(`
 <div class="viscosity_coefficient_result">
-    <h2>计算结果</h2>
+    <h2 class="part-title">计算结果</h2>
     
-    <div>关系式</div>
+    <div class="result-title">关系式</div>
     <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_equal"></div>
     
-    <div>无限广延液体中小球下落时间</div>
+    <div class="result-title">无限广延液体中小球下落时间</div>
     <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_t0"></div>
     
-    <div>相关系数</div>
+    <div class="result-title">相关系数</div>
     <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_r"></div>
 </div>
         `);
@@ -681,8 +680,8 @@ class ElectrostaticButtonGroup {
         this.figure = new ViscosityCoefficientFigure(this);
         this.buttongroup = new ViscosityCoefficientButtonGroup(this);
 
+        this.$viscosity_coefficient.hide();
         this.root.$exp_sys.append(this.$viscosity_coefficient);
-
         this.start();
     }
 

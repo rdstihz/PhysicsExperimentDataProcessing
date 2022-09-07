@@ -33,17 +33,17 @@ class ElectrostatidFieldDataInput {
             let $line = $(`
             <tr>
                 <td>${i}</td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-red"
                            id="electrostatic-field-datainput-data${i}-x1" value="${x1[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-red"
                            id="electrostatic-field-datainput-data${i}-y1" value="${y1[i - 1]}"></td>
                 <td><input type="number" class="electrostatic-field-datainput-cell"
                            id="electrostatic-field-datainput-data${i}-x2" value="${x2[i - 1]}"></td>
                 <td><input type="number" class="electrostatic-field-datainput-cell"
                            id="electrostatic-field-datainput-data${i}-y2" value="${y2[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-blue"
                            id="electrostatic-field-datainput-data${i}-x3" value="${x3[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-blue"
                            id="electrostatic-field-datainput-data${i}-y3" value="${y3[i - 1]}"></td>
             </tr>`);
             this.$datatable.append($line);

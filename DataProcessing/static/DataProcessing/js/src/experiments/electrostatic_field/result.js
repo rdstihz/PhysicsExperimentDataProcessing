@@ -8,23 +8,23 @@ class ElectrostaticFieldResult {
                 <table border="1">
                     <tr>
                         <td>X0</td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data1-x0"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red" id="electrostatic-field-result-data1-x0"></td>
                         <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-x0"></td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data3-x0"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue" id="electrostatic-field-result-data3-x0"></td>
                     </tr>
         
                     <tr>
                         <td>Y0</td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data1-y0"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red" id="electrostatic-field-result-data1-y0"></td>
                         <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-y0"></td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data3-y0"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue" id="electrostatic-field-result-data3-y0"></td>
                     </tr>
         
                     <tr>
                         <td>R</td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data1-r"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red" id="electrostatic-field-result-data1-r"></td>
                         <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-r"></td>
-                        <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data3-r"></td>
+                        <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue" id="electrostatic-field-result-data3-r"></td>
                     </tr>
         
         

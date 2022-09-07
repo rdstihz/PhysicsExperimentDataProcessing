@@ -2,8 +2,8 @@ class ElectrostaticFieldFigure {
     constructor(electrostatic_field) {
         this.electrostatic_field = electrostatic_field;
         this.$figure = $(`
-            <div class="electrostatic-field-figure" style="width: 300px; height: 300px">
-                <canvas class="electrostatic-field-figure-canvas" style="background: aqua; width: 100%; height: 100%"></canvas>
+            <div class="electrostatic-field-figure">
+                <canvas class="electrostatic-field-figure-canvas" ></canvas>
             </div>
 `);
         this.$canvas = this.$figure.find(".electrostatic-field-figure-canvas");
@@ -14,19 +14,20 @@ class ElectrostaticFieldFigure {
         this.ctx.canvas.width = this.$figure.width();
         this.ctx.canvas.height = this.$figure.height();
 
-
         this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;
         this.data = null;
         this.start();
     }
 
     start() {
-        // this.$figure.resize(function (e) {
-        //     this.ctx.canvas.width = this.$figure.width;
-        //     this.ctx.canvas.height = this.$figure.height;
+        let outer = this;
+        // $(window).resize(function (e) {
+        //     outer.ctx.canvas.width = outer.$figure.width();
+        //     outer.ctx.canvas.height = outer.$figure.height();
         //
-        //     this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 30;
-        //     this.redraw();
+        //     console.log(this.$figure.width(), this.$figure.height());
+        //     outer.scale = Math.min(outer.ctx.canvas.width, outer.ctx.canvas.height) / 30;
+        //     outer.redraw();
         // });
         this.redraw();
     }
@@ -78,7 +79,6 @@ class ElectrostaticFieldFigure {
     }
 
     drawRectangle() {
-        console.log("Draw");
         //白色背景
         this.ctx.fillStyle = "rgba(255, 255, 255, 1)";
         this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
@@ -106,7 +106,6 @@ class ElectrostaticFieldFigure {
 
         let scale = this.scale;
         let x0 = this.ctx.canvas.width / 2, y0 = this.ctx.canvas.height / 2;
-        console.log(x, y);
         //画圆
         this.ctx.beginPath();
         this.ctx.arc(x * scale + x0, y * scale + y0, r * scale, 0, Math.PI * 2, false);
