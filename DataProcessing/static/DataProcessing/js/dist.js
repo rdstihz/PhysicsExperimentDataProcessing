@@ -495,7 +495,7 @@ class ElectrostaticButtonGroup {
         console.log(b, r);
         this.viscosity_coefficient.result.filldata(k, b, r);
 
-        //this.viscosity_coefficient.figure.setdata(k, b, x, y, n);
+        this.viscosity_coefficient.figure.setdata(k, b, x, y, n);
 
     }
 
@@ -505,7 +505,7 @@ class ElectrostaticButtonGroup {
     constructor(viscosity_coefficient) {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$datainput = $(`
-<div>
+<div class="viscosity-coefficient-dataiinput">
     <h2>数据输入</h2>
     <table border="1" class="viscosity-coefficient-datainput-table">
         <tr>
@@ -569,16 +569,16 @@ class ElectrostaticButtonGroup {
     getInputData() {
         let D = [], d = [], t = [];
 
-        for(let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 6; i++) {
             D.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-D`).val());
             d.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-d`).val());
             t.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-t`).val());
         }
 
         return {
-            'D' : D,
-            'd' : d,
-            't' : t,
+            'D': D,
+            'd': d,
+            't': t,
         }
     }
 
@@ -587,24 +587,51 @@ class ElectrostaticButtonGroup {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$figure = $(`
 <div class="viscosity_coefficient_figure">
-    <canvas class="viscosity_coefficient_figure_canvas" style="background: aqua"></canvas>
+    <img class="viscosity_coefficient_figure_img" alt="图像" src="1">
 </div>
         `);
-        this.$canvas = this.$figure.find(".viscosity_coefficient_figure_canvas");
-        this.ctx = this.$canvas[0].getContext('2d'); //2D画布
+
+
+        this.$img = this.$figure.find("img")[0];
+
         this.viscosity_coefficient.$viscosity_coefficient.append(this.$figure);
-
-        this.ctx.canvas.width = this.$figure.width();
-        this.ctx.canvas.height = this.$figure.height();
-
-        this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;
-
         this.start();
     }
 
     start() {
 
         this.redraw();
+    }
+
+    setdata(k, b, x, y, n) {
+        let outer = this;
+        $.ajax({
+            url: "http://127.0.0.1:8000/exp/getfigure/",
+            type: "GET",
+            data: {
+                'k': k,
+                'b': b,
+                'x': outer.array_to_str(x, n),
+                'y': outer.array_to_str(y, n),
+                'n': n,
+                'state': '99787fdsf',
+            },
+            success: function (resp) {
+                if (resp.result === "success") {
+                    console.log("success");
+                    outer.$img.src = resp.src;
+                }
+            }
+        });
+    }
+
+    array_to_str(x, n) {
+        let res = '';
+        for (let i = 0; i < n; i++) {
+            if (i) res += ','
+            res += x[i];
+        }
+        return res;
     }
 
     redraw() {

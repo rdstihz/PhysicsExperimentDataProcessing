@@ -68,7 +68,7 @@ class ViscosityCoefficientButtonGroup {
         console.log(b, r);
         this.viscosity_coefficient.result.filldata(k, b, r);
 
-        //this.viscosity_coefficient.figure.setdata(k, b, x, y, n);
+        this.viscosity_coefficient.figure.setdata(k, b, x, y, n);
 
     }
 

@@ -2,7 +2,7 @@ class ViscosityCoefficientDataInput {
     constructor(viscosity_coefficient) {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$datainput = $(`
-<div>
+<div class="viscosity-coefficient-dataiinput">
     <h2>数据输入</h2>
     <table border="1" class="viscosity-coefficient-datainput-table">
         <tr>
@@ -66,16 +66,16 @@ class ViscosityCoefficientDataInput {
     getInputData() {
         let D = [], d = [], t = [];
 
-        for(let i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 6; i++) {
             D.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-D`).val());
             d.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-d`).val());
             t.push(+this.$datainput.find(`#viscosity-coefficient-dataiinput-data${i}-t`).val());
         }
 
         return {
-            'D' : D,
-            'd' : d,
-            't' : t,
+            'D': D,
+            'd': d,
+            't': t,
         }
     }
 
