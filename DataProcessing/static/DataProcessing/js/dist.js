@@ -206,8 +206,8 @@ class ElectrostaticButtonGroup {
         this.electrostatic_field.$electrostatic_field.append(this.$figure);
 
 
-        this.ctx.canvas.width = 500;
-        this.ctx.canvas.height = 500;
+        this.ctx.canvas.width = this.$figure.width();
+        this.ctx.canvas.height = this.$figure.height();
 
         this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;
         this.data = null;
@@ -216,14 +216,12 @@ class ElectrostaticButtonGroup {
 
     start() {
         let outer = this;
-        // $(window).resize(function (e) {
-        //     outer.ctx.canvas.width = outer.$figure.width();
-        //     outer.ctx.canvas.height = outer.$figure.height();
-        //
-        //     console.log(this.$figure.width(), this.$figure.height());
-        //     outer.scale = Math.min(outer.ctx.canvas.width, outer.ctx.canvas.height) / 30;
-        //     outer.redraw();
-        // });
+        $(window).resize(function (e) {
+            outer.ctx.canvas.width = outer.$figure.width();
+            outer.ctx.canvas.height = outer.$figure.height();
+            outer.scale = Math.min(outer.ctx.canvas.width, outer.ctx.canvas.height) / 23;
+            outer.redraw();
+        });
         this.redraw();
     }
 
@@ -412,7 +410,7 @@ class ElectrostaticButtonGroup {
     }
 
     start() {
-        
+
     }
 
     hide() {
@@ -421,7 +419,10 @@ class ElectrostaticButtonGroup {
 
     show() {
         this.$electrostatic_field.show();
-        console.log(this.datainput.getInputData());
+        this.figure.ctx.canvas.width = this.figure.$figure.width();
+        this.figure.ctx.canvas.height = this.figure.$figure.height();
+        this.figure.scale = Math.min(this.figure.$figure.width(), this.figure.$figure.height()) / 23;
+        this.figure.redraw();
     }
 
 }class ViscosityCoefficientButtonGroup {
@@ -586,7 +587,7 @@ class ElectrostaticButtonGroup {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$figure = $(`
 <div class="viscosity_coefficient_figure">
-    <img class="viscosity_coefficient_figure_img" alt="图像" src="1">
+    <img class="viscosity_coefficient_figure_img" alt="图像">
 </div>
         `);
 
@@ -701,12 +702,40 @@ class ElectrostaticButtonGroup {
         this.root = root;
         this.$menu = $(`
 <div class="experiment-menu">
-    <div class="experiment-menu-item" id="experiment-menu-item-electrostatic-field">静电场测绘实验数据处理</div>
-    <div class="experiment-menu-item" id="experiment-menu-item-viscosity-coefficient">粘滞系数实验数据处理</div>
-    <div class="experiment-menu-item">实验名称</div>
-    <div class="experiment-menu-item">实验名称</div>
-    <div class="experiment-menu-item">实验名称</div>
-    <div class="experiment-menu-item">实验名称</div>
+    <table class="experiment-menu-table">
+        <tr>
+            <td class="experiment-menu-item" id="experiment-menu-item-electrostatic-field">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <div >静电场测绘实验数据处理</div>
+            </td>
+            <td class="experiment-menu-item" id="experiment-menu-item-viscosity-coefficient">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <div >粘滞系数实验数据处理</div>
+            </td>
+            <td class="experiment-menu-item">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <div >实验名称</div>
+            </td>
+        </tr>
+        
+        <tr>
+            <td class="experiment-menu-item">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <div class="experiment-menu-item">实验名称</div>
+            </td class="experiment-menu-item">
+            <td class="experiment-menu-item">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <div class="experiment-menu-item">实验名称</div>
+            </td>
+            <td class="experiment-menu-item">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <div class="experiment-menu-item">实验名称</div>
+            </td>
+        </tr>
+        
+    </table>
+    
+
 </div>
         `);
 
@@ -745,12 +774,12 @@ class ElectrostaticButtonGroup {
 
         //菜单页面
         this.menu = new ExperimentMenu(this);
-        this.menu.hide();
+        //this.menu.hide();
         //静电场实验
         this.electrostatic_field = new ElectrostaticField(this);
         //粘滞系数实验
         this.viscosity_coefficient = new ViscosityCoefficient(this);
-        this.viscosity_coefficient.show();
+        //this.viscosity_coefficient.show();
 
         this.start();
     }

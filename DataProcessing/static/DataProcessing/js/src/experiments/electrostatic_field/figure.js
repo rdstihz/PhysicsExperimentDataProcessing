@@ -11,8 +11,8 @@ class ElectrostaticFieldFigure {
         this.electrostatic_field.$electrostatic_field.append(this.$figure);
 
 
-        this.ctx.canvas.width = 500;
-        this.ctx.canvas.height = 500;
+        this.ctx.canvas.width = this.$figure.width();
+        this.ctx.canvas.height = this.$figure.height();
 
         this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;
         this.data = null;
@@ -21,14 +21,12 @@ class ElectrostaticFieldFigure {
 
     start() {
         let outer = this;
-        // $(window).resize(function (e) {
-        //     outer.ctx.canvas.width = outer.$figure.width();
-        //     outer.ctx.canvas.height = outer.$figure.height();
-        //
-        //     console.log(this.$figure.width(), this.$figure.height());
-        //     outer.scale = Math.min(outer.ctx.canvas.width, outer.ctx.canvas.height) / 30;
-        //     outer.redraw();
-        // });
+        $(window).resize(function (e) {
+            outer.ctx.canvas.width = outer.$figure.width();
+            outer.ctx.canvas.height = outer.$figure.height();
+            outer.scale = Math.min(outer.ctx.canvas.width, outer.ctx.canvas.height) / 23;
+            outer.redraw();
+        });
         this.redraw();
     }
 

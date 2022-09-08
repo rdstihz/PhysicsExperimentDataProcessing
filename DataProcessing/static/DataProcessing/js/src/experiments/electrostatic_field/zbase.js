@@ -23,7 +23,7 @@ class ElectrostaticField {
     }
 
     start() {
-        
+
     }
 
     hide() {
@@ -32,7 +32,10 @@ class ElectrostaticField {
 
     show() {
         this.$electrostatic_field.show();
-        console.log(this.datainput.getInputData());
+        this.figure.ctx.canvas.width = this.figure.$figure.width();
+        this.figure.ctx.canvas.height = this.figure.$figure.height();
+        this.figure.scale = Math.min(this.figure.$figure.width(), this.figure.$figure.height()) / 23;
+        this.figure.redraw();
     }
 
 }

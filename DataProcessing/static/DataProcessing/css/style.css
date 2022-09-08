@@ -1,9 +1,7 @@
 /*全局*/
-* {
-    padding-top: 0vh;
-}
 
-table td{
+
+table td {
     font-size: large;
     text-align: center;
 }
@@ -19,8 +17,8 @@ input {
 /*去除箭头*/
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  height: auto;
-  -webkit-appearance: none;
+    height: auto;
+    -webkit-appearance: none;
 }
 
 h2 {
@@ -55,7 +53,35 @@ button {
     height: 5vh;
 }
 
+
+/*菜单页面*/
+.experiment-menu {
+    height: 100vh;
+    width: 100vw;
+}
+
+table.experiment-menu-table {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.experiment-menu-item > img {
+    width: 20vw;
+}
+
+.experiment-menu-item > div {
+    font-family: 宋体;
+    font-size: 3vh;
+}
+
+td.experiment-menu-item {
+    padding: 3vw;
+}
+
 /*静电场*/
+
 
 .electrostatic-field-result-cell {
     width: 7vw;
@@ -67,8 +93,8 @@ button {
     position: absolute;
     left: 63vw;
     top: 15vh;
-    height: 500px;
-    width: 500px;
+    height: 30vw;
+    width: 30vw;
 
     background-color: red;
 }
@@ -97,9 +123,11 @@ button {
     color: blue;
 }
 
+.electrostatic-field-button-group {
+    margin-top: 1vh;
+}
 
 /*viscosity coefficient*/
-
 
 .viscosity_coefficient_figure {
     position: absolute;
