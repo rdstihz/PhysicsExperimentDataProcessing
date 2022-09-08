@@ -206,8 +206,8 @@ class ElectrostaticButtonGroup {
         this.electrostatic_field.$electrostatic_field.append(this.$figure);
 
 
-        this.ctx.canvas.width = this.$figure.width();
-        this.ctx.canvas.height = this.$figure.height();
+        this.ctx.canvas.width = 500;
+        this.ctx.canvas.height = 500;
 
         this.scale = Math.min(this.ctx.canvas.width, this.ctx.canvas.height) / 23;
         this.data = null;
