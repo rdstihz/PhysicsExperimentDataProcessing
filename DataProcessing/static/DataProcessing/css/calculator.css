@@ -1,0 +1,54 @@
+.toolbox-calculator {
+    width: 30vw;
+    height: 100vh;
+
+    position: relative;
+    left: 50%;
+    top: 10%;
+
+    transform: translate(-50%, 0);
+
+}
+
+/*去除箭头*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+    -webkit-appearance: none;
+}
+
+input {
+    width: 90%;
+    height: 5vh;
+
+    font-size: large;
+}
+
+.calculator-input-hints {
+    font-size: large;
+    font-family: 宋体;
+
+}
+
+button {
+    width: 95%;
+    height: 5vh;
+    font-size: large;
+    text-align: center;
+    font-family: 宋体;
+}
+
+.calculator-result-table {
+    margin-top: 2vh;
+    width: 95%;
+    text-align: center;
+    font-size: large;
+    font-family: 宋体;
+
+}
+
+.calculator-result-table td {
+    width: 50%;
+    height: 3vh;
+}
+

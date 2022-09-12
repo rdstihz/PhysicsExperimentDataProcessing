@@ -1131,34 +1131,34 @@ class ViscosityCoefficientButtonGroup {
         <h1>物理实验数据处理平台</h1>
     </div>
     
-    <div class="experiment-menu-toolbox">工具箱</div>
+    <a class="experiment-menu-toolbox" href="exp/calculator/">工具箱</a>
     <table class="experiment-menu-table">
         <tr>
             <td class="experiment-menu-item" id="experiment-menu-item-electrostatic-field">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/electrostatic_field.png" alt="">
                 <div >静电场测绘实验数据处理</div>
             </td>
             <td class="experiment-menu-item" id="experiment-menu-item-viscosity-coefficient">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/viscosity_coefficient.png" alt="">
                 <div >粘滞系数实验数据处理</div>
             </td>
             <td class="experiment-menu-item" id="experiment-menu-item-air-cushion">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/air_cushion.png" alt="">
                 <div >气垫技术测量重力加速度</div>
             </td>
         </tr>
         
         <tr>
             <td class="experiment-menu-item" id="experiment-menu-item-newton-rings">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/netwon_rings.png" alt="">
                 <div class="experiment-menu-item">牛顿环</div>
             </td class="experiment-menu-item">
             <td class="experiment-menu-item" id="experiment-menu-item-simple-pendlum">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/single_pendulum.png" alt="">
                 <div class="experiment-menu-item">单摆</div>
             </td>
             <td class="experiment-menu-item" id="experiment-menu-item-rotational-inertia">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/tempimage.jpeg" alt="">
+                <img src="http://127.0.0.1:8000/static/DataProcessing/images/torsional_pendulum.png" alt="">
                 <div class="experiment-menu-item">扭摆实验————转动惯量的测量</div>
             </td>
         </tr>
@@ -1177,6 +1177,9 @@ class ViscosityCoefficientButtonGroup {
         this.$item_newton_rings = this.$menu.find("#experiment-menu-item-newton-rings");
         this.$item_simple_pendlum = this.$menu.find("#experiment-menu-item-simple-pendlum");
         this.$item_rotational_inertia = this.$menu.find("#experiment-menu-item-rotational-inertia");
+
+        this.$item_toolbox = this.$menu.find(".experiment-menu-toolbox");
+
         this.start();
     }
 
@@ -1211,6 +1214,11 @@ class ViscosityCoefficientButtonGroup {
             outer.hide();
             outer.root.rotational_inertia.show();
         });
+
+        this.$item_toolbox.click(function (e) {
+            outer.hide();
+            outer.root.toolbox.show();
+        });
     }
 
     show() {
@@ -1219,6 +1227,93 @@ class ViscosityCoefficientButtonGroup {
 
     hide() {
         this.$menu.hide();
+    }
+
+}export class Calculator {
+    constructor(id) {
+        this.$calculator = $(`#` + id);
+
+        this.$data_n = this.$calculator.find("#calculator-input-data-count");
+        this.$data_datas = this.$calculator.find("#calculator-input-datas");
+        this.$data_delta = this.$calculator.find("#calculator-input-delta");
+
+        //this.$data_delta_even = this.$calculator.find("#calculator-input-delta-radio-even");
+
+        this.$button = this.$calculator.find(".calculator-input-button-calculate");
+
+        this.$result = this.$calculator.find(".calculator-result");
+
+        this.start();
+    }
+
+    start() {
+        let outer = this;
+        this.$button.click(function (e) {
+            outer.work();
+        });
+    }
+
+    work() {
+        let result = this.calc();
+        this.$result.find("#calculator-result-cell-n").html(result.n);
+
+        let datas_str = "";
+        for (let i = 0; i < result.datas.length; i++) {
+            datas_str += result.datas[i] + " ";
+        }
+        this.$result.find("#calculator-result-cell-datas").html(datas_str);
+
+        this.$result.find("#calculator-result-cell-average").html(result.average);
+        this.$result.find("#calculator-result-cell-variance").html(result.variance);
+        this.$result.find("#calculator-result-cell-unsure").html(result.unsure);
+        this.$result.find("#calculator-result-cell-error").html(result.error);
+    }
+
+    calc() {
+        let n = +this.$data_n.val();
+        let datas = this.$data_datas.val();
+        let delta = +this.$data_delta.val();
+
+        datas = datas.split(" ")
+        for (let i = 0; i < datas.length; i++) {
+            datas[i] = +datas[i];
+        }
+
+        n = datas.length;
+
+        //自由度
+        let tp = [0, 1.84, 1.32, 1.20, 1.14, 1.11, 1.09, 1.08, 1.07, 1.06];
+
+        let average = 0; //算术平均值
+        let variance = 0; //方差
+
+        //求算术平均值
+        for (let i = 0; i < n; i++) {
+            average += datas[i] / n;
+        }
+        //求标准偏差
+        for (let i = 0; i < n; i++) {
+            let x = datas[i];
+            variance += (x - average) * (x - average) / n;
+        }
+
+        //求不确定度
+        let s1 = tp[n - 1] * variance * Math.sqrt(n);
+        let s2 = 0.683 * delta;
+        let U = Math.sqrt(s1 * s1 + s2 * s2);
+
+        //相对误差
+        let E = 100 * U / average;
+
+
+        return {
+            'n': n,
+            'datas': datas,
+            'average': average,
+            'variance': variance,
+            'unsure': U,
+            'error': E,
+        }
     }
 
 }export class PhysicsExperimentSystem {
@@ -1246,7 +1341,12 @@ class ViscosityCoefficientButtonGroup {
 
         //扭摆
         this.rotational_inertia = new RotationalInertia(this);
+        //工具箱
+        // this.toolbox = new Calculator(this);
+
         this.start();
+
+
     }
 
     start() {

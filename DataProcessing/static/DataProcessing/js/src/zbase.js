@@ -23,7 +23,12 @@ export class PhysicsExperimentSystem {
 
         //扭摆
         this.rotational_inertia = new RotationalInertia(this);
+        //工具箱
+        // this.toolbox = new Calculator(this);
+
         this.start();
+
+
     }
 
     start() {

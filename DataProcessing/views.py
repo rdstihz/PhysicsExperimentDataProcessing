@@ -56,3 +56,7 @@ def getfigure(request):
         'result': "success",
         'src': src,
     })
+
+
+def calculator(request):
+    return render(request, 'Toolbox/calculator.html')
