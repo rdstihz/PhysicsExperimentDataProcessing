@@ -669,6 +669,28 @@ class ElectrostaticButtonGroup {
 
     }
 
+    get_inputdata2() {
+        let m = +$(`#pre-measured-date-m`).val();
+        let h = +$(`#pre-measured-date-h`).val();
+        let D = +$(`#pre-measured-date-wai`).val();
+        let d = +$(`#pre-measured-date-nei`).val();
+        let T = [];
+        for (let i = 1; i <= 5; i++) {
+            T.push(+$(`parallel-axis-cycle${i}`).val());
+        }
+        return {
+            m: m,
+            h: h,
+            D: D,
+            d: d,
+            T: T,
+        };
+    }
+
+    calc2(data) {
+
+    }
+
 }
 class SimplePendlum {
     constructor(root) {
@@ -1040,13 +1062,12 @@ class ViscosityCoefficientButtonGroup {
         });
 
         this.$item_newton_rings.click(function (e) {
-
+            window.location.replace("/exp/newton_rings/");
         });
         //
-        // this.$item_simple_pendlum.click(function (e) {
-        //     outer.hide();
-        //     outer.root.simple_pendlum.show();
-        // });
+        this.$item_simple_pendlum.click(function (e) {
+            window.location.replace("/exp/simple_pendlum/");
+        });
 
         this.$item_rotational_inertia.click(function (e) {
             window.location.replace("/exp/rotational_inertia/");
@@ -1136,7 +1157,15 @@ class ViscosityCoefficientButtonGroup {
 
         //求不确定度
         let s1 = tp[n - 1] * variance * Math.sqrt(n);
-        let s2 = 0.683 * delta;
+
+        let s2 = 0;
+        let radio_even = document.getElementById("calculator-input-delta-radio-even");
+        if(radio_even.checked) {
+            s2 = 0.683 * delta;
+        }else {
+            s2 = delta / 3;
+        }
+
         let U = Math.sqrt(s1 * s1 + s2 * s2);
 
         //相对误差

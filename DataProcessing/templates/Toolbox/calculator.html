@@ -32,13 +32,14 @@
         <div class="calculator-input-hints">仪器误差</div>
         <input type="number" class="calculator-input-numbers" id="calculator-input-delta">
 
-        {#        <div class="calculator-input-radios">#}
-        {#            <input type="radio" name="distribution" value="even" checked="checked"#}
-        {#                   id="calculator-input-delta-radio-even">#}
-        {#            <div class="calculator-input-radios-hint">均匀分布</div>#}
-        {#            <input type="radio" name="distribution" value="nature" id="calculator-input-delta-radio-nature">#}
-        {#            <div class="calculator-input-radios-hint">正态分布</div>#}
-        {#        </div>#}
+                <div class="calculator-input-radios">
+                    <input type="radio" name="distribution" value="even" checked="checked"
+                           id="calculator-input-delta-radio-even" class="calculator-input-radio">
+                    <div class="calculator-input-radios-hint">均匀分布</div>
+                    <input type="radio" name="distribution" value="nature"
+                           id="calculator-input-delta-radio-nature" class="calculator-input-radio">
+                    <div class="calculator-input-radios-hint">正态分布</div>
+                </div>
 
     </div>
 
@@ -75,7 +76,7 @@
             </tr>
         </table>
     </div>
-
+    <a href="/">返回主菜单</a>
 </div>
 </body>
 </html>

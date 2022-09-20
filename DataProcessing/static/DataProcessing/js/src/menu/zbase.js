@@ -78,13 +78,12 @@ class ExperimentMenu {
         });
 
         this.$item_newton_rings.click(function (e) {
-
+            window.location.replace("/exp/newton_rings/");
         });
         //
-        // this.$item_simple_pendlum.click(function (e) {
-        //     outer.hide();
-        //     outer.root.simple_pendlum.show();
-        // });
+        this.$item_simple_pendlum.click(function (e) {
+            window.location.replace("/exp/simple_pendlum/");
+        });
 
         this.$item_rotational_inertia.click(function (e) {
             window.location.replace("/exp/rotational_inertia/");

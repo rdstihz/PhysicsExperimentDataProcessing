@@ -52,3 +52,13 @@ button {
     height: 3vh;
 }
 
+.calculator-input-radio {
+    display: inline;
+    width: 2vw;
+}
+
+.calculator-input-radios-hint {
+    display: inline;
+    position: relative;
+    top: -2vh;
+}

@@ -68,7 +68,15 @@ export class Calculator {
 
         //求不确定度
         let s1 = tp[n - 1] * variance * Math.sqrt(n);
-        let s2 = 0.683 * delta;
+
+        let s2 = 0;
+        let radio_even = document.getElementById("calculator-input-delta-radio-even");
+        if(radio_even.checked) {
+            s2 = 0.683 * delta;
+        }else {
+            s2 = delta / 3;
+        }
+
         let U = Math.sqrt(s1 * s1 + s2 * s2);
 
         //相对误差
