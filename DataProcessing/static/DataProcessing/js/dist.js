@@ -540,6 +540,9 @@ class ElectrostaticButtonGroup {
             let result = this.calc(data);
             console.log(result);
             this.fillresult(result);
+
+            data = this.get_inputdata2();
+            this.calc2(data, result[4].I_t, result[0].K);
         });
     }
 
@@ -597,16 +600,14 @@ class ElectrostaticButtonGroup {
 
         let I0_e = I1_t * T0 * T0 / (T1 * T1 - T0 * T0);
         let K = 4 * Math.PI * Math.PI * (I1_t) / (T1 * T1 - T0 * T0);
-        //let K = 0.02873646279;
-        let I0_t = K * T0 * T0 / (4 * Math.PI * Math.PI);
 
         result.push({
-            I_t: I0_t,
             I_e: I0_e,
+            K: K,
         });
+
         result.push({
             I_t: I1_t,
-            I_e: K * T1 * T1 / (4 * Math.PI * Math.PI) - I0_t,
         });
 
 
@@ -617,7 +618,7 @@ class ElectrostaticButtonGroup {
         T1 = data[2].T;
         result.push({
             I_t: m * (D * D + d * d) / 8,
-            I_e: K * T1 * T1 / (4 * Math.PI * Math.PI) - I0_t,
+            I_e: K * T1 * T1 / (4 * Math.PI * Math.PI) - I0_e,
         });
 
         //圆球
@@ -645,14 +646,14 @@ class ElectrostaticButtonGroup {
 
     fillresult(result) {
         let data = result;
-        $(`#torsional-pendulum-tuo-test`).html((data[0].I_t * 1e4).toFixed(4));
+        $(`#torsional-pendulum-tuo-test`).html((data[0].I_e * 1e4).toFixed(4));
 
-        let a = data[1].I_t, b = data[1].I_e;
-        $(`#torsional-pendulum-theory-zhu`).html((a * 1e4).toFixed(4));
-        $(`#torsional-pendulum-test-zhu`).html((b * 1e4).toFixed(4));
-        $(`#calculation-error-zhu`).html(((b - a) / a * 100).toFixed(4));
+        //let a = data[1].I_t, b = data[1].I_e;
+        $(`#torsional-pendulum-theory-zhu`).html((data[1].I_t * 1e4).toFixed(4));
+        //$(`#torsional-pendulum-test-zhu`).html((b * 1e4).toFixed(4));
+        //$(`#calculation-error-zhu`).html(((b - a) / a * 100).toFixed(4));
 
-        a = data[2].I_t, b = data[2].I_e;
+        let a = data[2].I_t, b = data[2].I_e;
         $(`#torsional-pendulum-theory-tong`).html((data[2].I_t * 1e4).toFixed(4));
         $(`#torsional-pendulum-test-tong`).html((data[2].I_e * 1e4).toFixed(4));
         $(`#calculation-error-tong`).html(((b - a) / a * 100).toFixed(4));
@@ -676,7 +677,7 @@ class ElectrostaticButtonGroup {
         let d = +$(`#pre-measured-date-nei`).val();
         let T = [];
         for (let i = 1; i <= 5; i++) {
-            T.push(+$(`parallel-axis-cycle${i}`).val());
+            T.push(+$(`#parallel-axis-cycle${i}`).val());
         }
         return {
             m: m,
@@ -687,7 +688,24 @@ class ElectrostaticButtonGroup {
         };
     }
 
-    calc2(data) {
+    calc2(data, I, K) {
+        console.log(data);
+        let m = data.m / 1000, D = data.D / 100, d = data.d / 100, h = data.h / 100, T = data.T;
+        let I0 = m * (D * D + d * d) / 16 + m * h * h / 12;
+        let xs = [5, 10, 15, 20, 25];
+
+        for (let i = 0; i < 5; i++) {
+            let x = xs[i] / 100;
+
+            //实验值
+            let I_e = K * T[i] * T[i] / (4 * Math.PI * Math.PI);
+            //理论值
+            let I_t = I + 2 * m * x * x + 0;
+
+            $(`#parallel-axis-theory${i + 1}`).html((I_t * 1e4).toFixed(3));
+            $(`#parallel-axis-test${i + 1}`).html((I_e * 1e4).toFixed(3));
+            $(`#parallel-axis-error${i + 1}`).html( ((I_e - I_t) / I_t * 100).toFixed(1) + "%" );
+        }
 
     }
 
