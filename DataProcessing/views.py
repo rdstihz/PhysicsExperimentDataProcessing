@@ -15,6 +15,22 @@ def index(request):
     return render(request, 'DataProcessing/index.html')
 
 
+def air_cushion(request):
+    return render(request, 'DataProcessing/air_cushion.html')
+
+
+def rotational_inertia(request):
+    return render(request, 'DataProcessing/rotational_inertia.html')
+
+
+def newton_rings(request):
+    return render(request, 'DataProcessing/newton_rings.html')
+
+
+def simple_pendlum(request):
+    return render(request, 'DataProcessing/simple_pendlum.html')
+
+
 def getfigure(request):
     data = request.GET
 

@@ -1,101 +1,82 @@
-class AirCushion {
-    constructor(root) {
-        this.root = root;
-        this.$air_cushion = $(`
-            <div class="air-cushion">
-    <h2 class="air-cushion-title">气垫技术测量重力加速度实验数据处理</h2>
-    <div class="air-cushion-date">
-        <div class="air-cushion-date-pre">
-            实验数据：&emsp;
-            S: <input type="number" name="S">[cm]&emsp;
-            L: <input type="number" name="L">[cm]&emsp;
-            ΔL： <input type="number" name="ΔL">[cm]
-        </div>
-
-        <table border="1px" class="air-cushion-date-all" align="center">
-            <tr>
-                <td>高度h</td>
-                <td>下滑t1（ms）</td>
-                <td>下滑t2(ms)</td>
-                <td>上滑t1(ms)</td>
-                <td>上滑t2(ms)</td>
-            </tr>
-            <tr>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-h1"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down1-1"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down2-1"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up1-1"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up2-1"></td>
-            </tr>
-            <tr>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-h2"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down1-2"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down2-2"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up1-2"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up2-2"></td>
-            </tr>
-            <tr>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-h3"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down1-3"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down2-3"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up1-3"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up2-3"></td>
-            </tr>
-        </table>
-    </div>
-    <div id="air-cushion-result">计算结果:</div>
-
-    <table border="1px" class="air-cushion-date-result">
-        <tr>
-            <td>高度h</td>
-            <td class="acc">加速度(cm/s²)</td>
-            <td class="acc">重力加速度(cm/s²)</td>
-        </tr>
-        <tr>
-            <td>h1</td>
-            <td class="air-cushion-date-result-accelerated-velocity" id="air-cushion-acceleration1"></td>
-            <td class="air-cushion-gravitational-acceleration" id="air-cushion-g-acceleration1"></td>
-        </tr>
-        <tr>
-            <td>h2</td>
-            <td class="air-cushion-date-result-accelerated-velocity" id="air-cushion-acceleration2"></td>
-            <td class="air-cushion-gravitational-acceleration" id="air-cushion-g-acceleration2"></td>
-        </tr>
-    </table>
-
-    <div class="air-cushion-final-result">
-        <p class="air-cushion-conclusion">
-            平均重力加速度G： <input type="number" name="mean-acceleration">[cm/s²]
-        </p>
-
-        <p class="air-cushion-conclusion">
-            相对误差E= <input type="number" name="relative-error">
-        </p>
-        <p class="worth-notice">
-            请按有效数字规则记录运算结果!
-        </p>
-    </div>
-
-    <div class="air-cushion-operate-btn">
-        <input type="button" name="btn1" value="数据输入">&emsp;
-        <input type="button" name="btn2" value="计算">&emsp;
-        <input type="button" name="btn3" value="结果打印">&emsp;
-        <input type="button" name="btn4" value="返回">&emsp;
-        <input type="button" name="btn5" value="退出">
-    </div>
-</div>
-`);
-        this.$air_cushion.hide();
-        this.root.$exp_sys.append(this.$air_cushion);
+export class AirCushion {
+    constructor(id) {
+        this.$air_cushion = $(`#` + id);
+        this.start();
     }
 
-    show() {
-        this.$air_cushion.show();
+    start() {
+        //添加点击事件
+        //返回键
+        $(`#air-cushion-button-return`).click(e => {
+            window.location.replace("/");
+        });
+        //计算键
+        $(`#air-cushion-button-calc`).click(e => {
+            let data = this.get_inputdata();
+            let result = this.calc(data);
+            this.fillresult(result);
+        });
     }
 
-    hide() {
-        this.$air_cushion.hide();
+
+    get_inputdata() {
+        let S = +$(`#air-cushion-inputdata-S`).val();
+        let L = +$(`#air-cushion-inputdata-L`).val();
+        let dL = +$(`#air-cushion-inputdata-dL`).val();
+
+        let h = [], t1 = [], t2 = [], t11 = [], t22 = [];
+        for (let i = 1; i <= 3; i++) {
+            h.push(+$(`#air-cushion-date-h${i}`).val());
+            t1.push(+$(`#air-cushion-date-down1-${i}`).val());
+            t2.push(+$(`#air-cushion-date-down2-${i}`).val());
+            t11.push(+$(`#air-cushion-date-up1-${i}`).val());
+            t22.push(+$(`#air-cushion-date-up2-${i}`).val());
+        }
+
+        return {
+            S: S,
+            L: L,
+            dL: dL,
+            h: h,
+            t2: t2,
+            t1: t1,
+            t11: t11,
+            t22: t22,
+        };
     }
+
+
+    calc(data) {
+        console.log(data);
+        let dL = data.dL, L = data.L, S = data.S;
+        let a = [], g = [];
+        for (let i = 0; i < 3; i++) {
+            let t1 = data.t1[i], t2 = data.t2[i];
+            let a1 = (dL * dL) * (t1 * t1 - t2 * t2) / (2 * S * t1 * t1 * t2 * t2);
+            t1 = data.t11[i], t2 = data.t22[i];
+            let a2 = (dL * dL) * (t1 * t1 - t2 * t2) / (2 * S * t1 * t1 * t2 * t2);
+            let ai = (a1 + a2) / 2;
+            a.push(ai);
+            g.push(ai / data.h[i] * L);
+        }
+        let g_average = (g[0] + g[1] + g[2]) / 3;
+        return {
+            a: a,
+            g: g,
+            g_average: g_average,
+        };
+    }
+
+    fillresult(result) {
+        console.log(result);
+        for (let i = 0; i < 3; i++) {
+            $(`#air-cushion-acceleration${i + 1}`).html(result.a[i]);
+            $(`#air-cushion-g-acceleration${i + 1}`).html(result.g[i]);
+        }
+        $(`#air-cushion-mean-acceleration`).html(result.g_average);
+    }
+
+
 }
 class ElectrostaticButtonGroup {
     constructor(electrostatic_field) {
@@ -626,142 +607,7 @@ class ElectrostaticButtonGroup {
     constructor(root) {
         this.root = root;
         this.$rotational_inertia = $(`
-<div class="rotatinoal-inertia">
-    <h2 id="rotational-inertia-title">扭摆实验------转动惯量的测量</h2>
-    <div class="rotational-inertia-test">
-        <div class="torsional-pendulum-header">
-            1.物体转动惯量的测量：
-        </div>
-        <table border="2px" class="torsional-pendulum-date" width="100vw">
-            <tr>
-                <td>物体名称</td>
-                <td>质量<br>（g）</td>
-                <td>外径<br>（cm）</td>
-                <td>内径<br>（cm）</td>
-                <td>杆长<br>（cm）</td>
-                <td>周期<br>（s）</td>
-                <td>转动惯量理论值<br>（kg.m²）</td>
-                <td>实验值<br>（kg.m²）</td>
-                <td>百分误差<br>%</td>
-            </tr>
-            <tr>
-                <td>托盘</td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-tuo-T"></td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-test" id="torsional-pendulum-tuo-test"></td>
-                <td class="empty-data">/</td>
-            </tr>
-            <tr>
-                <td>圆柱</td>
-                <td><input type="number" class="torsional-pendulum-m" id="torsional-pendulum-m-zhu"></td>
-                <td><input type="number" class="torsional-pendulum-wai" id="torsional-pendulum-wai-zhu"></td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-T-zhu"></td>
-                <td><input type="number" class="torsional-pendulum-theory" id="torsional-pendulum-theory-zhu"></td>
-                <td><input type="number" class="torsional-pendulum-test" id="torsional-pendulum-test-zhu"></td>
-                <td><input type="number" class="calculation-error" id="calculation-error-zhu"></td>
-            </tr>
-            <tr>
-                <td>圆桶</td>
-                <td><input type="number" class="torsional-pendulum-m" id="torsional-pendulum-m-tong"></td>
-                <td><input type="number" class="torsional-pendulum-wai" id="torsional-pendulum-wai-tong"></td>
-                <td><input type="number" class="torsional-pendulum-nei" id="torsional-pendulum-nei-tong"></td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-T-tong"></td>
-                <td><input type="number" class="torsional-pendulum-theory" id="torsional-pendulum-theory-tong"></td>
-                <td><input type="number" class="torsional-pendulum-test" id="torsional-pendulum-test-tong"></td>
-                <td><input type="number" class="calculation-error" id="calculation-error-tong"></td>
-            </tr>
-            <tr>
-                <td>圆球</td>
-                <td><input type="number" class="torsional-pendulum-m" id="torsional-pendulum-m-qiu"></td>
-                <td><input type="number" class="torsional-pendulum-wai" id="torsional-pendulum-wai-qiu"></td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-T-qiu"></td>
-                <td><input type="number" class="torsional-pendulum-theory" id="torsional-pendulum-theory-qiu"></td>
-                <td><input type="number" class="torsional-pendulum-test" id="torsional-pendulum-test-qiu"></td>
-                <td><input type="number" class="calculation-error" id="calculation-error-qiu"></td>
-            </tr>
-            <tr>
-                <td>细杆</td>
-                <td><input type="number" class="torsional-pendulum-m"></td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-length" id="torsional-pendulum-length"></td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-T-gan"></td>
-                <td><input type="number" class="torsional-pendulum-theory" id="torsional-pendulum-theory-gan"></td>
-                <td><input type="number" class="torsional-pendulum-test" id="torsional-pendulum-test-gan"></td>
-                <td><input type="number" class="calculation-error" id="calculation-error-gan"></td>
-            </tr>
-        </table>
-    </div>
-    <div class="parallel-axis-theorem">
-        <div class="torsional-pendulum-header">2.验证平行轴定理：</div>
-        <div class="pre-measured-value" align="center">
-            滑块：质量= <input type="number" id="pre-measured-date-m">g；&emsp;
-            高度= <input type="number" id="pre-measured-date-h">cm;&emsp;
-            外径= <input type="number" id="pre-measured-date-wai">cm;&emsp;
-            内径= <input type="number" id="pre-measured-date-nei">cm
-        </div>
-        <table class="parallel-axis-date" border="2px" align="center">
-            <tr>
-                <td>位移<br>（cm）</td>
-                <td>周期<br>（s）</td>
-                <td>转动惯量理论值<br>（kg.m²）</td>
-                <td>实验值<br>（kg.m²）</td>
-                <td>百分误差<br>%</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle1"></td>
-                <td><input type="number" class="parallel-axis-theory" id="parallel-axis-theory1"></td>
-                <td><input type="number" class="parallel-axis-test" id="parallel-axis-test1"></td>
-                <td><input type="number" class="parallel-axis-error" id="parallel-axis-error1"></td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle2"></td>
-                <td><input type="number" class="parallel-axis-theory" id="parallel-axis-theory2"></td>
-                <td><input type="number" class="parallel-axis-test" id="parallel-axis-test2"></td>
-                <td><input type="number" class="parallel-axis-error" id="parallel-axis-error2"></td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle3"></td>
-                <td><input type="number" class="parallel-axis-theory" id="parallel-axis-theory3"></td>
-                <td><input type="number" class="parallel-axis-test" id="parallel-axis-test3"></td>
-                <td><input type="number" class="parallel-axis-error" id="parallel-axis-error3"></td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle4"></td>
-                <td><input type="number" class="parallel-axis-theory" id="parallel-axis-theory4"></td>
-                <td><input type="number" class="parallel-axis-test" id="parallel-axis-test4"></td>
-                <td><input type="number" class="parallel-axis-error" id="parallel-axis-error4"></td>
-            </tr>
-            <tr>
-                <td>25</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle5"></td>
-                <td><input type="number" class="parallel-axis-theory" id="parallel-axis-theory5"></td>
-                <td><input type="number" class="parallel-axis-test" id="parallel-axis-test5"></td>
-                <td><input type="number" class="parallel-axis-error" id="parallel-axis-error5"></td>
-            </tr>
-        </table>
-        <div align="center">
-            <button class="final-contre-btn" id="final-contre-btn1">数据输入</button>
-            <button class="final-contre-btn" id="final-contre-btn2">数据处理</button>
-            <button class="final-contre-btn" id="final-contre-btn3">返回</button>
-            <button class="final-contre-btn" id="final-contre-btn4">退出</button>
 
-        </div>
-    </div>
-</div>
 `);
         this.$rotational_inertia.hide();
         this.root.$exp_sys.append(this.$rotational_inertia);
@@ -1196,29 +1042,26 @@ class ViscosityCoefficientButtonGroup {
         });
 
         this.$item_air_cushion.click(function (e) {
-            outer.hide();
-            outer.root.air_cushion.show();
+            window.location.replace("/exp/air_cushion/");
         });
 
         this.$item_newton_rings.click(function (e) {
-            outer.hide();
-            outer.root.newton_rings.show();
-        });
 
-        this.$item_simple_pendlum.click(function (e) {
-            outer.hide();
-            outer.root.simple_pendlum.show();
         });
+        //
+        // this.$item_simple_pendlum.click(function (e) {
+        //     outer.hide();
+        //     outer.root.simple_pendlum.show();
+        // });
 
         this.$item_rotational_inertia.click(function (e) {
-            outer.hide();
-            outer.root.rotational_inertia.show();
+            window.location.replace("/exp/rotational_inertia/");
         });
-
-        this.$item_toolbox.click(function (e) {
-            outer.hide();
-            outer.root.toolbox.show();
-        });
+        //
+        // this.$item_toolbox.click(function (e) {
+        //     outer.hide();
+        //     outer.root.toolbox.show();
+        // });
     }
 
     show() {
@@ -1330,17 +1173,17 @@ class ViscosityCoefficientButtonGroup {
         this.viscosity_coefficient = new ViscosityCoefficient(this);
         //this.viscosity_coefficient.show();
 
-        //气垫 重力加速度
-        this.air_cushion = new AirCushion(this);
-
-        //牛顿环
-        this.newton_rings = new NewtonRings(this);
-
-        //单摆
-        this.simple_pendlum = new SimplePendlum(this);
-
-        //扭摆
-        this.rotational_inertia = new RotationalInertia(this);
+        // //气垫 重力加速度
+        // this.air_cushion = new AirCushion(this);
+        //
+        // //牛顿环
+        // this.newton_rings = new NewtonRings(this);
+        //
+        // //单摆
+        // this.simple_pendlum = new SimplePendlum(this);
+        //
+        // //扭摆
+        // this.rotational_inertia = new RotationalInertia(this);
         //工具箱
         // this.toolbox = new Calculator(this);
 

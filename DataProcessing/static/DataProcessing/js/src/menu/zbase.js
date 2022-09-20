@@ -74,29 +74,26 @@ class ExperimentMenu {
         });
 
         this.$item_air_cushion.click(function (e) {
-            outer.hide();
-            outer.root.air_cushion.show();
+            window.location.replace("/exp/air_cushion/");
         });
 
         this.$item_newton_rings.click(function (e) {
-            outer.hide();
-            outer.root.newton_rings.show();
-        });
 
-        this.$item_simple_pendlum.click(function (e) {
-            outer.hide();
-            outer.root.simple_pendlum.show();
         });
+        //
+        // this.$item_simple_pendlum.click(function (e) {
+        //     outer.hide();
+        //     outer.root.simple_pendlum.show();
+        // });
 
         this.$item_rotational_inertia.click(function (e) {
-            outer.hide();
-            outer.root.rotational_inertia.show();
+            window.location.replace("/exp/rotational_inertia/");
         });
-
-        this.$item_toolbox.click(function (e) {
-            outer.hide();
-            outer.root.toolbox.show();
-        });
+        //
+        // this.$item_toolbox.click(function (e) {
+        //     outer.hide();
+        //     outer.root.toolbox.show();
+        // });
     }
 
     show() {
