@@ -1,0 +1,67 @@
+table td {
+    font-size: large;
+    text-align: center;
+}
+
+input {
+    width: 7vw;
+    height: 5vh;
+
+    font-size: large;
+    text-align: center;
+}
+
+/*去除箭头*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+    -webkit-appearance: none;
+}
+.simple-pendulum-title{
+    text-align: center;
+    color: white;
+    background: blue;
+    font-weight: bold;
+    font-family: 楷体;
+    font-size: 25px;
+}
+.simple-pendulum-date>p{
+    color: red;
+    font-family: 楷体;
+    font-size: 20px;
+    font-weight: bold;
+}
+.simple-pendulum-result{
+    font-family: 黑体;
+    font-size: 20px;
+}
+.final-btn{
+    width: 30vw;
+    height: 10vh;
+    position: absolute;
+    top: 80vh;
+    right: 10vw;
+}
+.final-operate-btn{
+    font-size: 20px;
+    font-family: 楷体;
+    font-weight: bold;
+}
+.simple-pendulum-date{
+    position: absolute;
+    left: 10vw;
+}
+.simple-pendulum-result{
+    position: absolute;
+    left: 10vw;
+    top: 55vh;
+    display: inline;
+}
+.simple-pendulum-huabu{
+    height: 50vh;
+    width: 50vh;
+    background: #686868;
+    position: absolute;
+    right: 10vw;
+    top: 10vh;
+}

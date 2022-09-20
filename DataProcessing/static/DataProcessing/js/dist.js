@@ -509,88 +509,7 @@ class ElectrostaticButtonGroup {
     constructor(root) {
         this.root = root;
         this.$newton_rings = $(`
-<div class="newton-rings">
-    <p class="newton-rings-title">牛顿环实验数据处理</p>
-    <div class="newton-rings-datainput">
-        <table class="newton-ring-dateinput-table" border="1px">
-            <tr>
-                <td>环数</td>
-                <td>左边位置<br>[mm]</td>
-                <td>右边位置<br>[mm]</td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left13"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right13"></td>
-            </tr>
-            <tr>
-                <td>14</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left14"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right14"></td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left15"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right15"></td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left16"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right16"></td>
-            </tr>
-            <tr>
-                <td>17</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left17"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right17"></td>
-            </tr>
-            <tr>
-                <td>18</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left18"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right18"></td>
-            </tr>
-            <tr>
-                <td>19</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left19"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right19"></td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left20"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right20"></td>
-            </tr>
-            <tr>
-                <td>21</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left21"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right21"></td>
-            </tr>
-            <tr>
-                <td>22</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left22"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right22"></td>
-            </tr>
-            <tr>
-                <td>23</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left23"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right23"></td>
-            </tr>
-            <tr>
-                <td>24</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left24"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right24"></td>
-            </tr>
-        </table>
-    </div>
-    <div class="newton-final-btn">
-        <p>
-            <button class="newton-rings-final-btn">输入数据</button>&emsp;
-            <button class="newton-rings-final-btn">处理数据</button>
-        </p>
-        <p>
-            <button class="newton-rings-final-btn">返回</button>&emsp;
-            <button class="newton-rings-final-btn">退出</button>
-        </p>
-    </div>
-</div>
+
         `);
         this.$newton_rings.hide();
         this.root.$exp_sys.append(this.$newton_rings);
@@ -603,84 +522,159 @@ class ElectrostaticButtonGroup {
     hide() {
         this.$newton_rings.hide();
     }
-}class RotationalInertia {
+}export class RotationalInertia {
     constructor(root) {
         this.root = root;
-        this.$rotational_inertia = $(`
-
-`);
-        this.$rotational_inertia.hide();
-        this.root.$exp_sys.append(this.$rotational_inertia);
+        this.$rotational_inertia = $(`#rotational-inertia-123456`);
+        this.start();
     }
 
-    show() {
-        this.$rotational_inertia.show();
+    start() {
+        $(`#final-contre-btn3`).click(e => {
+            window.location.replace("/");
+        });
+
+        $(`#final-contre-btn2`).click(e => {
+            let data = this.get_inputdata();
+            console.log(data);
+            let result = this.calc(data);
+            console.log(result);
+            this.fillresult(result);
+        });
     }
 
-    hide() {
-        this.$rotational_inertia.hide();
+    get_inputdata() {
+        let data = [];
+
+        //托盘
+        data.push({
+            T: +$(`#torsional-pendulum-tuo-T`).val(),
+        });
+
+        //圆柱
+        data.push({
+            m: +$(`#torsional-pendulum-m-zhu`).val(),
+            R: +$(`#torsional-pendulum-wai-zhu`).val(),
+            T: +$(`#torsional-pendulum-T-zhu`).val(),
+        });
+
+        //圆桶
+        data.push({
+            m: +$(`#torsional-pendulum-m-tong`).val(),
+            R: +$(`#torsional-pendulum-wai-tong`).val(),
+            r: +$(`#torsional-pendulum-nei-tong`).val(),
+            T: +$(`#torsional-pendulum-T-tong`).val(),
+        });
+
+        //圆球
+        data.push({
+            m: +$(`#torsional-pendulum-m-qiu`).val(),
+            R: +$(`#torsional-pendulum-wai-qiu`).val(),
+            T: +$(`#torsional-pendulum-T-qiu`).val(),
+        });
+
+        //细杆
+        data.push({
+            m: +$(`#torsional-pendulum-m-gan`).val(),
+            L: +$(`#torsional-pendulum-length-gan`).val(),
+            T: +$(`#torsional-pendulum-T-gan`).val(),
+        });
+
+        return data;
     }
+
+
+    calc(data) {
+
+        let result = [];
+        //托盘、圆柱
+        let T0 = data[0].T;
+        let T1 = data[1].T;
+
+        let m = data[1].m / 1000;
+        let D = data[1].R / 100;
+        let I1_t = m * D * D / 8;
+
+        let I0_e = I1_t * T0 * T0 / (T1 * T1 - T0 * T0);
+        let K = 4 * Math.PI * Math.PI * (I1_t) / (T1 * T1 - T0 * T0);
+        //let K = 0.02873646279;
+        let I0_t = K * T0 * T0 / (4 * Math.PI * Math.PI);
+
+        result.push({
+            I_t: I0_t,
+            I_e: I0_e,
+        });
+        result.push({
+            I_t: I1_t,
+            I_e: K * T1 * T1 / (4 * Math.PI * Math.PI) - I0_t,
+        });
+
+
+        //圆桶
+        D = data[2].R / 100;
+        let d = data[2].r / 100;
+        m = data[2].m / 1000;
+        T1 = data[2].T;
+        result.push({
+            I_t: m * (D * D + d * d) / 8,
+            I_e: K * T1 * T1 / (4 * Math.PI * Math.PI) - I0_t,
+        });
+
+        //圆球
+        m = data[3].m / 1000;
+        D = data[3].R / 100;
+        T1 = data[3].T;
+        result.push({
+            I_t: m * D * D / 10,
+            I_e: K * T1 * T1 / (4 * Math.PI * Math.PI),
+        });
+
+        //细杆
+        let L = data[4].L / 100;
+        m = data[4].m / 1000;
+        T1 = data[4].T;
+        result.push({
+            I_t: m * L * L / 12,
+            I_e: K * T1 * T1 / (4 * Math.PI * Math.PI),
+        });
+
+        return result;
+
+    }
+
+
+    fillresult(result) {
+        let data = result;
+        $(`#torsional-pendulum-tuo-test`).html((data[0].I_t * 1e4).toFixed(4));
+
+        let a = data[1].I_t, b = data[1].I_e;
+        $(`#torsional-pendulum-theory-zhu`).html((a * 1e4).toFixed(4));
+        $(`#torsional-pendulum-test-zhu`).html((b * 1e4).toFixed(4));
+        $(`#calculation-error-zhu`).html(((b - a) / a * 100).toFixed(4));
+
+        a = data[2].I_t, b = data[2].I_e;
+        $(`#torsional-pendulum-theory-tong`).html((data[2].I_t * 1e4).toFixed(4));
+        $(`#torsional-pendulum-test-tong`).html((data[2].I_e * 1e4).toFixed(4));
+        $(`#calculation-error-tong`).html(((b - a) / a * 100).toFixed(4));
+
+        a = data[3].I_t, b = data[3].I_e;
+        $(`#torsional-pendulum-theory-qiu`).html((data[3].I_t * 1e4).toFixed(4));
+        $(`#torsional-pendulum-test-qiu`).html((data[3].I_e * 1e4).toFixed(4));
+        $(`#calculation-error-qiu`).html(((b - a) / a * 100).toFixed(4));
+
+        a = data[4].I_t, b = data[4].I_e;
+        $(`#torsional-pendulum-theory-gan`).html((data[4].I_t * 1e4).toFixed(4));
+        $(`#torsional-pendulum-test-gan`).html((data[4].I_e * 1e4).toFixed(4));
+        $(`#calculation-error-gan`).html(((b - a) / a * 100).toFixed(4));
+
+    }
+
 }
 class SimplePendlum {
     constructor(root) {
         this.root = root;
         this.$simple_pendlum = $(`
-<div class="simple-pendulm">
-    <h2 class="simple-pendulum-title">单摆实验数据处理</h2>
-    <div class="simple-pendulum-date">
-        <p>实验数据</p>
-        <table class="simple-pendulum-date-form" border="2px">
-            <tr>
-                <td>次数</td>
-                <td>摆长（cm）</td>
-                <td>50次时间t(s)</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length1"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle1"></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length2"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle2"></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length3"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle3"></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length4"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle4"></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length5"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle5"></td>
-            </tr>
-        </table>
 
-    </div>
-    <div class="simple-pendulum-result">
-        <p class="simple-pendulum-tip">
-            与上海地区标准值979.4cm/S²比较所得
-        </p>
-        <p>重力加速度=cm/s²&emsp;
-            百分误差=%
-        </p>
-        <p>截距=cm&emsp;
-            相关系数=
-        </p>
-    </div>
-    <div class="final-btn" align="center">
-        <button class="final-operate-btn" id="final-btn1">输入数据</button>
-        <button class="final-operate-btn" id="final-btn2">处理数据</button>
-        <button class="final-operate-btn" id="final-btn3">返回</button>
-        <button class="final-operate-btn" id="final-btn4">退出</button>
-    </div>
-</div>
 `);
         this.$simple_pendlum.hide();
         this.root.$exp_sys.append(this.$simple_pendlum);

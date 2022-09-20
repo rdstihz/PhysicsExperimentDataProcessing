@@ -1,0 +1,61 @@
+table td {
+    font-size: large;
+    text-align: center;
+
+}
+
+td > div {
+    width: 7vw;
+    height: 5vh;
+}
+
+input {
+    width: 7vw;
+    height: 5vh;
+
+    font-size: large;
+    text-align: center;
+}
+
+/*去除箭头*/
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+    -webkit-appearance: none;
+}
+#rotational-inertia-title{
+    text-align: center;
+    color: white;
+    background: blue;
+    font-family: 楷体;
+    font-size: 25px;
+    font-weight: bold;
+}
+.torsional-pendulum-header{
+    color: red;
+    font-family: 楷体;
+    font-size: 20px;
+    font-weight: bold;
+}
+.torsional-pendulum-date{
+    font-weight: bold;
+    font-family: 楷体;
+    font-size: 20px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+.pre-measured-value{
+    font-size: 20px;
+    font-family: 楷体;
+}
+.parallel-axis-date{
+    font-family: 楷体;
+    font-size: 20px;
+}
+.final-contre-btn{
+    font-size: 20px;
+    font-family: 楷体;
+    font-weight: 20px;
+
+}

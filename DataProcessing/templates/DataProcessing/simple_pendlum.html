@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <link rel="stylesheet" href="{% static 'DataProcessing/css/simple_pendlum.css' %}">
 </head>
 <body>
@@ -45,22 +46,29 @@
         </table>
 
     </div>
+    <div class="simple-pendulum-huabu"></div>
     <div class="simple-pendulum-result">
         <p class="simple-pendulum-tip">
             与上海地区标准值979.4cm/S²比较所得
         </p>
-        <p>重力加速度=cm/s²&emsp;
-            百分误差=%
-        </p>
-        <p>截距=cm&emsp;
-            相关系数=
+        <p>重力加速度=
+        <div class="simple-pendulum-date-result" id="simple-pendulum-date-result"></div>
+        cm/s²&emsp;</p>
+        <p> 百分误差=
+        <div class="simple-pendulum-date-result" id="simple-pendulum-date-error"></div>
+        %</p>
+        <p>截距=
+        <div class="simple-pendulum-date-result" id="simple-pendulum-jieju"></div>
+        cm&emsp; </p>
+        <p> 相关系数=
+        <div class="simple-pendulum-date-result" id="simple-pendulum-xgxs"></div>
         </p>
     </div>
     <div class="final-btn" align="center">
-        <button class="final-operate-btn" id="final-btn1">输入数据</button>
+
         <button class="final-operate-btn" id="final-btn2">处理数据</button>
         <button class="final-operate-btn" id="final-btn3">返回</button>
-        <button class="final-operate-btn" id="final-btn4">退出</button>
+
     </div>
 </div>
 </body>
