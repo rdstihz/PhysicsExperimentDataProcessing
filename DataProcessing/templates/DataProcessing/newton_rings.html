@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="{% static 'DataProcessing/css/newton_rings.css' %}">
 </head>
 <body>
-<div class="newton-rings">
+<script type="module">
+    import {NewtonRings} from "{% static 'DataProcessing/js/dist.js' %}"
+
+    $(document).ready(() => {
+        let obj = new NewtonRings("newton_rings_123456");
+    });
+</script>
+
+<div class="newton-rings" id="newton_rings_123456">
     <p class="newton-rings-title">牛顿环实验数据处理</p>
     <div class="newton-rings-datainput">
         <table class="newton-ring-dateinput-table" border="1px">
@@ -81,14 +89,10 @@
     </div>
     <div class="newton_rings_huabu"></div>
     <div class="newton-final-btn">
-        <p>
-            <button class="newton-rings-final-btn">输入数据</button>&emsp;
-            <button class="newton-rings-final-btn">处理数据</button>
-        </p>
-        <p>
-            <button class="newton-rings-final-btn">返回</button>&emsp;
-            <button class="newton-rings-final-btn">退出</button>
-        </p>
+        <div>
+            <button class="newton-rings-final-btn" id="newton-rings-final-btn-calc">处理数据</button>
+            <button class="newton-rings-final-btn" id="newton-rings-final-btn-return">返回</button>
+        </div>
     </div>
 </div>
 </body>

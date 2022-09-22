@@ -83,10 +83,8 @@ class ElectrostaticButtonGroup {
         this.electrostatic_field = electrostatic_field;
         this.$button_group = $(`
             <div class="electrostatic-field-button-group">
-                <button class="electrostatic-field-button">数据输入</button>
                 <button class="electrostatic-field-button" id="electrostatic-field-button-process">数据处理</button>
                 <button class="electrostatic-field-button" id="electrostatic-field-button-return">返回</button>
-                <button class="electrostatic-field-button">退出</button>
             </div>`);
         this.electrostatic_field.$electrostatic_field.append(this.$button_group);
 
@@ -505,27 +503,20 @@ class ElectrostaticButtonGroup {
         this.figure.redraw();
     }
 
-}class NewtonRings {
-    constructor(root) {
-        this.root = root;
-        this.$newton_rings = $(`
-
-        `);
-        this.$newton_rings.hide();
-        this.root.$exp_sys.append(this.$newton_rings);
+}export class NewtonRings {
+    constructor(id) {
+        this.$newton_rings = $(`#` + id);
+        this.start();
     }
 
-    show() {
-        this.$newton_rings.show();
-    }
-
-    hide() {
-        this.$newton_rings.hide();
+    start() {
+        $(`#newton-rings-final-btn-return`).click(e => {
+            window.location.replace("/");
+        });
     }
 }export class RotationalInertia {
-    constructor(root) {
-        this.root = root;
-        this.$rotational_inertia = $(`#rotational-inertia-123456`);
+    constructor(id) {
+        this.$rotational_inertia = $(`#` + id);
         this.start();
     }
 
@@ -710,23 +701,19 @@ class ElectrostaticButtonGroup {
     }
 
 }
-class SimplePendlum {
-    constructor(root) {
-        this.root = root;
-        this.$simple_pendlum = $(`
+export class SimplePendlum {
+    constructor(id) {
+        this.$simple_pendlum = $(`#` + id);
 
-`);
-        this.$simple_pendlum.hide();
-        this.root.$exp_sys.append(this.$simple_pendlum);
+        this.start();
     }
 
-    show() {
-        this.$simple_pendlum.show();
+    start() {
+        $(`#final-btn3`).click(e => {
+            window.location.replace("/");
+        });
     }
 
-    hide() {
-        this.$simple_pendlum.hide();
-    }
 }
 class ViscosityCoefficientButtonGroup {
     constructor(viscosity_coefficient) {

@@ -1,7 +1,6 @@
 export class RotationalInertia {
-    constructor(root) {
-        this.root = root;
-        this.$rotational_inertia = $(`#rotational-inertia-123456`);
+    constructor(id) {
+        this.$rotational_inertia = $(`#` + id);
         this.start();
     }
 

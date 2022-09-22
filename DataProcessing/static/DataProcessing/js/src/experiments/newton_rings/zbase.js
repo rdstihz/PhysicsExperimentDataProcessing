@@ -1,18 +1,12 @@
-class NewtonRings {
-    constructor(root) {
-        this.root = root;
-        this.$newton_rings = $(`
-
-        `);
-        this.$newton_rings.hide();
-        this.root.$exp_sys.append(this.$newton_rings);
+export class NewtonRings {
+    constructor(id) {
+        this.$newton_rings = $(`#` + id);
+        this.start();
     }
 
-    show() {
-        this.$newton_rings.show();
-    }
-
-    hide() {
-        this.$newton_rings.hide();
+    start() {
+        $(`#newton-rings-final-btn-return`).click(e => {
+            window.location.replace("/");
+        });
     }
 }

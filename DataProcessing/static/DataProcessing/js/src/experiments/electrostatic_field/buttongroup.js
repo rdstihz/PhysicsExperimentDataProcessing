@@ -3,10 +3,8 @@ class ElectrostaticButtonGroup {
         this.electrostatic_field = electrostatic_field;
         this.$button_group = $(`
             <div class="electrostatic-field-button-group">
-                <button class="electrostatic-field-button">数据输入</button>
                 <button class="electrostatic-field-button" id="electrostatic-field-button-process">数据处理</button>
                 <button class="electrostatic-field-button" id="electrostatic-field-button-return">返回</button>
-                <button class="electrostatic-field-button">退出</button>
             </div>`);
         this.electrostatic_field.$electrostatic_field.append(this.$button_group);
 

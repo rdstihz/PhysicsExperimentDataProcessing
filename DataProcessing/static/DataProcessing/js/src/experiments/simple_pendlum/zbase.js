@@ -1,18 +1,14 @@
-class SimplePendlum {
-    constructor(root) {
-        this.root = root;
-        this.$simple_pendlum = $(`
+export class SimplePendlum {
+    constructor(id) {
+        this.$simple_pendlum = $(`#` + id);
 
-`);
-        this.$simple_pendlum.hide();
-        this.root.$exp_sys.append(this.$simple_pendlum);
+        this.start();
     }
 
-    show() {
-        this.$simple_pendlum.show();
+    start() {
+        $(`#final-btn3`).click(e => {
+            window.location.replace("/");
+        });
     }
 
-    hide() {
-        this.$simple_pendlum.hide();
-    }
 }
