@@ -54,7 +54,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .newton-final-btn {
     position: relative;
-    top: -8vh;
+    top: -5vh;
     left: 10vw;
 }
 
@@ -93,5 +93,6 @@ img#newton-rings-result-figure {
 
 .newton-rings-result-item-val {
     display: inline-block;
-    width: 2vw;
+    width: 3vw;
+    color: red;
 }
