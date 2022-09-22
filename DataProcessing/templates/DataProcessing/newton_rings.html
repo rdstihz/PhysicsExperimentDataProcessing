@@ -88,12 +88,48 @@
         </table>
     </div>
     <div class="newton_rings_huabu"></div>
+
+
+    <img src="{% static 'DataProcessing/images/temp.png' %}" alt="" id="newton-rings-result-figure">
+    <div class="newton-rings-result-text">
+        <div class="newton-rings-result-text-item">
+            <div class="newton-rings-result-text-intro">逐差法处理数据</div>
+            <div class="newton-rings-result-text-data">
+                <span class="newton-rings-result-item-intro">曲率半径：</span>
+                <div id="newton-rings-result-zhucha-r" class="newton-rings-result-item-val"></div>
+                <span class="newton-rings-result-item-intro">mm</span>
+            </div>
+        </div>
+
+        <div class="newton-rings-result-text-item">
+            <div class="newton-rings-result-text-intro">最小二乘法</div>
+            <div class="newton-rings-result-text-data">
+                <span class="newton-rings-result-item-intro">曲率半径：</span>
+                <div id="newton-rings-result-zhucha-r" class="newton-rings-result-item-val"></div>
+                <span class="newton-rings-result-item-intro" >mm</span>
+            </div>
+            <div class="newton-rings-result-text-data">
+                <span class="newton-rings-result-item-intro">相关系数：</span>
+                <div id="newton-rings-result-2cheng-rela" class="newton-rings-result-item-val"></div>
+            </div>
+            <div class="newton-rings-result-text-data">
+                <span class="newton-rings-result-item-intro">标准误差：</span>
+                <div id="newton-rings-result-2cheng-stde" class="newton-rings-result-item-val"></div>
+                <span class="newton-rings-result-item-intro">mm</span>
+            </div>
+        </div>
+
+
+    </div>
+
+
     <div class="newton-final-btn">
         <div>
             <button class="newton-rings-final-btn" id="newton-rings-final-btn-calc">处理数据</button>
             <button class="newton-rings-final-btn" id="newton-rings-final-btn-return">返回</button>
         </div>
     </div>
+
 </div>
 </body>
 </html>

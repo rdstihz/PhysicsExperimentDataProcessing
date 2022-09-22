@@ -19,39 +19,79 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
-.newton-rings-title{
-  text-align: center;
+.newton-rings-title {
+    text-align: center;
     color: white;
     background: blue;
     font-family: 楷体;
     font-weight: bold;
     font-size: 25px;
 }
-.newton_rings_huabu{
+
+.newton-rings-datainput {
+    display: inline-block;
+}
+
+.newton_rings_huabu {
     background: aqua;
     height: 60vh;
     width: 60vh;
-    position: absolute;
-    right: 10vw;
-    top: 10vh;
+    position: relative;
+    left: 10vw;
+    top: -15vh;
+    display: inline-block;
 }
-.newton-ring-dateinput-table{
+
+.newton-ring-dateinput-table {
     text-align: center;
     font-family: 楷体;
     font-size: 20px;
     font-weight: bold;
-    position: absolute;
-    top: 10vh;
-    left: 15vw;
+    position: relative;
+    top: 1vh;
+    left: 5vw;
 }
-.newton-final-btn{
-    position: absolute;
-    top: 70vh;
-    right: 10vw;
+
+.newton-final-btn {
+    position: relative;
+    top: -8vh;
+    left: 10vw;
 }
-.newton-rings-final-btn{
+
+.newton-rings-final-btn {
     font-family: 楷体;
     font-size: 20px;
     font-weight: bold;
 
+}
+
+img#newton-rings-result-figure {
+    display: inline;
+    position: relative;
+    top: -25vh;
+    left: 12vw;
+    width: 30vw;
+}
+
+.newton-rings-result-text {
+    position: relative;
+    left: 30vw;
+    top: -10vh;
+    font-size: 20px;
+}
+
+.newton-rings-result-text-item {
+    display: inline-block;
+    margin-right: 5vw;
+}
+
+
+.newton-rings-result-text-intro {
+    color: red;
+    font-family: 楷体;
+}
+
+.newton-rings-result-item-val {
+    display: inline-block;
+    width: 2vw;
 }

@@ -41,7 +41,6 @@ class ElectrostaticButtonGroup {
     //计算结果并绘图
     wrok() {
         let data = this.electrostatic_field.datainput.getInputData();
-
         let data1 = this.calc(data.x1, data.y1, 8);
         let data2 = this.calc(data.x2, data.y2, 8);
         let data3 = this.calc(data.x3, data.y3, 8);
