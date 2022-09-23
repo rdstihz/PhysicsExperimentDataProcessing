@@ -563,8 +563,8 @@ class ElectrostaticButtonGroup {
 
         $(`#newton-rings-result-2cheng-r`).html(R.toFixed(1));
         $(`#newton-rings-result-2cheng-rela`).html(r.toFixed(5));
-
-
+        let sk = k.toFixed(4), sb = b.toFixed(4);
+        $(`#newton-rings-result-2cheng-eq`).html(`D^2 = ${sk} * k + ${sb}`);
         this.$img = document.getElementById("newton-rings-result-figure");
         console.log(this.$img);
         $.ajax({
@@ -586,7 +586,7 @@ class ElectrostaticButtonGroup {
             }
         });
 
-
+        this.drawImage();
     }
 
     array_to_str(x, n) {
@@ -606,6 +606,10 @@ class ElectrostaticButtonGroup {
             data.push([x1, x2]);
         }
         return data;
+    }
+
+    drawImage() {
+        
     }
 }export class RotationalInertia {
     constructor(id) {
@@ -970,7 +974,7 @@ class ViscosityCoefficientButtonGroup {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$figure = $(`
 <div class="viscosity_coefficient_figure">
-    <img class="viscosity_coefficient_figure_img" alt="图像">
+    <img class="viscosity_coefficient_figure_img" alt="图像" src="http://127.0.0.1:8000/static/DataProcessing/images/temp.png">
 </div>
         `);
 

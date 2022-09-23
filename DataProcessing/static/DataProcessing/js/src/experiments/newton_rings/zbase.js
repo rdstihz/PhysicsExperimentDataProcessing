@@ -59,8 +59,8 @@ export class NewtonRings {
 
         $(`#newton-rings-result-2cheng-r`).html(R.toFixed(1));
         $(`#newton-rings-result-2cheng-rela`).html(r.toFixed(5));
-
-
+        let sk = k.toFixed(4), sb = b.toFixed(4);
+        $(`#newton-rings-result-2cheng-eq`).html(`D^2 = ${sk} * k + ${sb}`);
         this.$img = document.getElementById("newton-rings-result-figure");
         console.log(this.$img);
         $.ajax({

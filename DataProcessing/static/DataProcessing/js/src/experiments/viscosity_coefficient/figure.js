@@ -3,7 +3,7 @@ class ViscosityCoefficientFigure {
         this.viscosity_coefficient = viscosity_coefficient;
         this.$figure = $(`
 <div class="viscosity_coefficient_figure">
-    <img class="viscosity_coefficient_figure_img" alt="图像">
+    <img class="viscosity_coefficient_figure_img" alt="图像" src="http://127.0.0.1:8000/static/DataProcessing/images/temp.png">
 </div>
         `);
 
