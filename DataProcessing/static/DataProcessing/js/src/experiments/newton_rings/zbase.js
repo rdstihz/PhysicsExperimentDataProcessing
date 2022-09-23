@@ -42,7 +42,7 @@ export class NewtonRings {
 
         let sx = 0, sy = 0;
         let sxx = 0, syy = 0, sxy = 0;
-        let n = 6;
+        let n = 12;
         for (let i = 0; i < n; i++) {
             sx += x[i], sy += y[i];
             sxx += x[i] * x[i], syy += y[i] * y[i];
@@ -61,6 +61,37 @@ export class NewtonRings {
         $(`#newton-rings-result-2cheng-rela`).html(r.toFixed(5));
 
 
+        this.$img = document.getElementById("newton-rings-result-figure");
+        console.log(this.$img);
+        $.ajax({
+            url: "http://127.0.0.1:8000/exp/getfigure2/",
+            type: "GET",
+            data: {
+                'k': k,
+                'b': b,
+                'x': this.array_to_str(x, n),
+                'y': this.array_to_str(y, n),
+                'n': n,
+                'state': '99787fdsf',
+            },
+            success: resp => {
+                if (resp.result === "success") {
+                    console.log("success");
+                    this.$img.src = resp.src;
+                }
+            }
+        });
+
+        this.drawImage();
+    }
+
+    array_to_str(x, n) {
+        let res = '';
+        for (let i = 0; i < n; i++) {
+            if (i) res += ','
+            res += x[i];
+        }
+        return res;
     }
 
     get_data() {
@@ -71,5 +102,9 @@ export class NewtonRings {
             data.push([x1, x2]);
         }
         return data;
+    }
+
+    drawImage() {
+        
     }
 }

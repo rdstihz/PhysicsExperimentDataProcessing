@@ -4,6 +4,7 @@ from DataProcessing import views
 
 urlpatterns = [
     path('getfigure/', views.getfigure, name='exp_getfigure'),
+    path('getfigure2/', views.getfigure2, name='exp_getfigure2'),
     path('calculator/', views.calculator, name='toolbox_caculator'),
     path('air_cushion/', views.air_cushion, name='exp_air_cushion'),
     path('rotational_inertia/', views.rotational_inertia, name='exp_rotational_inertia'),

@@ -19,6 +19,10 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
 }
 
+#newton_rings_123456{
+    margin: 0 auto; text-align: center
+}
+
 .newton-rings-title {
     text-align: center;
     color: white;
@@ -49,13 +53,13 @@ input[type="number"]::-webkit-outer-spin-button {
     font-weight: bold;
     position: relative;
     top: 1vh;
-    left: 5vw;
+    left: 0vw;
 }
 
 .newton-final-btn {
     position: relative;
     top: -5vh;
-    left: 10vw;
+    left: -15vw;
 }
 
 .newton-rings-final-btn {
@@ -69,13 +73,13 @@ img#newton-rings-result-figure {
     display: inline;
     position: relative;
     top: -25vh;
-    left: 12vw;
+    left: 0vw;
     width: 30vw;
 }
 
 .newton-rings-result-text {
     position: relative;
-    left: 30vw;
+    left: 14vw;
     top: -10vh;
     font-size: 20px;
 }
