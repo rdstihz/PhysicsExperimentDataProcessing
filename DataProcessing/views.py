@@ -46,6 +46,9 @@ def getfigure(request):
     y_fit = [(k * i + b) for i in x]
 
     plt.plot(x, y_fit)
+    plt.xlabel("d/D")
+    plt.ylabel("T(S)")
+    plt.title("T-1/D figure")
 
     # 调整坐标轴
     ax = plt.gca()
@@ -89,6 +92,10 @@ def getfigure2(request):
     y_fit = [(k * i + b) for i in x]
 
     plt.plot(x, y_fit)
+
+    plt.xlabel("K")
+    plt.ylabel("D^2  (mm^2)")
+    plt.title("newton rings D^2-K figure")
 
     # 调整坐标轴
     ax = plt.gca()
