@@ -35,14 +35,14 @@ input[type="number"]::-webkit-outer-spin-button {
     font-family: 黑体;
     font-size: 20px;
 }
-.final-btn{
+.simple-pendulum-final-btn{
     width: 30vw;
     height: 10vh;
     position: absolute;
     top: 80vh;
     right: 10vw;
 }
-.final-operate-btn{
+.simple-pendulum-final-operate-btn{
     font-size: 20px;
     font-family: 楷体;
     font-weight: bold;
@@ -56,6 +56,12 @@ input[type="number"]::-webkit-outer-spin-button {
     left: 10vw;
     top: 55vh;
     display: inline;
+}
+.simple-pendulum-date-result {
+    width: 5vw;
+    display: inline-block;
+    text-align: center;
+    color: red;
 }
 .simple-pendulum-huabu{
     height: 50vh;

@@ -27,54 +27,64 @@
             </tr>
             <tr>
                 <td>1</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length1"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle1"></td>
+                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length1" value="72.00"></td>
+                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle1" value="84.45"></td>
             </tr>
             <tr>
                 <td>2</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length2"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle2"></td>
+                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length2" value="77.00"></td>
+                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle2" value="87.52"></td>
             </tr>
             <tr>
                 <td>3</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length3"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle3"></td>
+                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length3" value="82.35"></td>
+                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle3" value="90.50"></td>
             </tr>
             <tr>
                 <td>4</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length4"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle4"></td>
+                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length4" value="88.05"></td>
+                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle4" value="93.68"></td>
             </tr>
             <tr>
                 <td>5</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length5"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle5"></td>
+                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length5" value="94.58"></td>
+                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle5" value="97.02"></td>
             </tr>
         </table>
 
     </div>
-    <div class="simple-pendulum-huabu"></div>
+    <img src="{% static 'DataProcessing/images/temp.png' %}" alt="" class="simple-pendulum-huabu"
+         id="simple-pendulum-figure">
     <div class="simple-pendulum-result">
         <p class="simple-pendulum-tip">
             与上海地区标准值979.4cm/S²比较所得
         </p>
-        <p>重力加速度=
-        <div class="simple-pendulum-date-result" id="simple-pendulum-date-result"></div>
-        cm/s²&emsp;</p>
-        <p> 百分误差=
-        <div class="simple-pendulum-date-result" id="simple-pendulum-date-error"></div>
-        %</p>
-        <p>截距=
-        <div class="simple-pendulum-date-result" id="simple-pendulum-jieju"></div>
-        cm&emsp; </p>
-        <p> 相关系数=
-        <div class="simple-pendulum-date-result" id="simple-pendulum-xgxs"></div>
+        <p>
+            <span>重力加速度=</span>
+            <span class="simple-pendulum-date-result" id="simple-pendulum-date-result"></span>
+            <span>cm/s²</span>
+
+        </p>
+        <p>
+            <span>百分误差=</span>
+            <span class="simple-pendulum-date-result" id="simple-pendulum-date-error"></span>
+            <span>%</span>
+        </p>
+        <p>
+            <span>截距=</span>
+
+            <span class="simple-pendulum-date-result" id="simple-pendulum-jieju"></span>
+            <span>cm</span>
+        </p>
+        <p>
+            <span>相关系数=</span>
+            <span class="simple-pendulum-date-result" id="simple-pendulum-xgxs"></span>
         </p>
     </div>
-    <div class="final-btn" align="center">
+    <div class="simple-pendulum-final-btn" align="center">
 
-        <button class="final-operate-btn" id="final-btn2">处理数据</button>
-        <button class="final-operate-btn" id="final-btn3">返回</button>
+        <button class="simple-pendulum-final-operate-btn" id="simple-pendulum-final-btn2">处理数据</button>
+        <button class="simple-pendulum-final-operate-btn" id="simple-pendulum-final-btn3">返回</button>
 
     </div>
 </div>
