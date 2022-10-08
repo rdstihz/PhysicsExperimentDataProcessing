@@ -1,16 +1,11 @@
-class ViscosityCoefficientFigure {
-    constructor(viscosity_coefficient) {
+export class ViscosityCoefficientFigure {
+    constructor(viscosity_coefficient, id) {
         this.viscosity_coefficient = viscosity_coefficient;
-        this.$figure = $(`
-<div class="viscosity_coefficient_figure">
-    <img class="viscosity_coefficient_figure_img" alt="图像" src="http://127.0.0.1:8000/static/DataProcessing/images/temp.png">
-</div>
-        `);
+        this.$figure = $('#' + id);
 
 
         this.$img = this.$figure.find("img")[0];
 
-        this.viscosity_coefficient.$viscosity_coefficient.append(this.$figure);
         this.start();
     }
 
@@ -22,7 +17,7 @@ class ViscosityCoefficientFigure {
     setdata(k, b, x, y, n) {
         let outer = this;
         $.ajax({
-            url: "http://127.0.0.1:8000/exp/getfigure/",
+            url: "/exp/getfigure/",
             type: "GET",
             data: {
                 'k': k,

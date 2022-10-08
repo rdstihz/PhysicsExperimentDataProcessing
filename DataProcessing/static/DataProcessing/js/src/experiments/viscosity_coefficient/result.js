@@ -1,22 +1,8 @@
-class ViscosityCoefficientResult {
-    constructor(viscosity_coefficient) {
+export class ViscosityCoefficientResult {
+    constructor(viscosity_coefficient, id) {
         this.viscosity_coefficient = viscosity_coefficient;
-        this.$result = $(`
-<div class="viscosity_coefficient_result">
-    <h2 class="part-title">计算结果</h2>
-    
-    <div class="result-title">关系式</div>
-    <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_equal"></div>
-    
-    <div class="result-title">无限广延液体中小球下落时间</div>
-    <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_t0"></div>
-    
-    <div class="result-title">相关系数</div>
-    <div class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_r"></div>
-</div>
-        `);
+        this.$result = $('#' + id);
 
-        this.viscosity_coefficient.$viscosity_coefficient.append(this.$result);
 
         this.$result_value_equal = this.$result.find("#viscosity_coefficient_result_vaule_equal");
         this.$result_value_t0 = this.$result.find("#viscosity_coefficient_result_vaule_t0");

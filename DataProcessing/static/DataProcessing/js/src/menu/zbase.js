@@ -21,8 +21,7 @@ export class ExperimentMenu {
         });
 
         this.$item_viscosity_coefficient.click(function (e) {
-            outer.hide();
-            outer.root.viscosity_coefficient.show();
+            window.location.replace("/exp/viscosity/");
         });
 
         this.$item_air_cushion.click(function (e) {

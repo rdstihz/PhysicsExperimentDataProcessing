@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>粘滞系数实验 | 物理实验数据处理平台</title>
+    <link rel="icon" href="{% static 'DataProcessing/images/icon.jpg' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        /*去除箭头*/
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: auto;
+            -webkit-appearance: none;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .viscosity_coefficient_result-table td:nth-child(1) {
+            width: 33%;
+        }
+
+        .viscosity_coefficient_result-table td:nth-child(2) {
+            width: 67%;
+        }
+
+        .viscosity-coefficient-button {
+            margin-right: 5px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div class="viscosity_coefficient container" id="viscosity_coefficient">
+    <div class="row">
+        <h2 class="experiment-name-title">粘滞系数实验数据处理</h2>
+    </div>
+
+    <div class="row">
+        <a href="#" class="col-md-2 col-md-offset-10" style="font-size: 1.3em">帮助</a>
+    </div>
+
+    <div class="row">
+        <div class="viscosity-coefficient-dataiinput col-md-4" id="viscosity-coefficient-dataiinput">
+            <h3 class="part-title">数据输入</h3>
+            <table class="viscosity-coefficient-datainput-table table table-bordered table-hover table-condensed">
+                <tr>
+                    <td>
+                        次数
+                    </td>
+                    <td>圆筒直径D(cm)</td>
+                    <td>小球直径d(mm)</td>
+                    <td>下落时间t(S)</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="number" value="1.400" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data1-D"></td>
+                    <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data1-d"></td>
+                    <td><input type="number" value="57.72" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data1-t"></td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td><input type="number" value="1.900" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data2-D"></td>
+                    <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data2-d"></td>
+                    <td><input type="number" value="55.54" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data2-t"></td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td><input type="number" value="2.400" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data3-D"></td>
+                    <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data3-d"></td>
+                    <td><input type="number" value="54.18" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data3-t"></td>
+                </tr>
+
+                <tr>
+                    <td>4</td>
+                    <td><input type="number" value="3.400" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data4-D"></td>
+                    <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data4-d"></td>
+                    <td><input type="number" value="52.70" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data4-t"></td>
+                </tr>
+
+                <tr>
+                    <td>5</td>
+                    <td><input type="number" value="4.000" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data5-D"></td>
+                    <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data5-d"></td>
+                    <td><input type="number" value="52.23" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data5-t"></td>
+                </tr>
+
+                <tr>
+                    <td>6</td>
+                    <td><input type="number" value="5.000" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data6-D"></td>
+                    <td><input type="number" value="1.000" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data6-d"></td>
+                    <td><input type="number" value="51.65" class="viscosity-coefficient-dataiinput-cell form-control"
+                               id="viscosity-coefficient-dataiinput-data6-t"></td>
+                </tr>
+
+            </table>
+        </div>
+        <div class="viscosity_coefficient_figure col-md-7 col-md-offset-1" id="viscosity_coefficient_figure"
+             style="border: solid 1px; height: 370px; text-align: center; margin-top: 20px;">
+            <img class="viscosity_coefficient_figure_img" alt="" style="height: 100%"
+                 src="">
+        </div>
+        <button href="#" class="btn btn-link col-md-offset-5 col-md-7" style="text-align: center">下载图片</button>
+
+    </div>
+    <div class="row">
+        <div class="viscosity_coefficient_result col-md-6" id="viscosity_coefficient_result">
+            <h3 class="part-title">计算结果</h3>
+            <table class="viscosity_coefficient_result-table table table-bordered table-hover table-condensed">
+                <tr>
+                    <td>关系式</td>
+                    <td class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_equal"></td>
+                </tr>
+                <tr>
+                    <td>无限广延液体中小球下落时间</td>
+                    <td class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_t0"></td>
+                </tr>
+                <tr>
+                    <td>相关系数</td>
+                    <td class="viscosity_coefficient_result_vaule" id="viscosity_coefficient_result_vaule_r">
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="viscosity-coefficient-button-group col-md-12" id="viscosity-coefficient-button-group">
+            <button class="viscosity-coefficient-button btn btn-info"
+                    id="viscosity-coefficient-button-clear">
+                清空数据
+            </button>
+            <button class="viscosity-coefficient-button btn btn-success" id="viscosity-coefficient-button-process">
+                数据处理
+            </button>
+            <a class="viscosity-coefficient-button btn btn-primary" id="viscosity-coefficient-button-return"
+               href="/">返回</a>
+        </div>
+    </div>
+
+</div>
+
+<script type="module">
+    import {ViscosityCoefficient} from '{% static 'DataProcessing/js/src/experiments/viscosity_coefficient/zbase.js' %}'
+
+    $(document).ready(() => {
+        let visco = new ViscosityCoefficient("viscosity_coefficient");
+    });
+</script>
+
+</body>
+</html>

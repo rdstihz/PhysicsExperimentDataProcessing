@@ -1,18 +1,17 @@
-class ViscosityCoefficient {
-    constructor(root) {
-        this.root = root;
-        this.$viscosity_coefficient = $(`
-<div class="viscosity_coefficient">
-    <h1 class="experiment-name-title">粘滞系数实验数据处理</h1>
-</div>
-        `);
-        this.datainput = new ViscosityCoefficientDataInput(this);
-        this.result = new ViscosityCoefficientResult(this);
-        this.figure = new ViscosityCoefficientFigure(this);
-        this.buttongroup = new ViscosityCoefficientButtonGroup(this);
+import {ViscosityCoefficientDataInput} from './datainput.js'
+import {ViscosityCoefficientResult} from "./result.js";
+import {ViscosityCoefficientFigure} from "./figure.js";
+import {ViscosityCoefficientButtonGroup} from './buttongroup.js'
 
-        this.$viscosity_coefficient.hide();
-        this.root.$exp_sys.append(this.$viscosity_coefficient);
+export class ViscosityCoefficient {
+    constructor(id) {
+        this.$viscosity_coefficient = $('#' + id);
+        this.datainput = new ViscosityCoefficientDataInput(this, "viscosity-coefficient-dataiinput");
+        this.result = new ViscosityCoefficientResult(this, "viscosity_coefficient_result");
+        this.figure = new ViscosityCoefficientFigure(this, "viscosity_coefficient_figure");
+        this.buttongroup = new ViscosityCoefficientButtonGroup(this, "viscosity-coefficient-button-group");
+
+
         this.start();
     }
 

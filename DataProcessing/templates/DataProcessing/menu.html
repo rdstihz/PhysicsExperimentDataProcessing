@@ -18,6 +18,7 @@
         .experiment-menu-item {
             text-align: center;
         }
+
         .experiment-menu-item > img {
             width: 100%;
         }
@@ -32,33 +33,33 @@
     <div class="row" style="margin-top: 20px">
         <h1 class="col-md-12" style="text-align: center">物理实验数据处理平台</h1>
         <a class="experiment-menu-toolbox col-md-offset-10 col-md-1 col-xs-offset-9 col-xs-3" href="exp/calculator/"
-        style="font-size: 1em">工具箱</a>
+           style="font-size: 1em">工具箱</a>
     </div>
 
     <div class="row" style="margin-top: 75px">
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-electrostatic-field">
-            <img src="http://127.0.0.1:8000/static/DataProcessing/images/electrostatic_field.png" alt="">
+            <img src="{% static '/DataProcessing/images/electrostatic_field.png' %}" alt="">
             <h4>静电场测绘实验数据处理</h4>
         </div>
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-viscosity-coefficient">
-            <img src="http://127.0.0.1:8000/static/DataProcessing/images/viscosity_coefficient.png" alt="">
+            <img src="{% static '/DataProcessing/images/viscosity_coefficient.png' %}" alt="">
             <h4>粘滞系数实验数据处理</h4>
         </div>
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-air-cushion">
-            <img src="http://127.0.0.1:8000/static/DataProcessing/images/air_cushion.png" alt="">
+            <img src="{% static '/DataProcessing/images/air_cushion.png' %}" alt="">
             <h4>气垫技术测量重力加速度</h4>
         </div>
 
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-newton-rings">
-            <img src="http://127.0.0.1:8000/static/DataProcessing/images/netwon_rings.png" alt="">
+            <img src="{% static '/DataProcessing/images/netwon_rings.png' %}" alt="">
             <h4>牛顿环</h4>
         </div>
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-simple-pendlum">
-            <img src="http://127.0.0.1:8000/static/DataProcessing/images/single_pendulum.png" alt="">
+            <img src="{% static '/DataProcessing/images/single_pendulum.png' %}" alt="">
             <h4>单摆</h4>
         </div>
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-rotational-inertia">
-            <img src="http://127.0.0.1:8000/static/DataProcessing/images/torsional_pendulum.png" alt="">
+            <img src="{% static '/DataProcessing/images/torsional_pendulum.png' %}" alt="">
             <h4>扭摆实验转动惯量的测量</h4>
         </div>
 

@@ -19,6 +19,10 @@ def electrostatic_field(request):
     return render(request, 'DataProcessing/electrostatic_field.html')
 
 
+def viscosity(requset):
+    return render(requset, 'DataProcessing/viscosity_coeficient.html')
+
+
 def air_cushion(request):
     return render(request, 'DataProcessing/air_cushion.html')
 
