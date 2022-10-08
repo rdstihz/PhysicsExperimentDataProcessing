@@ -1,23 +1,20 @@
-class ElectrostaticField {
-    constructor(root) {
-        this.root = root;
-        this.$electrostatic_field = $(`
- <div class="electrostatic-field">
- <h1 class="experiment-name-title">静电场测绘实验数据处理（同轴电缆）</h1>
-</div>
-        `);
-        this.hide();
+import {ElectrostatidFieldDataInput} from "./datainput.js";
+import {ElectrostaticFieldFigure} from "./figure.js"
+import {ElectrostaticFieldResult} from "./result.js"
+import {ElectrostaticButtonGroup} from "./buttongroup.js";
+
+export class ElectrostaticField {
+    constructor(id) {
+        this.$electrostatic_field = $('#' + id);
 
         //数据输入区域
-        this.datainput = new ElectrostatidFieldDataInput(this);
+        this.datainput = new ElectrostatidFieldDataInput(this, "electrostatic-field-datainput");
         //结果显示区域
-        this.result = new ElectrostaticFieldResult(this);
+        this.result = new ElectrostaticFieldResult(this, "electrostatic-field-result");
         //图像显示区域
-        this.figure = new ElectrostaticFieldFigure(this);
+        this.figure = new ElectrostaticFieldFigure(this, "electrostatic-field-figure");
         //按键
-        this.button_group = new ElectrostaticButtonGroup(this);
-
-        this.root.$exp_sys.append(this.$electrostatic_field);
+        this.button_group = new ElectrostaticButtonGroup(this, "electrostatic-field-button-group");
 
         this.start();
     }

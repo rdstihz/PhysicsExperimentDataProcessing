@@ -1,53 +1,6 @@
-class ExperimentMenu {
-    constructor(root) {
-        this.root = root;
-        this.$menu = $(`
-<div class="experiment-menu">
-    
-    
-    <div class="experiment-menu-title">
-        <h1>物理实验数据处理平台</h1>
-    </div>
-    
-    <a class="experiment-menu-toolbox" href="exp/calculator/">工具箱</a>
-    <table class="experiment-menu-table">
-        <tr>
-            <td class="experiment-menu-item" id="experiment-menu-item-electrostatic-field">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/electrostatic_field.png" alt="">
-                <div >静电场测绘实验数据处理</div>
-            </td>
-            <td class="experiment-menu-item" id="experiment-menu-item-viscosity-coefficient">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/viscosity_coefficient.png" alt="">
-                <div >粘滞系数实验数据处理</div>
-            </td>
-            <td class="experiment-menu-item" id="experiment-menu-item-air-cushion">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/air_cushion.png" alt="">
-                <div >气垫技术测量重力加速度</div>
-            </td>
-        </tr>
-        
-        <tr>
-            <td class="experiment-menu-item" id="experiment-menu-item-newton-rings">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/netwon_rings.png" alt="">
-                <div class="experiment-menu-item">牛顿环</div>
-            </td class="experiment-menu-item">
-            <td class="experiment-menu-item" id="experiment-menu-item-simple-pendlum">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/single_pendulum.png" alt="">
-                <div class="experiment-menu-item">单摆</div>
-            </td>
-            <td class="experiment-menu-item" id="experiment-menu-item-rotational-inertia">
-                <img src="http://127.0.0.1:8000/static/DataProcessing/images/torsional_pendulum.png" alt="">
-                <div class="experiment-menu-item">扭摆实验————转动惯量的测量</div>
-            </td>
-        </tr>
-        
-    </table>
-    
-
-</div>
-        `);
-
-        this.root.$exp_sys.append(this.$menu);
+export class ExperimentMenu {
+    constructor(id) {
+        this.$menu = $('#' + id);
 
         this.$item_electrostatic_field = this.$menu.find("#experiment-menu-item-electrostatic-field");
         this.$item_viscosity_coefficient = this.$menu.find("#experiment-menu-item-viscosity-coefficient");
@@ -64,8 +17,7 @@ class ExperimentMenu {
     start() {
         let outer = this;
         this.$item_electrostatic_field.click(function (e) {
-            outer.hide();
-            outer.root.electrostatic_field.show();
+            window.location.replace("/exp/electrostatic/");
         });
 
         this.$item_viscosity_coefficient.click(function (e) {

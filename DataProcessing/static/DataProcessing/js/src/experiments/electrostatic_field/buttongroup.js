@@ -1,16 +1,10 @@
-class ElectrostaticButtonGroup {
-    constructor(electrostatic_field) {
+export class ElectrostaticButtonGroup {
+    constructor(electrostatic_field, id) {
         this.electrostatic_field = electrostatic_field;
-        this.$button_group = $(`
-            <div class="electrostatic-field-button-group">
-                <button class="electrostatic-field-button" id="electrostatic-field-button-process">数据处理</button>
-                <button class="electrostatic-field-button" id="electrostatic-field-button-return">返回</button>
-            </div>`);
-        this.electrostatic_field.$electrostatic_field.append(this.$button_group);
+        this.$button_group = $('#' + id);
 
         this.$bt_process = this.$button_group.find("#electrostatic-field-button-process")
 
-        this.$bt_return = this.$button_group.find("#electrostatic-field-button-return");
 
         this.start();
     }
@@ -28,13 +22,6 @@ class ElectrostaticButtonGroup {
             }
         });
 
-        //点击"返回"， 回到菜单
-        this.$bt_return.click(function (e) {
-            if(e.which === 1) {
-                outer.electrostatic_field.hide();
-                outer.electrostatic_field.root.menu.show();
-            }
-        });
 
     }
 

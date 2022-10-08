@@ -1,14 +1,9 @@
-class ElectrostaticFieldFigure {
-    constructor(electrostatic_field) {
+export class ElectrostaticFieldFigure {
+    constructor(electrostatic_field, id) {
         this.electrostatic_field = electrostatic_field;
-        this.$figure = $(`
-            <div class="electrostatic-field-figure">
-                <canvas class="electrostatic-field-figure-canvas" ></canvas>
-            </div>
-`);
+        this.$figure = $('#' + id);
         this.$canvas = this.$figure.find(".electrostatic-field-figure-canvas");
         this.ctx = this.$canvas[0].getContext('2d'); //2D画布
-        this.electrostatic_field.$electrostatic_field.append(this.$figure);
 
 
         this.ctx.canvas.width = this.$figure.width();

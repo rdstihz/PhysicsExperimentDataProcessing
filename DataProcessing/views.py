@@ -12,7 +12,11 @@ from datetime import datetime
 # Create your views here.
 
 def index(request):
-    return render(request, 'DataProcessing/index.html')
+    return render(request, 'DataProcessing/menu.html')
+
+
+def electrostatic_field(request):
+    return render(request, 'DataProcessing/electrostatic_field.html')
 
 
 def air_cushion(request):
@@ -152,7 +156,7 @@ def getfigure3(request):
     ax.spines['top'].set_color("none")
 
     # 让x轴从0开始
-    #ax.spines['left'].set_position(('data', 12))
+    # ax.spines['left'].set_position(('data', 12))
     # file_name = datetime.now().strftime("%Y%m%d%H%M%S" + data['state'] +".png")
     # plt.savefig(str(settings.BASE_DIR) + "/static/temp/" + file_name)
 

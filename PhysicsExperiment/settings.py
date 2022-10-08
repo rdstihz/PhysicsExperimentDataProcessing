@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ytxt1)ekuv_zocnm2glx5+h35pahmoi-$_ia%q+0hy_fh^bds8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["zengjt.top", "rdstihz.top", "101.227.35.235", "127.0.0.1"]
+ALLOWED_HOSTS = ["zengjt.top", "rdstihz.top", "101.227.35.235", "127.0.0.1", "rdstihz.tpddns.cn"]
 
 # Application definition
 

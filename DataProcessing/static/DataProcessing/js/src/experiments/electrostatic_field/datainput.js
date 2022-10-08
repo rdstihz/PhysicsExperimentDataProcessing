@@ -1,22 +1,7 @@
-class ElectrostatidFieldDataInput {
-    constructor(electrostatic_field) {
+export class ElectrostatidFieldDataInput {
+    constructor(electrostatic_field, id) {
         this.electrostatic_field = electrostatic_field;
-        this.$datainput = $(`
-<div class="electrostatic-field-datainput">
-    <h2>数据输入： （单位：cm）</h2>
-    <table border="1" class="electrostatic-field-datainput-table">
-        <tr>
-                <td>序数</td>
-                <td>X1</td>
-                <td>Y1</td>
-                <td>X2</td>
-                <td>Y2</td>
-                <td>X3</td>
-                <td>Y3</td>
-            </tr>
-    </table>
-</div>
-        `);
+        this.$datainput = $('#' + id);
 
         //输入数据的表格
         this.$datatable = this.$datainput.find(".electrostatic-field-datainput-table");
@@ -33,24 +18,22 @@ class ElectrostatidFieldDataInput {
             let $line = $(`
             <tr>
                 <td>${i}</td>
-                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-red"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-red form-control"
                            id="electrostatic-field-datainput-data${i}-x1" value="${x1[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-red"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-red form-control"
                            id="electrostatic-field-datainput-data${i}-y1" value="${y1[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell form-control"
                            id="electrostatic-field-datainput-data${i}-x2" value="${x2[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell"
+                <td><input type="number" class="electrostatic-field-datainput-cell form-control"
                            id="electrostatic-field-datainput-data${i}-y2" value="${y2[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-blue"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-blue form-control"
                            id="electrostatic-field-datainput-data${i}-x3" value="${x3[i - 1]}"></td>
-                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-blue"
+                <td><input type="number" class="electrostatic-field-datainput-cell electrostatic-field-datainput-cell-blue form-control"
                            id="electrostatic-field-datainput-data${i}-y3" value="${y3[i - 1]}"></td>
             </tr>`);
             this.$datatable.append($line);
         }
 
-
-        this.electrostatic_field.$electrostatic_field.append(this.$datainput);
         this.start();
     }
 

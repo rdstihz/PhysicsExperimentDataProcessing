@@ -65,7 +65,6 @@ class ViscosityCoefficientButtonGroup {
         //相关系数
         let r = (n * sxy - sx  * sy) / (Math.sqrt(n * sxx - sx * sx) * Math.sqrt(n * syy - sy * sy));
         //填写结果
-        console.log(b, r);
         this.viscosity_coefficient.result.filldata(k, b, r);
 
         this.viscosity_coefficient.figure.setdata(k, b, x, y, n);

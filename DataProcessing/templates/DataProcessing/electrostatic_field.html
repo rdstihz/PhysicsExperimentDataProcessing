@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>静电场测绘实验 | 物理实验数据处理平台</title>
+    <link rel="icon" href="{% static 'DataProcessing/images/icon.jpg' %}">
+
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+        td {
+            text-align: center;
+            line-height: inherit;
+            {#padding-left: 0px !important;#}
+            {#padding-right: 0px !important;#}
+        }
+        td > input {
+        }
+        /*去除箭头*/
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: auto;
+            -webkit-appearance: none;
+        }
+
+        #electrostatic-field-result td:nth-child(1) {
+            width: 20%;
+        }
+
+        #electrostatic-field-result td:nth-child(2) {
+            width: calc(80% / 3);
+        }
+
+        #electrostatic-field-result td:nth-child(3) {
+            width: calc(80% / 3);
+        }
+
+        #electrostatic-field-result td:nth-child(4) {
+            width: calc(80% / 3);
+        }
+        h2 {
+            text-align: center;
+        }
+
+        .electrostatic-field-button {
+            margin-right: 5px;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div class="container" id="electrostatic-field">
+
+
+    <div class="row">
+        <h2 class="experiment-name-title">静电场测绘实验数据处理（同轴电缆）</h2>
+    </div>
+    <div class="row">
+        <a href="#" class="col-md-2 col-md-offset-10" style="font-size: 1.3em">帮助</a>
+    </div>
+
+    <div class="row">
+        <div class="electrostatic-field-datainput col-md-7" id="electrostatic-field-datainput">
+            <h3>数据输入： （单位：cm）</h3>
+            <table class="electrostatic-field-datainput-table table table-bordered table-hover table-condensed">
+                <tr>
+                    <td>序数</td>
+                    <td>X1</td>
+                    <td>Y1</td>
+                    <td>X2</td>
+                    <td>Y2</td>
+                    <td>X3</td>
+                    <td>Y3</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="electrostatic-field-figure col-md-5" id="electrostatic-field-figure"
+             style="height: 400px; margin-top: 60px">
+            <canvas class="electrostatic-field-figure-canvas"></canvas>
+            <button class="btn btn-link" style="text-align: center; width: 100%">下载图片</button>
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="electrostatic-field-result col-md-6" id="electrostatic-field-result">
+            <h3>计算结果：（圆心坐标，半径）</h3>
+            <table class="table table-bordered table-hover table-condensed">
+                <tr>
+                    <td>X0</td>
+                    <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red"
+                        id="electrostatic-field-result-data1-x0"></td>
+                    <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-x0"></td>
+                    <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue"
+                        id="electrostatic-field-result-data3-x0"></td>
+                </tr>
+
+                <tr>
+                    <td>Y0</td>
+                    <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red"
+                        id="electrostatic-field-result-data1-y0"></td>
+                    <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-y0"></td>
+                    <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue"
+                        id="electrostatic-field-result-data3-y0"></td>
+                </tr>
+
+                <tr>
+                    <td>R</td>
+                    <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-red"
+                        id="electrostatic-field-result-data1-r"></td>
+                    <td class="electrostatic-field-result-cell" id="electrostatic-field-result-data2-r"></td>
+                    <td class="electrostatic-field-result-cell electrostatic-field-datainput-cell-blue"
+                        id="electrostatic-field-result-data3-r"></td>
+                </tr>
+
+
+            </table>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="electrostatic-field-button-group col-md-6" id="electrostatic-field-button-group">
+            <button class="electrostatic-field-button btn btn-info" id="electrostatic-field-button-clear">清空数据</button>
+            <button class="electrostatic-field-button btn btn-success" id="electrostatic-field-button-process">数据处理</button>
+            <a class="electrostatic-field-button btn btn-primary" id="electrostatic-field-button-return" href="/">返回</a>
+        </div>
+    </div>
+
+</div>
+
+<script type="module">
+    import {ElectrostaticField} from '{% static 'DataProcessing/js/src/experiments/electrostatic_field/zbase.js' %}'
+
+    $(document).ready(() => {
+        let electro = new ElectrostaticField("electrostatic-field");
+    });
+</script>
+
+</body>
+</html>
