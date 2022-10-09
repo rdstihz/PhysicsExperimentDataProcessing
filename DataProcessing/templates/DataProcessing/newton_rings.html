@@ -3,137 +3,256 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>牛顿环 | 物理实验数据处理平台</title>
+    <link rel="icon" href="{% static 'DataProcessing/images/icon.jpg' %}">
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="{% static 'DataProcessing/css/newton_rings.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        td > input {
+        }
+
+        /*去除箭头*/
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: auto;
+            -webkit-appearance: none;
+        }
+
+        .newton-ring-dateinput-table td:nth-child(1) {
+            width: 20%;
+        }
+
+        .newton-ring-dateinput-table td:nth-child(2) {
+            width: 40%;
+        }
+
+        .newton-ring-dateinput-table td:nth-child(3) {
+            width: 40%;
+        }
+
+        .newton-rings-final-btn {
+            margin-right: 5px;
+        }
+
+        .newton-rings-result-text {
+            font-size: 17px;
+            text-align: left;
+        }
+
+        .newton-rings-result-text-intro {
+            color: red;
+        }
+
+        .newton-rings-result-item-val {
+            color: red;
+        }
+
+        .newton-rings-result-item-val-long {
+            color: red;
+        }
+
+    </style>
+
 </head>
 <body>
+
+
+<div class="newton-rings container" id="newton_rings_123456">
+    <div class="row">
+        <h2 class="newton-rings-title">牛顿环实验数据处理</h2>
+    </div>
+    <div class="row">
+        <a href="#" class="col-md-2 col-md-offset-10" style="font-size: 1.3em">帮助</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="newton-rings-datainput">
+                <h3>数据输入</h3>
+                <table class="newton-ring-dateinput-table table table-bordered table-condensed table-hover">
+                    <tr>
+                        <td>环数</td>
+                        <td>左边位置(mm)</td>
+                        <td>右边位置(mm)</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left13"
+                                   value="31.501"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right13"
+                                   value="27.305">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left14"
+                                   value="31.571"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right14"
+                                   value="27.235">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left15"
+                                   value="31.650"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right15"
+                                   value="27.157">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left16"
+                                   value="31.721"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right16"
+                                   value="27.074">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>17</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left17"
+                                   value="31.792"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right17"
+                                   value="27.010">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>18</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left18"
+                                   value="31.859"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right18"
+                                   value="26.943">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>19</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left19"
+                                   value="31.930"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right19"
+                                   value="26.887">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left20"
+                                   value="31.996"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right20"
+                                   value="26.818">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left21"
+                                   value="32.058"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right21"
+                                   value="26.756">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>22</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left22"
+                                   value="32.121"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right22"
+                                   value="26.691">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>23</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left23"
+                                   value="32.180"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right23"
+                                   value="26.630">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>24</td>
+                        <td><input type="number" class="newton-rings-left form-control" id="newton-rings-left24"
+                                   value="32.244"></td>
+                        <td><input type="number" class="newton-rings-right form-control" id="newton-rings-right24"
+                                   value="26.570">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="newton-final-btn">
+                <div>
+                    <button class="newton-rings-final-btn btn btn-info" id="newton-rings-final-btn-clear">清空数据
+                    </button>
+                    <button class="newton-rings-final-btn btn btn-success" id="newton-rings-final-btn-calc">处理数据
+                    </button>
+                    <button class="newton-rings-final-btn btn btn-primary" id="newton-rings-final-btn-return">返回
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-8">
+            <h3>处理结果</h3>
+
+            <div style="height: 400px; border: solid 1px; text-align: center">
+                <img src="" alt="" id="newton-rings-result-figure" style="height: 100%">
+
+            </div>
+            <button class="btn btn-link col-md-12" style="text-align: center;">下载图片</button>
+
+
+            <div class="newton-rings-result-text row">
+                <div class="newton-rings-result-text-item col-md-6">
+                    <div class="newton-rings-result-text-intro">逐差法处理数据</div>
+                    <div class="newton-rings-result-text-data">
+                        <span class="newton-rings-result-item-intro">曲率半径：</span>
+                        <span id="newton-rings-result-zhucha-r" class="newton-rings-result-item-val"
+                              style="display: inline-block; width: 50px"></span>
+                        <span class="newton-rings-result-item-intro">mm</span>
+                    </div>
+                </div>
+
+                <div class="newton-rings-result-text-item col-md-6">
+                    <div class="newton-rings-result-text-intro">最小二乘法</div>
+                    <div class="newton-rings-result-text-data">
+                        <span class="newton-rings-result-item-intro">关系式：</span>
+                        <span id="newton-rings-result-2cheng-eq" class="newton-rings-result-item-val-long"></span>
+                    </div>
+                    <div class="newton-rings-result-text-data">
+                        <span class="newton-rings-result-item-intro">曲率半径：</span>
+                        <span id="newton-rings-result-2cheng-r" class="newton-rings-result-item-val"
+                              style="display: inline-block; width: 50px"></span>
+                        <span class="newton-rings-result-item-intro">mm</span>
+                    </div>
+                    <div class="newton-rings-result-text-data">
+                        <span class="newton-rings-result-item-intro">相关系数：</span>
+                        <span id="newton-rings-result-2cheng-rela" class="newton-rings-result-item-val"></span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
 <script type="module">
-    import {NewtonRings} from "{% static 'DataProcessing/js/dist.js' %}"
+    import {NewtonRings} from "{% static 'DataProcessing/js/src/experiments/newton_rings/zbase.js' %}"
 
     $(document).ready(() => {
         let obj = new NewtonRings("newton_rings_123456");
     });
 </script>
-
-<div class="newton-rings" id="newton_rings_123456">
-    <p class="newton-rings-title">牛顿环实验数据处理</p>
-    <div class="newton-rings-datainput">
-        <table class="newton-ring-dateinput-table" border="1px">
-            <tr>
-                <td>环数</td>
-                <td>左边位置<br>[mm]</td>
-                <td>右边位置<br>[mm]</td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left13" value="31.501"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right13" value="27.305"></td>
-            </tr>
-            <tr>
-                <td>14</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left14" value="31.571"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right14" value="27.235"></td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left15" value="31.650"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right15" value="27.157"></td>
-            </tr>
-            <tr>
-                <td>16</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left16" value="31.721"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right16" value="27.074"></td>
-            </tr>
-            <tr>
-                <td>17</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left17" value="31.792"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right17" value="27.010"></td>
-            </tr>
-            <tr>
-                <td>18</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left18" value="31.859"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right18" value="26.943"></td>
-            </tr>
-            <tr>
-                <td>19</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left19" value="31.930"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right19" value="26.887"></td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left20" value="31.996"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right20" value="26.818"></td>
-            </tr>
-            <tr>
-                <td>21</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left21" value="32.058"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right21" value="26.756"></td>
-            </tr>
-            <tr>
-                <td>22</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left22" value="32.121"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right22" value="26.691"></td>
-            </tr>
-            <tr>
-                <td>23</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left23" value="32.180"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right23" value="26.630"></td>
-            </tr>
-            <tr>
-                <td>24</td>
-                <td><input type="number" class="newton-rings-left" id="newton-rings-left24" value="32.244"></td>
-                <td><input type="number" class="newton-rings-right" id="newton-rings-right24" value="26.570"></td>
-            </tr>
-        </table>
-    </div>
-{#    <div class="newton_rings_huabu"></div>#}
-
-
-    <img src="{% static 'DataProcessing/images/temp.png' %}" alt="" id="newton-rings-result-figure">
-    <div class="newton-rings-result-text">
-        <div class="newton-rings-result-text-item">
-            <div class="newton-rings-result-text-intro">逐差法处理数据</div>
-            <div class="newton-rings-result-text-data">
-                <span class="newton-rings-result-item-intro">曲率半径：</span>
-                <div id="newton-rings-result-zhucha-r" class="newton-rings-result-item-val"></div>
-                <span class="newton-rings-result-item-intro">mm</span>
-            </div>
-        </div>
-
-        <div class="newton-rings-result-text-item">
-            <div class="newton-rings-result-text-intro">最小二乘法</div>
-            <div class="newton-rings-result-text-data">
-                <span class="newton-rings-result-item-intro">关系式：</span>
-                <div id="newton-rings-result-2cheng-eq" class="newton-rings-result-item-val-long"></div>
-            </div>
-            <div class="newton-rings-result-text-data">
-                <span class="newton-rings-result-item-intro">曲率半径：</span>
-                <div id="newton-rings-result-2cheng-r" class="newton-rings-result-item-val"></div>
-                <span class="newton-rings-result-item-intro" >mm</span>
-            </div>
-            <div class="newton-rings-result-text-data">
-                <span class="newton-rings-result-item-intro">相关系数：</span>
-                <div id="newton-rings-result-2cheng-rela" class="newton-rings-result-item-val"></div>
-            </div>
-{#            <div class="newton-rings-result-text-data">#}
-{#                <span class="newton-rings-result-item-intro">标准误差：</span>#}
-{#                <div id="newton-rings-result-2cheng-stde" class="newton-rings-result-item-val"></div>#}
-{#                <span class="newton-rings-result-item-intro">mm</span>#}
-{#            </div>#}
-        </div>
-
-
-    </div>
-
-
-    <div class="newton-final-btn">
-        <div>
-            <button class="newton-rings-final-btn" id="newton-rings-final-btn-calc">处理数据</button>
-            <button class="newton-rings-final-btn" id="newton-rings-final-btn-return">返回</button>
-        </div>
-    </div>
-
-</div>
 </body>
 </html>

@@ -3,101 +3,172 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>气垫技术测量重力加速度 | 物理实验数据处理平台</title>
+    <link rel="icon" href="{% static 'DataProcessing/images/icon.jpg' %}">
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="{% static 'DataProcessing/css/air_cushion.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        td > input {
+        }
+
+        /*去除箭头*/
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: auto;
+            -webkit-appearance: none;
+        }
+
+        .air-cushion-date-result > td {
+            width: 33%;
+        }
+
+        .air-cushion-button {
+            margin-right: 5px;
+        }
+
+    </style>
 
 </head>
 <body>
+<div class="air-cushion container" id="air-cushion-123456">
+    <div class="row">
+        <h2 class="air-cushion-title">气垫技术测量重力加速度实验数据处理</h2>
+    </div>
+
+    <div class="row">
+        <a href="#" class="col-md-2 col-md-offset-10" style="font-size: 1.3em">帮助</a>
+    </div>
+
+    <div class="row">
+        <div class="air-cushion-date col-md-12">
+            <h3>实验数据</h3>
+            <div class="air-cushion-date-pre form-inline">
+                <div class="form-group col-md-4">
+                    <label for="air-cushion-inputdata-S">S:</label>
+                    <input type="number" name="S:" id="air-cushion-inputdata-S" class="form-control">[cm]
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label for="air-cushion-inputdata-L">L:</label>
+                    <input type="number" name="L" id="air-cushion-inputdata-L" class="form-control">[cm]&emsp;
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="air-cushion-inputdata-dL">ΔL:</label>
+                    <input type="number" name="ΔL" id="air-cushion-inputdata-dL" class="form-control">[cm]
+                </div>
+
+            </div>
+
+            <table class="air-cushion-date-all table table-bordered table-hover table-condensed">
+                <tr>
+                    <td>高度h</td>
+                    <td>下滑t1（ms）</td>
+                    <td>下滑t2(ms)</td>
+                    <td>上滑t1(ms)</td>
+                    <td>上滑t2(ms)</td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-h1"></td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-down1-1">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-down2-1">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-up1-1">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-up2-1">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-h2"></td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-down1-2">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-down2-2">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-up1-2">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-up2-2">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-h3"></td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-down1-3">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-down2-3">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-up1-3">
+                    </td>
+                    <td><input type="number" class="air-cushion-date-test form-control" id="air-cushion-date-up2-3">
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h3 id="air-cushion-result">计算结果</h3>
+            <table class="air-cushion-date-result table table-bordered table-hover table-condensed">
+                <tr>
+                    <td>高度h</td>
+                    <td class="acc">加速度(cm/s²)</td>
+                    <td class="acc">重力加速度(cm/s²)</td>
+                </tr>
+                <tr>
+                    <td>h1</td>
+                    <td class="air-cushion-date-result-accelerated-velocity" id="air-cushion-acceleration1"></td>
+                    <td class="air-cushion-gravitational-acceleration" id="air-cushion-g-acceleration1"></td>
+                </tr>
+                <tr>
+                    <td>h2</td>
+                    <td class="air-cushion-date-result-accelerated-velocity" id="air-cushion-acceleration2"></td>
+                    <td class="air-cushion-gravitational-acceleration" id="air-cushion-g-acceleration2"></td>
+                </tr>
+                <tr>
+                    <td>h3</td>
+                    <td class="air-cushion-date-result-accelerated-velocity" id="air-cushion-acceleration3"></td>
+                    <td class="air-cushion-gravitational-acceleration" id="air-cushion-g-acceleration3"></td>
+                </tr>
+                <tr>
+                    <td>平均重力加速度G(cm/s²)</td>
+                    <td id="air-cushion-mean-acceleration" colspan="2"></td>
+                </tr>
+            </table>
+
+            <p class="worth-notice">请按有效数字规则记录运算结果!</p>
+
+
+        </div>
+    </div>
+
+
+    <div class="air-cushion-operate-btn">
+        <input type="button" name="btn2" value="清空数据" id="air-cushion-button-clear" class="air-cushion-button btn btn-info">
+        <input type="button" name="btn2" value="处理数据" id="air-cushion-button-calc" class="air-cushion-button btn btn-success">
+        <input type="button" name="btn4" value="返回" id="air-cushion-button-return" class="air-cushion-button btn btn-primary">
+    </div>
+</div>
 
 <script type="module">
-    import {AirCushion} from "{% static 'DataProcessing/js/dist.js' %}"
-    $(document).ready(()=>{
+    import {AirCushion} from "{% static 'DataProcessing/js/src/experiments/air_cushion/zbase.js' %}"
+
+    $(document).ready(() => {
         let air_cushion = new AirCushion("air-cushion-123456");
     });
 </script>
 
-<div class="air-cushion" id="air-cushion-123456">
-    <h2 class="air-cushion-title">气垫技术测量重力加速度实验数据处理</h2>
-    <div class="air-cushion-date">
-        <div class="air-cushion-date-pre">
-            实验数据：&emsp;
-            S: <input type="number" name="S" id="air-cushion-inputdata-S">[cm]&emsp;
-            L: <input type="number" name="L" id="air-cushion-inputdata-L">[cm]&emsp;
-            ΔL： <input type="number" name="ΔL" id="air-cushion-inputdata-dL">[cm]
-        </div>
-
-        <table border="1px" class="air-cushion-date-all" align="center">
-            <tr>
-                <td>高度h</td>
-                <td>下滑t1（ms）</td>
-                <td>下滑t2(ms)</td>
-                <td>上滑t1(ms)</td>
-                <td>上滑t2(ms)</td>
-            </tr>
-            <tr>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-h1"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down1-1"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down2-1"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up1-1"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up2-1"></td>
-            </tr>
-            <tr>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-h2"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down1-2"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down2-2"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up1-2"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up2-2"></td>
-            </tr>
-            <tr>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-h3"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down1-3"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-down2-3"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up1-3"></td>
-                <td><input type="number" class="air-cushion-date-test" id="air-cushion-date-up2-3"></td>
-            </tr>
-        </table>
-    </div>
-    <div id="air-cushion-result">计算结果:</div>
-
-    <table border="1px" class="air-cushion-date-result">
-        <tr>
-            <td>高度h</td>
-            <td class="acc">加速度(cm/s²)</td>
-            <td class="acc">重力加速度(cm/s²)</td>
-        </tr>
-        <tr>
-            <td>h1</td>
-            <td class="air-cushion-date-result-accelerated-velocity" id="air-cushion-acceleration1"></td>
-            <td class="air-cushion-gravitational-acceleration" id="air-cushion-g-acceleration1"></td>
-        </tr>
-        <tr>
-            <td>h2</td>
-            <td class="air-cushion-date-result-accelerated-velocity" id="air-cushion-acceleration2"></td>
-            <td class="air-cushion-gravitational-acceleration" id="air-cushion-g-acceleration2"></td>
-        </tr>
-        <tr>
-            <td>h3</td>
-            <td class="air-cushion-date-result-accelerated-velocity" id="air-cushion-acceleration3"></td>
-            <td class="air-cushion-gravitational-acceleration" id="air-cushion-g-acceleration3"></td>
-        </tr>
-    </table>
-
-    <div class="air-cushion-final-result">
-        <div class="air-cushion-conclusion">
-            平均重力加速度G： <div id="air-cushion-mean-acceleration"></div>[cm/s²]
-        </div>
-
-        <div class="worth-notice">
-            请按有效数字规则记录运算结果!
-        </div>
-    </div>
-
-    <div class="air-cushion-operate-btn">
-        <input type="button" name="btn2" value="计算" id="air-cushion-button-calc">&emsp;
-        <input type="button" name="btn4" value="返回" id="air-cushion-button-return">
-    </div>
-</div>
 </body>
 </html>

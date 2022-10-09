@@ -64,7 +64,7 @@ export class NewtonRings {
         this.$img = document.getElementById("newton-rings-result-figure");
         console.log(this.$img);
         $.ajax({
-            url: "http://127.0.0.1:8000/exp/getfigure2/",
+            url: "/exp/getfigure2/",
             type: "GET",
             data: {
                 'k': k,

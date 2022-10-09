@@ -3,90 +3,182 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>静电场测绘实验 | 物理实验数据处理平台</title>
+    <link rel="icon" href="{% static 'DataProcessing/images/icon.jpg' %}">
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="{% static 'DataProcessing/css/simple_pendlum.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .simple-pendulum-date-form td:nth-child(1) {
+            width: 20%;
+        }
+
+        .simple-pendulum-date-form td:nth-child(2) {
+            width: 40%;
+        }
+
+        .simple-pendulum-date-form td:nth-child(3) {
+            width: 40%;
+        }
+
+        .simple-pendulum-result-table td:nth-child(1) {
+            width: 40%;
+        }
+
+        .simple-pendulum-result-table td:nth-child(2) {
+            width: 60%;
+        }
+
+        td > input {
+        }
+
+        /*去除箭头*/
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: auto;
+            -webkit-appearance: none;
+        }
+    </style>
+
 </head>
 <body>
+<div class="simple-pendulm container" id="simple-pendulm-123456">
+    <div class="row">
+        <h2 class="simple-pendulum-title">单摆实验数据处理</h2>
+    </div>
+    <div class="row">
+        <a href="#" class="col-md-2 col-md-offset-10" style="font-size: 1.3em">帮助</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="simple-pendulum-date">
+
+                <h3>数据输入</h3>
+                <table class="simple-pendulum-date-form table table-hover table-bordered table-condensed">
+                    <tr>
+                        <td>次数</td>
+                        <td>摆长（cm）</td>
+                        <td>50次时间t(s)</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="number" class="simple-pendulum-length form-control"
+                                   id="simple-pendulum-length1"
+                                   value="72.00"></td>
+                        <td><input type="number" class="simple-oendulum-cycle form-control" id="simple-oendulum-cycle1"
+                                   value="84.45"></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="number" class="simple-pendulum-length form-control"
+                                   id="simple-pendulum-length2"
+                                   value="77.00"></td>
+                        <td><input type="number" class="simple-oendulum-cycle form-control" id="simple-oendulum-cycle2"
+                                   value="87.52"></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="number" class="simple-pendulum-length form-control"
+                                   id="simple-pendulum-length3"
+                                   value="82.35"></td>
+                        <td><input type="number" class="simple-oendulum-cycle form-control" id="simple-oendulum-cycle3"
+                                   value="90.50"></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><input type="number" class="simple-pendulum-length form-control"
+                                   id="simple-pendulum-length4"
+                                   value="88.05"></td>
+                        <td><input type="number" class="simple-oendulum-cycle form-control" id="simple-oendulum-cycle4"
+                                   value="93.68"></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><input type="number" class="simple-pendulum-length form-control"
+                                   id="simple-pendulum-length5"
+                                   value="94.58"></td>
+                        <td><input type="number" class="simple-oendulum-cycle form-control" id="simple-oendulum-cycle5"
+                                   value="97.02"></td>
+                    </tr>
+                </table>
+
+            </div>
+
+            <div class="simple-pendulum-result">
+                <h4 class="simple-pendulum-tip form-inline">
+                    与标准值 <input type="number" value="979.4" class="form-control" style="width: 70px"> cm/S²比较得:
+                </h4>
+
+
+                <table class="simple-pendulum-result-table table table-condensed table-bordered table-hover">
+                    <tr>
+                        <td>重力加速度(cm/s²)</td>
+                        <td class="simple-pendulum-date-result" id="simple-pendulum-date-result"></td>
+                    </tr>
+                    <tr>
+                        <td>百分误差(%)</td>
+                        <td class="simple-pendulum-date-result" id="simple-pendulum-date-error"></td>
+                    </tr>
+                    <tr>
+                        <td>截距(cm)</td>
+                        <td class="simple-pendulum-date-result" id="simple-pendulum-jieju"></td>
+                    </tr>
+                    <tr>
+                        <td>相关系数</td>
+                        <td class="simple-pendulum-date-result" id="simple-pendulum-xgxs"></td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-7">
+            <h3>图像</h3>
+            <div style="border: solid 1px; height: 400px; text-align: center">
+                <img src="" alt="" class="simple-pendulum-huabu"
+                     id="simple-pendulum-figure" style="height: 100%">
+            </div>
+            <button class="btn btn-link col-md-12" style="text-align: center;">下载图片</button>
+
+            <div class="simple-pendulum-final-btn">
+                <button class="simple-pendulum-final-operate-btn btn btn-info" id="simple-pendulum-final-clear">
+                    清空数据
+                </button>
+                <button class="simple-pendulum-final-operate-btn btn btn-success" id="simple-pendulum-final-btn2">
+                    处理数据
+                </button>
+                <button class="simple-pendulum-final-operate-btn btn btn-primary" id="simple-pendulum-final-btn3">返回
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
 <script type="module">
-    import {SimplePendlum} from "{% static 'DataProcessing/js/dist.js' %}"
+    import {SimplePendlum} from "{% static 'DataProcessing/js/src/experiments/simple_pendlum/zbase.js' %}"
 
     $(document).ready(() => {
         let obj = new SimplePendlum("simple-pendulm-123456");
     });
 </script>
-<div class="simple-pendulm" id="simple-pendulm-123456">
-    <h2 class="simple-pendulum-title">单摆实验数据处理</h2>
-    <div class="simple-pendulum-date">
-        <p>实验数据</p>
-        <table class="simple-pendulum-date-form" border="2px">
-            <tr>
-                <td>次数</td>
-                <td>摆长（cm）</td>
-                <td>50次时间t(s)</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length1" value="72.00"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle1" value="84.45"></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length2" value="77.00"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle2" value="87.52"></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length3" value="82.35"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle3" value="90.50"></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length4" value="88.05"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle4" value="93.68"></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td><input type="number" class="simple-pendulum-length" id="simple-pendulum-length5" value="94.58"></td>
-                <td><input type="number" class="simple-oendulum-cycle" id="simple-oendulum-cycle5" value="97.02"></td>
-            </tr>
-        </table>
-
-    </div>
-    <img src="{% static 'DataProcessing/images/temp.png' %}" alt="" class="simple-pendulum-huabu"
-         id="simple-pendulum-figure">
-    <div class="simple-pendulum-result">
-        <p class="simple-pendulum-tip">
-            与上海地区标准值979.4cm/S²比较所得
-        </p>
-        <p>
-            <span>重力加速度=</span>
-            <span class="simple-pendulum-date-result" id="simple-pendulum-date-result"></span>
-            <span>cm/s²</span>
-
-        </p>
-        <p>
-            <span>百分误差=</span>
-            <span class="simple-pendulum-date-result" id="simple-pendulum-date-error"></span>
-            <span>%</span>
-        </p>
-        <p>
-            <span>截距=</span>
-
-            <span class="simple-pendulum-date-result" id="simple-pendulum-jieju"></span>
-            <span>cm</span>
-        </p>
-        <p>
-            <span>相关系数=</span>
-            <span class="simple-pendulum-date-result" id="simple-pendulum-xgxs"></span>
-        </p>
-    </div>
-    <div class="simple-pendulum-final-btn" align="center">
-
-        <button class="simple-pendulum-final-operate-btn" id="simple-pendulum-final-btn2">处理数据</button>
-        <button class="simple-pendulum-final-operate-btn" id="simple-pendulum-final-btn3">返回</button>
-
-    </div>
-</div>
 </body>
 </html>

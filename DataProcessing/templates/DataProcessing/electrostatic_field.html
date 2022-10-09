@@ -15,11 +15,17 @@
     <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
 
     <style>
+        h2 {
+            text-align: center;
+        }
+
         td {
             text-align: center;
         }
+
         td > input {
         }
+
         /*去除箭头*/
         input[type="number"]::-webkit-inner-spin-button,
         input[type="number"]::-webkit-outer-spin-button {
@@ -42,12 +48,26 @@
         #electrostatic-field-result td:nth-child(4) {
             width: calc(80% / 3);
         }
-        h2 {
-            text-align: center;
-        }
+
 
         .electrostatic-field-button {
             margin-right: 5px;
+        }
+
+        .electrostatic-field-datainput-cell-red {
+            color: red;
+        }
+
+        .electrostatic-field-datainput-cell-blue {
+            color: blue;
+        }
+
+        #electrostatic-field-result-data1-x0 electrostatic-field-result-data1-y0 electrostatic-field-result-data1-r {
+            color: red;
+        }
+
+        #electrostatic-field-result-data3-x0 electrostatic-field-result-data3-y0 electrostatic-field-result-data3-r {
+            color: blue;
         }
 
 
@@ -130,9 +150,13 @@
 
     <div class="row">
         <div class="electrostatic-field-button-group col-md-6" id="electrostatic-field-button-group">
-            <button class="electrostatic-field-button btn btn-info" id="electrostatic-field-button-clear">清空数据</button>
-            <button class="electrostatic-field-button btn btn-success" id="electrostatic-field-button-process">数据处理</button>
-            <a class="electrostatic-field-button btn btn-primary" id="electrostatic-field-button-return" href="/">返回</a>
+            <button class="electrostatic-field-button btn btn-info" id="electrostatic-field-button-clear">清空数据
+            </button>
+            <button class="electrostatic-field-button btn btn-success" id="electrostatic-field-button-process">
+                数据处理
+            </button>
+            <a class="electrostatic-field-button btn btn-primary" id="electrostatic-field-button-return"
+               href="/">返回</a>
         </div>
     </div>
 

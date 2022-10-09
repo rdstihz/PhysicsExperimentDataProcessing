@@ -3,155 +3,293 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>扭摆实验 | 物理实验数据处理平台</title>
+    <link rel="icon" href="{% static 'DataProcessing/images/icon.jpg' %}">
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <link rel="stylesheet" href="{% static 'DataProcessing/css/rotational_inertia.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        td > input {
+        }
+
+        /*去除箭头*/
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: auto;
+            -webkit-appearance: none;
+        }
+
+        .input-pre-measured-data {
+            width: 50% !important;
+        }
+
+    </style>
 </head>
 <body>
+
+<div class="rotatinoal-inertia container" id="rotational-inertia-123456">
+    <div class="row">
+        <h2 id="rotational-inertia-title">扭摆实验------转动惯量的测量</h2>
+    </div>
+
+    <div class="row">
+        <a href="#" class="col-md-2 col-md-offset-10" style="font-size: 1.3em">帮助</a>
+    </div>
+    <div class="row">
+        <div class="rotational-inertia-test col-md-12">
+            <h3 class="torsional-pendulum-header">
+                1.物体转动惯量的测量：
+            </h3>
+            <table class="torsional-pendulum-date table table-bordered table-hover table-condensed">
+                <tr>
+                    <td>物体名称</td>
+                    <td>质量<br>（g）</td>
+                    <td>外径<br>（cm）</td>
+                    <td>内径<br>（cm）</td>
+                    <td>杆长<br>（cm）</td>
+                    <td>周期<br>（s）</td>
+                    <td>转动惯量理论值<br>*10^-4（kg.m²）</td>
+                    <td>实验值<br>*10^-4（kg.m²）</td>
+                    <td>百分误差<br>%</td>
+                </tr>
+                <tr>
+                    <td>托盘</td>
+                    <td class="empty-data">/</td>
+                    <td class="empty-data">/</td>
+                    <td class="empty-data">/</td>
+                    <td class="empty-data">/</td>
+                    <td><input type="number" class="torsional-pendulum-T form-control" id="torsional-pendulum-tuo-T"
+                               value="0.8644">
+                    </td>
+                    <td class="empty-data">/</td>
+                    <td>
+                        <div id="torsional-pendulum-tuo-test"></div>
+                    </td>
+                    <td class="empty-data">/</td>
+                </tr>
+                <tr>
+                    <td>圆柱</td>
+                    <td><input type="number" class="torsional-pendulum-m form-control" id="torsional-pendulum-m-zhu"
+                               value="710">
+                    </td>
+                    <td><input type="number" class="torsional-pendulum-wai form-control" id="torsional-pendulum-wai-zhu"
+                               value="9.962">
+                    </td>
+                    <td class="empty-data">/</td>
+                    <td class="empty-data">/</td>
+                    <td><input type="number" class="torsional-pendulum-T form-control" id="torsional-pendulum-T-zhu"
+                               value="1.3992">
+                    </td>
+                    <td>
+                        <div class="torsional-pendulum-theory" id="torsional-pendulum-theory-zhu"></div>
+                    </td>
+                    <td class="empty-data">/</td>
+                    <td class="empty-data">/</td>
+                </tr>
+                <tr>
+                    <td>圆桶</td>
+                    <td><input type="number" class="torsional-pendulum-m form-control" id="torsional-pendulum-m-tong"
+                               value="720">
+                    </td>
+                    <td><input type="number" class="torsional-pendulum-wai form-control"
+                               id="torsional-pendulum-wai-tong"
+                               value="9.982">
+                    </td>
+                    <td><input type="number" class="torsional-pendulum-nei form-control"
+                               id="torsional-pendulum-nei-tong"
+                               value="9.417">
+                    </td>
+                    <td class="empty-data">/</td>
+                    <td><input type="number" class="torsional-pendulum-T form-control" id="torsional-pendulum-T-tong"
+                               value="1.744">
+                    </td>
+                    <td>
+                        <div class="torsional-pendulum-theory" id="torsional-pendulum-theory-tong"></div>
+                    </td>
+                    <td>
+                        <div class="torsional-pendulum-test" id="torsional-pendulum-test-tong"></div>
+                    </td>
+                    <td>
+                        <div class="calculation-error" id="calculation-error-tong"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>圆球</td>
+                    <td><input type="number" class="torsional-pendulum-m form-control" id="torsional-pendulum-m-qiu"
+                               value="1214">
+                    </td>
+                    <td><input type="number" class="torsional-pendulum-wai form-control" id="torsional-pendulum-wai-qiu"
+                               value="11.3948">
+                    </td>
+                    <td class="empty-data">/</td>
+                    <td class="empty-data">/</td>
+                    <td><input type="number" class="torsional-pendulum-T form-control" id="torsional-pendulum-T-qiu"
+                               value="1.4728">
+                    </td>
+                    <td>
+                        <div class="torsional-pendulum-theory" id="torsional-pendulum-theory-qiu"></div>
+                    </td>
+                    <td>
+                        <div class="torsional-pendulum-test" id="torsional-pendulum-test-qiu"></div>
+                    </td>
+                    <td>
+                        <div class="calculation-error" id="calculation-error-qiu"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>细杆</td>
+                    <td><input type="number" class="torsional-pendulum-m form-control" id="torsional-pendulum-m-gan"
+                               value="130">
+                    </td>
+                    <td class="empty-data">/</td>
+                    <td class="empty-data">/</td>
+                    <td><input type="number" class="torsional-pendulum-length form-control"
+                               id="torsional-pendulum-length-gan"
+                               value="60.996"></td>
+                    <td><input type="number" class="torsional-pendulum-T form-control" id="torsional-pendulum-T-gan"
+                               value="2.3526">
+                    </td>
+                    <td>
+                        <div class="torsional-pendulum-theory" id="torsional-pendulum-theory-gan"></div>
+                    </td>
+                    <td>
+                        <div class="torsional-pendulum-test" id="torsional-pendulum-test-gan"></div>
+                    </td>
+                    <td>
+                        <div class="calculation-error" id="calculation-error-gan"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="parallel-axis-theorem col-md-12">
+            <h3 class="torsional-pendulum-header">2.验证平行轴定理：</h3>
+            <div class="pre-measured-value form-inline">
+                <div class="form-group col-md-3">
+                    滑块质量= <input type="number" id="pre-measured-date-m" class="form-control input-pre-measured-data">g;
+                </div>
+                <div class="form-group col-md-3">
+                    滑块高度= <input type="number" id="pre-measured-date-h" class="form-control input-pre-measured-data">cm;
+                </div>
+                <div class="from-group col-md-3">
+                    滑块外径= <input type="number" id="pre-measured-date-wai" class="form-control input-pre-measured-data">cm;
+                </div>
+                <div class="form-group col-md-3">
+                    滑块内径= <input type="number" id="pre-measured-date-nei" class="form-control input-pre-measured-data">cm
+                </div>
+
+
+            </div>
+            <table class="parallel-axis-date table table-bordered table-hover table-condensed">
+                <tr>
+                    <td>位移<br>（cm）</td>
+                    <td>周期<br>（s）</td>
+                    <td>转动惯量理论值<br>（kg.m²）</td>
+                    <td>实验值<br>（kg.m²）</td>
+                    <td>百分误差<br>%</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="number" class="parallel-axis-cycle form-control" id="parallel-axis-cycle1"></td>
+                    <td>
+                        <div class="parallel-axis-theory" id="parallel-axis-theory1"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-test" id="parallel-axis-test1"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-error" id="parallel-axis-error1"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><input type="number" class="parallel-axis-cycle form-control" id="parallel-axis-cycle2"></td>
+                    <td>
+                        <div class="parallel-axis-theory" id="parallel-axis-theory2"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-test" id="parallel-axis-test2"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-error" id="parallel-axis-error2"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td><input type="number" class="parallel-axis-cycle form-control" id="parallel-axis-cycle3"></td>
+                    <td>
+                        <div class="parallel-axis-theory" id="parallel-axis-theory3"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-test" id="parallel-axis-test3"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-error" id="parallel-axis-error3"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td><input type="number" class="parallel-axis-cycle form-control" id="parallel-axis-cycle4"></td>
+                    <td>
+                        <div class="parallel-axis-theory" id="parallel-axis-theory4"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-test" id="parallel-axis-test4"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-error" id="parallel-axis-error4"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>25</td>
+                    <td><input type="number" class="parallel-axis-cycle form-control" id="parallel-axis-cycle5"></td>
+                    <td>
+                        <div class="parallel-axis-theory" id="parallel-axis-theory5"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-test" id="parallel-axis-test5"></div>
+                    </td>
+                    <td>
+                        <div class="parallel-axis-error" id="parallel-axis-error5"></div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <button class="final-contre-btn btn btn-info" id="final-contre-clear">清空数据</button>
+            <button class="final-contre-btn btn btn-success" id="final-contre-btn2">数据处理</button>
+            <button class="final-contre-btn btn btn-primary" id="final-contre-btn3">返回</button>
+
+        </div>
+    </div>
+
+</div>
 <script type="module">
-    import {RotationalInertia} from "{% static 'DataProcessing/js/dist.js' %}"
+    import {RotationalInertia} from "{% static 'DataProcessing/js/src/experiments/rotational_inertia/zbase.js' %}"
 
     $(document).ready(() => {
         let obj = new RotationalInertia("rotational-inertia-123456");
     });
 </script>
-<div class="rotatinoal-inertia" id="rotational-inertia-123456">
-    <h2 id="rotational-inertia-title">扭摆实验------转动惯量的测量</h2>
-    <div class="rotational-inertia-test">
-        <div class="torsional-pendulum-header">
-            1.物体转动惯量的测量：
-        </div>
-        <table border="2px" class="torsional-pendulum-date" width="100vw">
-            <tr>
-                <td>物体名称</td>
-                <td>质量<br>（g）</td>
-                <td>外径<br>（cm）</td>
-                <td>内径<br>（cm）</td>
-                <td>杆长<br>（cm）</td>
-                <td>周期<br>（s）</td>
-                <td>转动惯量理论值<br>*10^-4（kg.m²）</td>
-                <td>实验值<br>*10^-4（kg.m²）</td>
-                <td>百分误差<br>%</td>
-            </tr>
-            <tr>
-                <td>托盘</td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-tuo-T" value="0.8644"></td>
-                <td class="empty-data">/</td>
-                <td>
-                    <div id="torsional-pendulum-tuo-test"></div>
-                </td>
-                <td class="empty-data">/</td>
-            </tr>
-            <tr>
-                <td>圆柱</td>
-                <td><input type="number" class="torsional-pendulum-m" id="torsional-pendulum-m-zhu" value="710"></td>
-                <td><input type="number" class="torsional-pendulum-wai" id="torsional-pendulum-wai-zhu" value="9.962"></td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-T-zhu" value="1.3992"></td>
-                <td>
-                    <div class="torsional-pendulum-theory" id="torsional-pendulum-theory-zhu"></div>
-                </td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-            </tr>
-            <tr>
-                <td>圆桶</td>
-                <td><input type="number" class="torsional-pendulum-m" id="torsional-pendulum-m-tong" value="720"></td>
-                <td><input type="number" class="torsional-pendulum-wai" id="torsional-pendulum-wai-tong" value="9.982"></td>
-                <td><input type="number" class="torsional-pendulum-nei" id="torsional-pendulum-nei-tong" value="9.417"></td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-T-tong" value="1.744"></td>
-                <td><div  class="torsional-pendulum-theory" id="torsional-pendulum-theory-tong"></div></td>
-                <td><div class="torsional-pendulum-test" id="torsional-pendulum-test-tong"></div></td>
-                <td><div class="calculation-error" id="calculation-error-tong"></div></td>
-            </tr>
-            <tr>
-                <td>圆球</td>
-                <td><input type="number" class="torsional-pendulum-m" id="torsional-pendulum-m-qiu" value="1214"></td>
-                <td><input type="number" class="torsional-pendulum-wai" id="torsional-pendulum-wai-qiu" value="11.3948"></td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-T-qiu" value="1.4728"></td>
-                <td><div class="torsional-pendulum-theory" id="torsional-pendulum-theory-qiu"></div></td>
-                <td><div class="torsional-pendulum-test" id="torsional-pendulum-test-qiu"></div></td>
-                <td><div class="calculation-error" id="calculation-error-qiu"></div></td>
-            </tr>
-            <tr>
-                <td>细杆</td>
-                <td><input type="number" class="torsional-pendulum-m" id="torsional-pendulum-m-gan" value="130"></td>
-                <td class="empty-data">/</td>
-                <td class="empty-data">/</td>
-                <td><input type="number" class="torsional-pendulum-length" id="torsional-pendulum-length-gan" value="60.996"></td>
-                <td><input type="number" class="torsional-pendulum-T" id="torsional-pendulum-T-gan" value="2.3526"></td>
-                <td><div class="torsional-pendulum-theory" id="torsional-pendulum-theory-gan"></div></td>
-                <td><div class="torsional-pendulum-test" id="torsional-pendulum-test-gan"></div></td>
-                <td><div class="calculation-error" id="calculation-error-gan"></div></td>
-            </tr>
-        </table>
-    </div>
-    <div class="parallel-axis-theorem">
-        <div class="torsional-pendulum-header">2.验证平行轴定理：</div>
-        <div class="pre-measured-value" align="center">
-            滑块：质量= <input type="number" id="pre-measured-date-m">g；&emsp;
-            高度= <input type="number" id="pre-measured-date-h">cm;&emsp;
-            外径= <input type="number" id="pre-measured-date-wai">cm;&emsp;
-            内径= <input type="number" id="pre-measured-date-nei">cm
-        </div>
-        <table class="parallel-axis-date" border="2px" align="center">
-            <tr>
-                <td>位移<br>（cm）</td>
-                <td>周期<br>（s）</td>
-                <td>转动惯量理论值<br>（kg.m²）</td>
-                <td>实验值<br>（kg.m²）</td>
-                <td>百分误差<br>%</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle1"></td>
-                <td><div class="parallel-axis-theory" id="parallel-axis-theory1"></div></td>
-                <td><div class="parallel-axis-test" id="parallel-axis-test1"></div></td>
-                <td><div class="parallel-axis-error" id="parallel-axis-error1"></div></td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle2"></td>
-                <td><div class="parallel-axis-theory" id="parallel-axis-theory2"></div></td>
-                <td><div class="parallel-axis-test" id="parallel-axis-test2"></div></td>
-                <td><div class="parallel-axis-error" id="parallel-axis-error2"></div></td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle3"></td>
-                <td><div class="parallel-axis-theory" id="parallel-axis-theory3"></div></td>
-                <td><div class="parallel-axis-test" id="parallel-axis-test3"></div></td>
-                <td><div class="parallel-axis-error" id="parallel-axis-error3"></div></td>
-            </tr>
-            <tr>
-                <td>20</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle4"></td>
-                <td><div class="parallel-axis-theory" id="parallel-axis-theory4"></div></td>
-                <td><div class="parallel-axis-test" id="parallel-axis-test4"></div></td>
-                <td><div class="parallel-axis-error" id="parallel-axis-error4"></div></td>
-            </tr>
-            <tr>
-                <td>25</td>
-                <td><input type="number" class="parallel-axis-cycle" id="parallel-axis-cycle5"></td>
-                <td><div class="parallel-axis-theory" id="parallel-axis-theory5"></div></td>
-                <td><div class="parallel-axis-test" id="parallel-axis-test5"></div></td>
-                <td><div class="parallel-axis-error" id="parallel-axis-error5"></div></td>
-            </tr>
-        </table>
-        <div align="center">
-            <button class="final-contre-btn" id="final-contre-btn2">数据处理</button>
-            <button class="final-contre-btn" id="final-contre-btn3">返回</button>
-
-        </div>
-    </div>
-</div>
 </body>
 </html>
