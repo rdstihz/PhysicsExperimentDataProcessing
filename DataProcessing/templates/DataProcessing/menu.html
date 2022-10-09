@@ -32,8 +32,23 @@
 
     <div class="row" style="margin-top: 20px">
         <h1 class="col-md-12" style="text-align: center">物理实验数据处理平台</h1>
-        <a class="experiment-menu-toolbox col-md-offset-10 col-md-1 col-xs-offset-9 col-xs-3" href="exp/calculator/"
-           style="font-size: 1em">工具箱</a>
+        <div class="dropdown col-md-offset-10 col-md-2 col-xs-offset-9 col-xs-3">
+            <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                工具箱
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="dLabel">
+                <li>
+                    <a class="experiment-menu-toolbox"
+                       href="exp/calculator/">不确定度计算器</a>
+                </li>
+                <li>
+                    <a class="experiment-menu-toolbox"
+                       href="exp/figuredrawer/">绘图工具</a>
+                </li>
+            </ul>
+        </div>
+
     </div>
 
     <div class="row" style="margin-top: 75px">

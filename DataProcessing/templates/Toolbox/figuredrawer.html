@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>绘图工具 | 物理实验数据处理平台</title>
+    <link rel="icon" href="{% static 'DataProcessing/images/icon.jpg' %}">
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+        .div-col:nth-child(odd) {
+            background-color: red;
+        }
+
+        .div-col:nth-child(even) {
+            background-color: green;
+        }
+
+        .figure {
+            height: 350px;
+            border: 1px solid;
+            text-align: center;
+        }
+
+        .figure > img {
+
+            margin: 3% auto 7%;
+            height: 90%;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container" id="figuredrawer" >
+    <div class="row" style="display: none">
+        <div class="col-md-1 div-col">1</div>
+        <div class="col-md-1 div-col">2</div>
+        <div class="col-md-1 div-col">3</div>
+        <div class="col-md-1 div-col">4</div>
+        <div class="col-md-1 div-col">5</div>
+        <div class="col-md-1 div-col">6</div>
+        <div class="col-md-1 div-col">7</div>
+        <div class="col-md-1 div-col">8</div>
+        <div class="col-md-1 div-col">9</div>
+        <div class="col-md-1 div-col">10</div>
+        <div class="col-md-1 div-col">11</div>
+        <div class="col-md-1 div-col">12</div>
+    </div>
+
+    <div class="row">
+        <h1 style="text-align: center">
+            多项式拟合绘图工具
+        </h1>
+    </div>
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-md-1 control-label">X</label>
+            <div class="col-md-11">
+                <input type="text" class="form-control" id="figuredrawer-input-x" placeholder="输入X轴数据，用空格隔开">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-md-1 control-label">Y</label>
+            <div class="col-md-11">
+                <input type="text" class="form-control" id="figuredrawer-input-y" placeholder="输入Y轴数据，用空格隔开">
+            </div>
+        </div>
+
+        <button class="btn btn-success col-md-offset-1" id="figuredrawer-btn-submit">绘图</button>
+        <a class="btn btn-primary" href="/" style="margin-left: 5px">返回</a>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-5">
+            <h3>绘图选项</h3>
+            <div class="form-group">
+                <label for="input_figure_title">图像标题</label>
+                <input type="text" class="form-control" id="input_figure_title" placeholder="图像标题, 支持LaTeX公式语法">
+            </div>
+            <div class="form-group">
+                <label for="input_x_title">X轴标题</label>
+                <input type="text" class="form-control" id="input_x_title" placeholder="X轴标题, 支持LaTeX公式语法">
+            </div>
+            <div class="form-group">
+                <label for="input_y_title">Y轴标题</label>
+                <input type="text" class="form-control" id="input_y_title" placeholder="Y轴标题, 支持LaTeX公式语法">
+            </div>
+
+            <div class="form-group" id="figuredrawer-input-type">
+                <label for="">图像类型</label>
+                <input type="radio" name="figuredrawer_type" id="inlineRadio1" value="1"> 散点图
+
+                <input type="radio" name="figuredrawer_type" id="inlineRadio2" value="2"> 曲线图
+                <input type="radio" name="figuredrawer_type" id="inlineRadio2" value="3" checked> 曲线+数据点
+            </div>
+
+            <hr>
+            <h3>拟合选项</h3>
+            <div class="form-group">
+                <input type="radio" id="input_fit_type_inter" name="fit_type" value="inter" checked> 插值
+                <br>
+                <input type="radio" id="input_fit_type_inter_poly" name="fit_type" value="poly"> 多项式
+                <input type="checkbox" checked style="margin-left: 30px" name="show-eq"> 显示公式
+                <input type="number" min="1" max="5" step="1" class="form-control" placeholder="多项式次数 (1 ~ 5)" name="fit_deg">
+
+            </div>
+
+        </div>
+        <div class="col-md-7">
+            <h3>图像</h3>
+            <div class="figure">
+                <img src="" alt="" id="figuredrawer-result">
+            </div>
+            <a class="btn btn-link" id="btn-download" style="width: 100%; text-align: center" download>下载图片</a>
+            <p id="figuredrawer-result-poly"></p>
+        </div>
+    </div>
+
+</div>
+
+<script type="module">
+    import {FigureDrawer} from "{% static '/DataProcessing/js/src/toolbox/figuredrawer/zbase.js' %}";
+
+    $(document).ready(() => {
+        let figuredrawer = new FigureDrawer("figuredrawer");
+    });
+</script>
+
+</body>
+</html>

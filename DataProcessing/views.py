@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
+from scipy.interpolate import make_interp_spline
+
+import numpy as np
 
 from io import BytesIO
 import base64
@@ -67,9 +70,6 @@ def getfigure(request):
 
     # 让x轴从0开始
     ax.spines['left'].set_position(('data', 0))
-
-    # file_name = datetime.now().strftime("%Y%m%d%H%M%S" + data['state'] +".png")
-    # plt.savefig(str(settings.BASE_DIR) + "/static/temp/" + file_name)
 
     sio = BytesIO()
     plt.savefig(sio, format='png', bbox_inches='tight', pad_inches=0.0)
@@ -180,3 +180,79 @@ def getfigure3(request):
 
 def calculator(request):
     return render(request, 'Toolbox/calculator.html')
+
+
+def figuredrawer(request):
+    return render(request, 'Toolbox/figuredrawer.html')
+
+
+def getfigure_figuredrawer(request):
+    data = request.GET
+    x = list(map(float, data['x'].split(' ')))
+    y = list(map(float, data['y'].split(' ')))
+
+    x = np.array(x)
+    y = np.array(y)
+
+    # Returns evenly spaced numbers
+    # over a specified interval.
+    D = x.max() - x.min()
+    X_ = np.linspace(x.min() - 0.05 * D, x.max() + 0.05 * D, 500)
+
+    poly_str = 'y = '
+
+    if data['fit_type'] == "inter":
+        X_Y_Spline = make_interp_spline(x, y)
+        Y_ = X_Y_Spline(X_)
+    else:
+        fit_deg = data['fit_deg']
+        if not fit_deg:
+            fit_deg = 1
+        else:
+            fit_deg = int(fit_deg)
+        p = np.polyfit(x, y, fit_deg)
+        Y_ = np.polyval(p, X_)
+
+        for i in range(fit_deg + 1):
+            if i and p[i] >= 0:
+                poly_str += '+'
+            if fit_deg - i == 1:
+                poly_str += '%.4fx' % (p[i])
+            elif fit_deg - i == 0:
+                poly_str += '%.4f' % (p[i])
+            else:
+                poly_str += '%.4fx^%d' % (p[i], fit_deg - i)
+
+    print(poly_str)
+
+    if data['type'] == '1' or data['type'] == '3':
+        plt.scatter(x, y, marker='x', s=50)
+    if data['type'] == '2' or data['type'] == '3':
+        plt.plot(X_, Y_, linewidth=1)
+
+    plt.grid()
+    # 调整坐标轴
+    ax = plt.gca()
+
+    # 去掉右边和上边的线
+    ax.spines['right'].set_color("none")
+    ax.spines['top'].set_color("none")
+
+    # 标题
+    plt.title(data['title'])
+    plt.xlabel(data['x_title'])
+    plt.ylabel(data['y_title'])
+
+    if data['fit_type'] == 'poly' and data['show_eq'] == "true":
+        plt.text(x.max() - D / 1.3, y.max() - D / 3, '$' + poly_str + '$')
+
+    sio = BytesIO()
+    plt.savefig(sio, format='png', bbox_inches='tight', pad_inches=0.0)
+    data = base64.encodebytes(sio.getvalue()).decode()
+    src = 'data:image/png;base64,' + str(data)
+    plt.close()
+    return JsonResponse({
+        'result': "success",
+        'src': src,
+        'poly_str': poly_str,
+    })

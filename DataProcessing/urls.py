@@ -6,7 +6,10 @@ urlpatterns = [
     path('getfigure/', views.getfigure, name='exp_getfigure'),
     path('getfigure2/', views.getfigure2, name='exp_getfigure2'),
     path('getfigure3/', views.getfigure3, name='exp_getfigure3'),
+
     path('calculator/', views.calculator, name='toolbox_caculator'),
+    path('figuredrawer/', views.figuredrawer, name='toolbox_figuredrawer'),
+    path('figuredrawer/getfigure/', views.getfigure_figuredrawer, name='toolbox_figuredrawer_getfigure'),
 
     path('electrostatic/', views.electrostatic_field, name='exp_electrostatic_field'),
     path('viscosity/', views.viscosity, name='exp_viscosity'),
