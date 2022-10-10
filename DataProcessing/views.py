@@ -11,6 +11,8 @@ import base64
 from matplotlib import pyplot as plt
 from datetime import datetime
 
+plt.rcParams['font.sans-serif'] = ['SimHei']
+
 
 # Create your views here.
 

@@ -58,11 +58,20 @@ export class FigureDrawer {
 
                     if (fit_type === "poly") {
                         document.querySelector("#figuredrawer-result-poly").innerHTML = resp.poly_str;
-                    }else {
+                    } else {
                         document.querySelector("#figuredrawer-result-poly").innerHTML = "";
                     }
+
+                    document.querySelector("#figuredrawer-error-message").innerHTML = "";
+                } else {
+                    document.querySelector("#figuredrawer-error-message").innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">绘图失败，请检查输入项！</div>";
                 }
+            },
+
+            error: resp => {
+                document.querySelector("#figuredrawer-error-message").innerHTML = "<div class=\"alert alert-danger\" role=\"alert\">绘图失败，请检查输入项！</div>";
             }
+
         });
 
     }

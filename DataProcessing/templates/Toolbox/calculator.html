@@ -3,80 +3,147 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="{% static 'DataProcessing/css/calculator.css' %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>不确定度工具 | 物理实验数据处理平台</title>
+    <link rel="icon" href="{% static 'DataProcessing/images/icon.jpg' %}">
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link rel="stylesheet" href="{% static 'bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
+
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        td > input {
+        }
+
+        /*去除箭头*/
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: auto;
+            -webkit-appearance: none;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        td > input {
+        }
+
+        /*去除箭头*/
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            height: auto;
+            -webkit-appearance: none;
+        }
+
+        .calculator-result-table td:nth-child(1) {
+            width: 30%;
+        }
+        .calculator-result-table td:nth-child(2) {
+            width: 70%;
+        }
+
+    </style>
 </head>
 <body>
-<div class="toolbox-calculator" id="calculator-114514">
-    <script type="module">
-        import {Calculator} from "{% static 'DataProcessing/js/dist.js' %}"
+<div class="toolbox-calculator container" id="calculator-114514">
 
-        $(document).ready(function () {
-            let calc = new Calculator("calculator-114514");
-        })
-    </script>
-
-    <div class="calculator-input-data-count">
-        <div class="calculator-input-hints">数据个数</div>
-        <input type="number" class="calculator-input-numbers" id="calculator-input-data-count">
+    <div class="row">
+        <h2>不确定度计算器</h2>
     </div>
 
-    <div class="calculator-input-datas">
-        <div class="calculator-input-hints">数据</div>
-        <input type="text" class="calculator-input-numbers" id="calculator-input-datas">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="calculator-input-data-count form-group">
+                <label for="calculator-input-data-count">数据个数</label>
+                <input type="number" class="calculator-input-numbers form-control" id="calculator-input-data-count"
+                placeholder="输入数据个数">
+            </div>
 
+            <div class="calculator-input-datas form-group">
+                <label for="calculator-input-datas">数据</label>
+                <input type="text" class="calculator-input-numbers form-control" id="calculator-input-datas"
+                placeholder="输入数据，用空格隔开">
+
+            </div>
+
+            <div class="calculator-input-delta form-group">
+                <div class="calculator-input-hints">仪器误差</div>
+                <input type="number" class="calculator-input-numbers form-control" id="calculator-input-delta"
+                placeholder="仪器误差">
+            </div>
+
+            <label class="radio-inline">
+                <input type="radio" name="distribution" value="even" checked="checked"
+                       id="calculator-input-delta-radio-even" class="calculator-input-radio">均匀分布
+            </label>
+
+            <label class="radio-inline">
+                <input type="radio" name="distribution" value="nature"
+                       id="calculator-input-delta-radio-nature" class="calculator-input-radio">正态分布
+            </label>
+
+            <div class="calculator-input-button">
+                <button class="calculator-input-button-calculate btn btn-success" style="width: 49%">计算</button>
+                <a class="calculator-input-button-calculate btn btn-primary" href="/" style="width: 49%;float: right">返回</a>
+            </div>
+
+            <hr>
+
+            <div class="calculator-result">
+                <table class="calculator-result-table table table-bordered table-hover table-condensed">
+                    <tr>
+                        <td>数据个数</td>
+                        <td id="calculator-result-cell-n"></td>
+                    </tr>
+                    <tr>
+                        <td>数据</td>
+                        <td id="calculator-result-cell-datas"></td>
+                    </tr>
+                    <tr>
+                        <td>算术平均值</td>
+                        <td id="calculator-result-cell-average"></td>
+                    </tr>
+                    <tr>
+                        <td>标准偏差</td>
+                        <td id="calculator-result-cell-variance"></td>
+                    </tr>
+                    <tr>
+                        <td>不确定度</td>
+                        <td id="calculator-result-cell-unsure"></td>
+                    </tr>
+                    <tr>
+                        <td>相对误差</td>
+                        <td id="calculator-result-cell-error"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+            <h3>相关公式</h3>
+            <img src="{% static 'DataProcessing/images/caculator.jpg' %}" alt="">
+        </div>
     </div>
 
-    <div class="calculator-input-delta">
-        <div class="calculator-input-hints">仪器误差</div>
-        <input type="number" class="calculator-input-numbers" id="calculator-input-delta">
-
-                <div class="calculator-input-radios">
-                    <input type="radio" name="distribution" value="even" checked="checked"
-                           id="calculator-input-delta-radio-even" class="calculator-input-radio">
-                    <div class="calculator-input-radios-hint">均匀分布</div>
-                    <input type="radio" name="distribution" value="nature"
-                           id="calculator-input-delta-radio-nature" class="calculator-input-radio">
-                    <div class="calculator-input-radios-hint">正态分布</div>
-                </div>
-
-    </div>
-
-    <div class="calculator-input-button">
-
-        <button class="calculator-input-button-calculate">计算</button>
-    </div>
-
-    <div class="calculator-result">
-        <table class="calculator-result-table" border="1">
-            <tr>
-                <td>数据个数</td>
-                <td id="calculator-result-cell-n"></td>
-            </tr>
-            <tr>
-                <td>数据</td>
-                <td id="calculator-result-cell-datas"></td>
-            </tr>
-            <tr>
-                <td>算术平均值</td>
-                <td id="calculator-result-cell-average"></td>
-            </tr>
-            <tr>
-                <td>标准偏差</td>
-                <td id="calculator-result-cell-variance"></td>
-            </tr>
-            <tr>
-                <td>不确定度</td>
-                <td id="calculator-result-cell-unsure"></td>
-            </tr>
-            <tr>
-                <td>相对误差</td>
-                <td id="calculator-result-cell-error"></td>
-            </tr>
-        </table>
-    </div>
-    <a href="/">返回主菜单</a>
 </div>
+
+<script type="module">
+    import {Calculator} from "{% static 'DataProcessing/js/src/toolbox/calculator/zbase.js' %}"
+
+    $(document).ready(function () {
+        let calc = new Calculator("calculator-114514");
+    })
+</script>
+
 </body>
 </html>
