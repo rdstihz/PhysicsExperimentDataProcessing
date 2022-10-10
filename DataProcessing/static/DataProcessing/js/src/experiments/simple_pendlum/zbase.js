@@ -70,6 +70,7 @@ export class SimplePendlum {
                 if (resp.result === "success") {
                     console.log("success");
                     this.$img.src = resp.src;
+                    document.querySelector("#simple-pendulum-figure-download").href = resp.src;
                 }
             }
         });

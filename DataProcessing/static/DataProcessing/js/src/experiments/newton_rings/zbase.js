@@ -78,6 +78,7 @@ export class NewtonRings {
                 if (resp.result === "success") {
                     console.log("success");
                     this.$img.src = resp.src;
+                    document.querySelector("#newton-rings-result-figure-download").href = resp.src;
                 }
             }
         });

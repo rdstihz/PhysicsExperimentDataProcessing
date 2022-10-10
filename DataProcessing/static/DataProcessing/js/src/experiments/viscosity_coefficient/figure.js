@@ -31,6 +31,7 @@ export class ViscosityCoefficientFigure {
                 if (resp.result === "success") {
                     console.log("success");
                     outer.$img.src = resp.src;
+                    document.querySelector("#viscosity_coefficient_figure-download").href = resp.src;
                 }
             }
         });
