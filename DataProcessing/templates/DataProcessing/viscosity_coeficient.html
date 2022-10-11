@@ -44,6 +44,19 @@
             margin-right: 5px;
         }
 
+
+        @media (max-width: 768px) {
+            .viscosity_coefficient_figure {
+                height: 300px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .viscosity_coefficient_figure {
+                height: 370px;
+            }
+        }
+
     </style>
 
 </head>
@@ -54,7 +67,8 @@
     </div>
 
     <div class="row">
-        <a href="{% static 'DataProcessing/pdf/粘滞系数实验讲义.pdf' %}" class="col-md-2 col-md-offset-10" style="font-size: 1.3em" target="_blank">
+        <a href="{% static 'DataProcessing/pdf/粘滞系数实验讲义.pdf' %}" class="col-md-2 col-md-offset-10"
+           style="font-size: 1.3em" target="_blank">
             <span class="glyphicon glyphicon-book"></span>实验讲义</a>
     </div>
 
@@ -133,11 +147,12 @@
             </table>
         </div>
         <div class="viscosity_coefficient_figure col-md-7 col-md-offset-1" id="viscosity_coefficient_figure"
-             style="border: solid 1px; height: 370px; text-align: center; margin-top: 20px;">
-            <img class="viscosity_coefficient_figure_img" alt="" style="height: 100%"
-                 src="">
+             style="border: solid 1px;text-align: center; margin-top: 20px;">
+            <img class="viscosity_coefficient_figure_img" alt=""
+                 src="" style="height: 100%">
         </div>
-        <a href="" id="viscosity_coefficient_figure-download" class="btn btn-success col-md-offset-8 col-md-1" style="text-align: center" download>下载图片</a>
+        <a href="" id="viscosity_coefficient_figure-download" class="btn btn-success col-md-offset-8 col-md-1"
+           style="text-align: center" download>下载图片</a>
 
     </div>
     <div class="row">

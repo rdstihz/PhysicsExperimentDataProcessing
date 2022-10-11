@@ -52,6 +52,18 @@
             height: auto;
             -webkit-appearance: none;
         }
+
+        @media (max-width: 768px) {
+            .simple-pendulum-figure {
+                height: 250px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .simple-pendulum-figure {
+                height: 370px;
+            }
+        }
     </style>
 
 </head>
@@ -124,7 +136,7 @@
 
             <div class="simple-pendulum-result">
                 <h4 class="simple-pendulum-tip form-inline">
-                    与标准值 <input type="number" value="979.4" class="form-control" style="width: 70px" id="simple-pendum-std-g"> cm/S²比较得:
+                    与标准值 <input type="number" value="979.4" class="form-control" style="width: 70px; display: inline" id="simple-pendum-std-g"> cm/S²比较得:
                 </h4>
 
 
@@ -164,7 +176,7 @@
 
         <div class="col-md-7">
             <h3>图像</h3>
-            <div style="border: solid 1px; height: 400px; text-align: center">
+            <div style="border: solid 1px; text-align: center" class="simple-pendulum-figure">
                 <img src="" alt="" class="simple-pendulum-huabu"
                      id="simple-pendulum-figure" style="height: 100%">
             </div>

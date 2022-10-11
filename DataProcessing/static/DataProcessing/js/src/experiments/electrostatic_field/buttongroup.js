@@ -3,9 +3,8 @@ export class ElectrostaticButtonGroup {
         this.electrostatic_field = electrostatic_field;
         this.$button_group = $('#' + id);
 
-        this.$bt_process = this.$button_group.find("#electrostatic-field-button-process")
-        this.$bt_clear = this.$button_group.find("#electrostatic-field-button-clear")
-
+        this.$bt_process = this.$button_group.find("#electrostatic-field-button-process");
+        this.$bt_clear = this.$button_group.find("#electrostatic-field-button-clear");
         this.start();
     }
 
@@ -24,6 +23,11 @@ export class ElectrostaticButtonGroup {
 
         this.$bt_clear.on("click", (e) => {
             this.clear_data();
+        });
+
+        $('#electrostatic-field-download-figure').click(e => {
+            console.log("Click");
+            this.exportCanvasAsPNG("electrostatic-field-figure-canvas", "下载.png");
         });
 
     }
@@ -112,5 +116,18 @@ export class ElectrostaticButtonGroup {
         }
     }
 
-
+    //canvas下载图片
+    exportCanvasAsPNG(id, fileName) {
+        let canvasElement = document.getElementById(id);
+        let MIME_TYPE = "image/png";
+        console.log(canvasElement);
+        let imgURL = canvasElement.toDataURL(MIME_TYPE);
+        let dlLink = document.createElement('a');
+        dlLink.download = fileName;
+        dlLink.href = imgURL;
+        dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+        document.body.appendChild(dlLink);
+        dlLink.click();
+        document.body.removeChild(dlLink);
+    }
 }
