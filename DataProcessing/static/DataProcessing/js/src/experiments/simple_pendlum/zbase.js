@@ -34,7 +34,7 @@ export class SimplePendlum {
     work() {
         let data = this.get_input();
 
-        let n = 5;
+        let n = 6;
         let x = [], y = [];
         for (let i = 0; i < n; i++) {
             x.push(data[i][0]);
@@ -91,7 +91,7 @@ export class SimplePendlum {
 
     get_input() {
         let data = [];
-        for (let i = 1; i <= 5; i++) {
+        for (let i = 1; i <= 6; i++) {
             let l = +$(`#simple-pendulum-length${i}`).val();
             let t = +$(`#simple-oendulum-cycle${i}`).val();
             data.push([l, t]);
