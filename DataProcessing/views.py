@@ -44,6 +44,7 @@ def simple_pendlum(request):
     return render(request, 'DataProcessing/simple_pendlum.html')
 
 
+#粘滞系数图像
 def getfigure(request):
     data = request.GET
 
@@ -59,9 +60,9 @@ def getfigure(request):
     y_fit = [(k * i + b) for i in x]
 
     plt.plot(x, y_fit)
-    plt.xlabel("d/D")
-    plt.ylabel("T(S)")
-    plt.title("T-1/D figure")
+    plt.xlabel("小球圆筒直径比d/D")
+    plt.ylabel("下落时间T(S)")
+    plt.title("落球法测量粘滞系数实验 $T-\\frac{1}{D}$ 图像")
 
     # 调整坐标轴
     ax = plt.gca()
@@ -87,6 +88,7 @@ def getfigure(request):
     })
 
 
+#牛顿环图像
 def getfigure2(request):
     data = request.GET
 
@@ -103,9 +105,9 @@ def getfigure2(request):
 
     plt.plot(x, y_fit)
 
-    plt.xlabel("K")
-    plt.ylabel("D^2  (mm^2)")
-    plt.title("newton rings D^2-K figure")
+    plt.xlabel("$K$")
+    plt.ylabel("$D^2(mm^2)$")
+    plt.title("牛顿环实验 $D^2-K$ 图像")
 
     # 调整坐标轴
     ax = plt.gca()
@@ -134,6 +136,7 @@ def getfigure2(request):
     })
 
 
+#单摆图像
 def getfigure3(request):
     data = request.GET
 
@@ -150,9 +153,9 @@ def getfigure3(request):
 
     plt.plot(x, y_fit)
 
-    plt.xlabel("L(cm)")
-    plt.ylabel("T^2 (s^2)")
-    plt.title("simple pendlum T^2-L figure")
+    plt.xlabel("$L(cm)$")
+    plt.ylabel("$T^2 (s^2)$")
+    plt.title("单摆实验 $T^2-L$ 图像")
 
     # 调整坐标轴
     ax = plt.gca()
