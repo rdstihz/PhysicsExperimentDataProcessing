@@ -26,7 +26,6 @@ export class ElectrostaticButtonGroup {
         });
 
         $('#electrostatic-field-download-figure').click(e => {
-            console.log("Click");
             this.exportCanvasAsPNG("electrostatic-field-figure-canvas", "下载.png");
         });
 
@@ -120,7 +119,6 @@ export class ElectrostaticButtonGroup {
     exportCanvasAsPNG(id, fileName) {
         let canvasElement = document.getElementById(id);
         let MIME_TYPE = "image/png";
-        console.log(canvasElement);
         let imgURL = canvasElement.toDataURL(MIME_TYPE);
         let dlLink = document.createElement('a');
         dlLink.download = fileName;

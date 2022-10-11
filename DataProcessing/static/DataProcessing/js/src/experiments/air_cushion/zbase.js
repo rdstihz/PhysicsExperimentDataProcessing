@@ -65,7 +65,6 @@ export class AirCushion {
 
 
     calc(data) {
-        console.log(data);
         let dL = data.dL, L = data.L, S = data.S;
         let a = [], g = [];
         for (let i = 0; i < 3; i++) {

@@ -34,7 +34,6 @@ export class FigureDrawer {
         let fit_deg = document.querySelector("input[name='fit_deg']").value;
 
         let show_eq = document.querySelector("input[name='show-eq']").checked;
-        console.log(show_eq);
 
         $.ajax({
             url: "/exp/figuredrawer/getfigure/",
