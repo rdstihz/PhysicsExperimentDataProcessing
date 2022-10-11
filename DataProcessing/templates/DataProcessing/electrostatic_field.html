@@ -16,6 +16,8 @@
 
     <style>
         h2 {
+            font-family: 华文行楷;
+            font-size: 45px;
             text-align: center;
         }
 
@@ -82,7 +84,8 @@
         <h2 class="experiment-name-title">静电场测绘实验数据处理（同轴电缆）</h2>
     </div>
     <div class="row">
-        <a href="{% static 'DataProcessing/pdf/静电场测绘实验讲义.pdf' %}" class="col-md-2 col-md-offset-10" style="font-size: 1.3em" target="_blank">帮助</a>
+        <a href="{% static 'DataProcessing/pdf/静电场测绘实验讲义.pdf' %}" class="col-md-2 col-md-offset-10" style="font-size: 1.3em" target="_blank">
+            <span class="glyphicon glyphicon-book"></span>实验讲义</a>
     </div>
 
     <div class="row">
@@ -106,7 +109,7 @@
             <canvas class="electrostatic-field-figure-canvas"></canvas>
 
         </div>
-        <button class="btn btn-link col-md-offset-7 col-md-5" style="text-align: center;">下载图片</button>
+        <button class="btn btn-success col-md-offset-9 col-md-1" style="text-align: center;">下载图片</button>
 
 
     </div>

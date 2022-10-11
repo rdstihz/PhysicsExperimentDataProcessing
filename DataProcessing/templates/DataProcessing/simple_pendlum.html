@@ -14,6 +14,8 @@
 
     <style>
         h2 {
+            font-family: 华文行楷;
+            font-size: 45px;
             text-align: center;
         }
 
@@ -59,7 +61,10 @@
         <h2 class="simple-pendulum-title">单摆实验数据处理</h2>
     </div>
     <div class="row">
-        <a href="{% static '/DataProcessing/pdf/单摆实验讲义.pdf' %}" class="col-md-2 col-md-offset-10" style="font-size: 1.3em" target="_blank">帮助</a>
+        <a href="{% static '/DataProcessing/pdf/单摆实验讲义.pdf' %}" class="col-md-2 col-md-offset-10" style="font-size: 1.3em" target="_blank">
+            <span class="glyphicon glyphicon-book"></span>
+            实验讲义
+        </a>
     </div>
 
     <div class="row">
@@ -143,17 +148,6 @@
                 </table>
 
             </div>
-
-        </div>
-
-        <div class="col-md-7">
-            <h3>图像</h3>
-            <div style="border: solid 1px; height: 400px; text-align: center">
-                <img src="" alt="" class="simple-pendulum-huabu"
-                     id="simple-pendulum-figure" style="height: 100%">
-            </div>
-            <a class="btn btn-link col-md-12" style="text-align: center;" id="simple-pendulum-figure-download" download>下载图片</a>
-
             <div class="simple-pendulum-final-btn">
                 <button class="simple-pendulum-final-operate-btn btn btn-info" id="simple-pendulum-final-clear">
                     清空数据
@@ -165,6 +159,18 @@
                 </button>
 
             </div>
+
+        </div>
+
+        <div class="col-md-7">
+            <h3>图像</h3>
+            <div style="border: solid 1px; height: 400px; text-align: center">
+                <img src="" alt="" class="simple-pendulum-huabu"
+                     id="simple-pendulum-figure" style="height: 100%">
+            </div>
+            <a class="btn btn-success col-md-offset-5 col-md-2" style="text-align: center;" id="simple-pendulum-figure-download" download>下载图片</a>
+
+
 
         </div>
 

@@ -15,6 +15,18 @@
     <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
 
     <style>
+        body {
+            background-color:  rgba(72, 135, 186, 0.3);
+        }
+        h1 {
+            font-family: 华文行楷;
+            font-size: 60px;
+        }
+
+        h4 {
+            font-weight: bold;
+        }
+
         .experiment-menu-item {
             text-align: center;
         }
@@ -22,6 +34,9 @@
         .experiment-menu-item > img {
             width: 100%;
         }
+
+
+
     </style>
 
 </head>
@@ -32,8 +47,9 @@
 
     <div class="row" style="margin-top: 20px">
         <h1 class="col-md-12" style="text-align: center">物理实验数据处理平台</h1>
-        <div class="dropdown col-md-offset-10 col-md-2 col-xs-offset-9 col-xs-3">
-            <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="dropdown col-md-offset-10 col-md-2 col-xs-offset-8 col-xs-3">
+            <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-success">
+                <span class="glyphicon glyphicon-wrench"></span>
                 工具箱
                 <span class="caret"></span>
             </a>
@@ -48,7 +64,7 @@
                 </li>
 
                 <li role="separator" class="divider"></li>
-                <li><b>常用数据处理方法介绍</b></li>
+                <li><b>数据处理相关知识点</b></li>
                 <li><a href="{% static 'DataProcessing/pdf/toolbox/数据处理基本方法.pdf' %}" target="_blank">
                     数据处理基本方法
                 </a></li>
@@ -83,28 +99,31 @@
     <div class="row" style="margin-top: 75px">
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-electrostatic-field">
             <img src="{% static '/DataProcessing/images/electrostatic_field.png' %}" alt="">
-            <h4>静电场测绘实验数据处理</h4>
+            <h4>静电场测绘</h4>
         </div>
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-viscosity-coefficient">
             <img src="{% static '/DataProcessing/images/viscosity_coefficient.png' %}" alt="">
-            <h4>粘滞系数实验数据处理</h4>
+            <h4>粘滞系数</h4>
         </div>
-        <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-air-cushion">
-            <img src="{% static '/DataProcessing/images/air_cushion.png' %}" alt="">
-            <h4>气垫技术测量重力加速度</h4>
-        </div>
+
 
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-newton-rings">
             <img src="{% static '/DataProcessing/images/netwon_rings.png' %}" alt="">
             <h4>牛顿环</h4>
         </div>
-        <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-simple-pendlum">
-            <img src="{% static '/DataProcessing/images/single_pendulum.png' %}" alt="">
-            <h4>单摆</h4>
-        </div>
+
         <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-rotational-inertia">
             <img src="{% static '/DataProcessing/images/torsional_pendulum.png' %}" alt="">
-            <h4>扭摆实验转动惯量的测量</h4>
+            <h4>扭摆实验</h4>
+        </div>
+
+        <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-air-cushion">
+            <img src="{% static '/DataProcessing/images/air_cushion.png' %}" alt="">
+            <h4>气垫技术测量重力加速度</h4>
+        </div>
+        <div class="col-md-4 col-xs-6 experiment-menu-item" id="experiment-menu-item-simple-pendlum">
+            <img src="{% static '/DataProcessing/images/single_pendulum.png' %}" alt="">
+            <h4>单摆测量重力加速度</h4>
         </div>
 
     </div>

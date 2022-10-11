@@ -14,6 +14,10 @@
     <script src="{% static 'bootstrap-3.4.1-dist/js/bootstrap.min.js' %}"></script>
 
     <style>
+        h2 {
+            font-family: 华文行楷;
+            font-size: 45px;
+        }
         .div-col:nth-child(odd) {
             background-color: red;
         }
@@ -54,9 +58,9 @@
     </div>
 
     <div class="row">
-        <h1 style="text-align: center">
+        <h2 style="text-align: center">
             多项式拟合绘图工具
-        </h1>
+        </h2>
     </div>
 
     <div class="form-horizontal">
@@ -119,7 +123,7 @@
             <div class="figure">
                 <img src="" alt="" id="figuredrawer-result">
             </div>
-            <a class="btn btn-link" id="btn-download" style="width: 100%; text-align: center" download>下载图片</a>
+            <a class="btn btn-success col-md-offset-5 col-md-2" id="btn-download" style="text-align: center" download>下载图片</a>
             <p id="figuredrawer-result-poly"></p>
         </div>
     </div>

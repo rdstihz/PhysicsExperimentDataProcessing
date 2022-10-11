@@ -16,6 +16,8 @@
 
     <style>
         h2 {
+            font-family: 华文行楷;
+            font-size: 45px;
             text-align: center;
         }
 
@@ -31,11 +33,11 @@
         }
 
         .viscosity_coefficient_result-table td:nth-child(1) {
-            width: 33%;
+            width: 40%;
         }
 
         .viscosity_coefficient_result-table td:nth-child(2) {
-            width: 67%;
+            width: 60%;
         }
 
         .viscosity-coefficient-button {
@@ -52,7 +54,8 @@
     </div>
 
     <div class="row">
-        <a href="{% static 'DataProcessing/pdf/粘滞系数实验讲义.pdf' %}" class="col-md-2 col-md-offset-10" style="font-size: 1.3em" target="_blank">帮助</a>
+        <a href="{% static 'DataProcessing/pdf/粘滞系数实验讲义.pdf' %}" class="col-md-2 col-md-offset-10" style="font-size: 1.3em" target="_blank">
+            <span class="glyphicon glyphicon-book"></span>实验讲义</a>
     </div>
 
     <div class="row">
@@ -134,7 +137,7 @@
             <img class="viscosity_coefficient_figure_img" alt="" style="height: 100%"
                  src="">
         </div>
-        <a href="" id="viscosity_coefficient_figure-download" class="btn btn-link col-md-offset-5 col-md-7" style="text-align: center" download>下载图片</a>
+        <a href="" id="viscosity_coefficient_figure-download" class="btn btn-success col-md-offset-8 col-md-1" style="text-align: center" download>下载图片</a>
 
     </div>
     <div class="row">
