@@ -4,7 +4,7 @@ export class ElectrostaticButtonGroup {
         this.$button_group = $('#' + id);
 
         this.$bt_process = this.$button_group.find("#electrostatic-field-button-process")
-
+        this.$bt_clear = this.$button_group.find("#electrostatic-field-button-clear")
 
         this.start();
     }
@@ -22,6 +22,28 @@ export class ElectrostaticButtonGroup {
             }
         });
 
+        this.$bt_clear.on("click", (e) => {
+            this.clear_data();
+        });
+
+    }
+
+    //清空数据
+    clear_data() {
+        for (let i = 1; i <= 8; i++) {
+            document.querySelector(`#electrostatic-field-datainput-data${i}-x1`).value = "";
+            document.querySelector(`#electrostatic-field-datainput-data${i}-y1`).value = "";
+            document.querySelector(`#electrostatic-field-datainput-data${i}-x2`).value = "";
+            document.querySelector(`#electrostatic-field-datainput-data${i}-y2`).value = "";
+            document.querySelector(`#electrostatic-field-datainput-data${i}-x3`).value = "";
+            document.querySelector(`#electrostatic-field-datainput-data${i}-y3`).value = "";
+        }
+
+        //填入结果表格
+        this.electrostatic_field.result.clear_data();
+
+        //绘制图像
+        this.electrostatic_field.figure.clear_data();
 
     }
 
@@ -32,9 +54,9 @@ export class ElectrostaticButtonGroup {
         let data2 = this.calc(data.x2, data.y2, 8);
         let data3 = this.calc(data.x3, data.y3, 8);
         let result = {
-            'data1' : data1,
-            'data2' : data2,
-            'data3' : data3,
+            'data1': data1,
+            'data2': data2,
+            'data3': data3,
         };
 
         //填入结果表格

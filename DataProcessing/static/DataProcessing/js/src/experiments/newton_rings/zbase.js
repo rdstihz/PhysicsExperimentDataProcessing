@@ -5,12 +5,31 @@ export class NewtonRings {
     }
 
     start() {
+
+        this.$img = document.getElementById("newton-rings-result-figure");
         $(`#newton-rings-final-btn-return`).click(e => {
             window.location.replace("/");
         });
         $(`#newton-rings-final-btn-calc`).click(e => {
             this.work();
         });
+        $('#newton-rings-final-btn-clear').click(e => {
+            this.clear_data();
+        });
+    }
+
+    clear_data() {
+        for (let i = 13; i <= 24; i++) {
+            $(`#newton-rings-left${i}`).val("");
+            $(`#newton-rings-right${i}`).val("");
+        }
+        $(`#newton-rings-result-zhucha-r`).html("");
+
+        $(`#newton-rings-result-2cheng-r`).html("");
+        $(`#newton-rings-result-2cheng-rela`).html("");
+        $(`#newton-rings-result-2cheng-eq`).html("");
+
+        this.$img.src = "";
     }
 
     work() {
@@ -61,8 +80,6 @@ export class NewtonRings {
         $(`#newton-rings-result-2cheng-rela`).html(r.toFixed(5));
         let sk = k.toFixed(4), sb = b.toFixed(4);
         $(`#newton-rings-result-2cheng-eq`).html(`D^2 = ${sk} * k + ${sb}`);
-        this.$img = document.getElementById("newton-rings-result-figure");
-        console.log(this.$img);
         $.ajax({
             url: "/exp/getfigure2/",
             type: "GET",
@@ -106,6 +123,6 @@ export class NewtonRings {
     }
 
     drawImage() {
-        
+
     }
 }

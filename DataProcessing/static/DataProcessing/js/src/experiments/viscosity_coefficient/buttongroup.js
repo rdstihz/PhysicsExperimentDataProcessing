@@ -4,7 +4,7 @@ export class ViscosityCoefficientButtonGroup {
         this.$button_group = $('#' + id);
 
         this.$bt_process = this.$button_group.find("#viscosity-coefficient-button-process")
-
+        this.$bt_clear = this.$button_group.find("#viscosity-coefficient-button-clear");
         this.$bt_return = this.$button_group.find("#viscosity-coefficient-button-return");
 
         this.start();
@@ -22,8 +22,23 @@ export class ViscosityCoefficientButtonGroup {
                 outer.work();
             }
         });
+        this.$bt_clear.on("click", (e) => {
+            this.clear_data();
+        });
+    }
 
+    clear_data() {
+        for (let i = 1; i <= 6; i++) {
+            document.querySelector(`#viscosity-coefficient-dataiinput-data${i}-D`).value = "";
+            document.querySelector(`#viscosity-coefficient-dataiinput-data${i}-d`).value = "";
+            document.querySelector(`#viscosity-coefficient-dataiinput-data${i}-t`).value = "";
+        }
 
+        this.viscosity_coefficient.result.$result_value_equal.html("");
+        this.viscosity_coefficient.result.$result_value_t0.html("");
+        this.viscosity_coefficient.result.$result_value_r.html("");
+
+        this.viscosity_coefficient.figure.$img.src = "";
     }
 
     work() {

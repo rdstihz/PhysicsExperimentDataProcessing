@@ -11,14 +11,67 @@ export class RotationalInertia {
 
         $(`#final-contre-btn2`).click(e => {
             let data = this.get_inputdata();
-            console.log(data);
             let result = this.calc(data);
-            console.log(result);
             this.fillresult(result);
 
             data = this.get_inputdata2();
             this.calc2(data, result[4].I_t, result[0].K);
         });
+
+        $('#final-contre-clear').click(e => {
+            this.clear_data();
+        });
+    }
+
+    clear_data() {
+        $(`#torsional-pendulum-tuo-T`).val("");
+        $(`#torsional-pendulum-m-zhu`).val("");
+        $(`#torsional-pendulum-wai-zhu`).val("");
+        $(`#torsional-pendulum-T-zhu`).val("");
+
+        $(`#torsional-pendulum-m-tong`).val("");
+        $(`#torsional-pendulum-wai-tong`).val("");
+        $(`#torsional-pendulum-nei-tong`).val("");
+        $(`#torsional-pendulum-T-tong`).val("");
+        $(`#torsional-pendulum-m-qiu`).val("");
+        $(`#torsional-pendulum-wai-qiu`).val("");
+        $(`#torsional-pendulum-T-qiu`).val("");
+
+        $(`#torsional-pendulum-m-gan`).val("");
+        $(`#torsional-pendulum-length-gan`).val("");
+        $(`#torsional-pendulum-T-gan`).val("");
+
+        $(`#torsional-pendulum-tuo-test`).html("");
+
+        $(`#torsional-pendulum-theory-zhu`).html("");
+
+        $(`#torsional-pendulum-theory-tong`).html("");
+        $(`#torsional-pendulum-test-tong`).html("");
+        $(`#calculation-error-tong`).html("");
+
+        $(`#torsional-pendulum-theory-qiu`).html("");
+        $(`#torsional-pendulum-test-qiu`).html("");
+        $(`#calculation-error-qiu`).html("");
+
+        $(`#torsional-pendulum-theory-gan`).html("");
+        $(`#torsional-pendulum-test-gan`).html("");
+        $(`#calculation-error-gan`).html("");
+
+
+        $(`#pre-measured-date-m`).val("");
+        $(`#pre-measured-date-h`).val("");
+        $(`#pre-measured-date-wai`).val("");
+        $(`#pre-measured-date-nei`).val("");
+        for (let i = 1; i <= 5; i++) {
+            $(`#parallel-axis-cycle${i}`).val("");
+        }
+
+        for (let i = 0; i < 5; i++) {
+            $(`#parallel-axis-theory${i + 1}`).html("");
+            $(`#parallel-axis-test${i + 1}`).html("");
+            $(`#parallel-axis-error${i + 1}`).html("");
+        }
+
     }
 
     get_inputdata() {
@@ -164,7 +217,6 @@ export class RotationalInertia {
     }
 
     calc2(data, I, K) {
-        console.log(data);
         let m = data.m / 1000, D = data.D / 100, d = data.d / 100, h = data.h / 100, T = data.T;
         let I0 = m * (D * D + d * d) / 16 + m * h * h / 12;
         let xs = [5, 10, 15, 20, 25];
@@ -179,7 +231,7 @@ export class RotationalInertia {
 
             $(`#parallel-axis-theory${i + 1}`).html((I_t * 1e4).toFixed(3));
             $(`#parallel-axis-test${i + 1}`).html((I_e * 1e4).toFixed(3));
-            $(`#parallel-axis-error${i + 1}`).html( ((I_e - I_t) / I_t * 100).toFixed(1) + "%" );
+            $(`#parallel-axis-error${i + 1}`).html(((I_e - I_t) / I_t * 100).toFixed(1) + "%");
         }
 
     }

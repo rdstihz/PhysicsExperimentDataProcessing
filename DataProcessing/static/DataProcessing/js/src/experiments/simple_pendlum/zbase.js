@@ -12,11 +12,27 @@ export class SimplePendlum {
         $(`#simple-pendulum-final-btn2`).click(e => {
             this.work();
         });
+        $('#simple-pendulum-final-clear').click(e => {
+            this.clear_data();
+        });
+    }
+
+    clear_data() {
+        for (let i = 1; i <= 5; i++) {
+            $(`#simple-pendulum-length${i}`).val("");
+            $(`#simple-oendulum-cycle${i}`).val("");
+        }
+
+        $(`#simple-pendulum-date-result`).html("");
+        $(`#simple-pendulum-date-error`).html("");
+        $(`#simple-pendulum-jieju`).html("");
+        $(`#simple-pendulum-xgxs`).html("");
+
+        document.getElementById("simple-pendulum-figure").src = "";
     }
 
     work() {
         let data = this.get_input();
-        //console.log(data);
 
         let n = 5;
         let x = [], y = [];
@@ -40,11 +56,9 @@ export class SimplePendlum {
         //相关系数
         let r = (n * sxy - sx * sy) / (Math.sqrt(n * sxx - sx * sx) * Math.sqrt(n * syy - sy * sy));
 
-        console.log(k, b, r);
         let g = 4 * Math.PI * Math.PI / k;
-        console.log(g);
 
-        let g0 = 979.4;
+        let g0 = +$('#simple-pendum-std-g').val();
 
         $(`#simple-pendulum-date-result`).html(g.toFixed(1));
         $(`#simple-pendulum-date-error`).html(((g - g0) / g0 * 100).toFixed(1));
@@ -54,9 +68,8 @@ export class SimplePendlum {
 
         //绘制图像
         this.$img = document.getElementById("simple-pendulum-figure");
-        console.log(this.$img);
         $.ajax({
-            url: "http://127.0.0.1:8000/exp/getfigure3/",
+            url: "/exp/getfigure3/",
             type: "GET",
             data: {
                 'k': k,
@@ -68,7 +81,6 @@ export class SimplePendlum {
             },
             success: resp => {
                 if (resp.result === "success") {
-                    console.log("success");
                     this.$img.src = resp.src;
                     document.querySelector("#simple-pendulum-figure-download").href = resp.src;
                 }

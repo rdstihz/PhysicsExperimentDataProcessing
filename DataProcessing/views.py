@@ -14,7 +14,7 @@ from datetime import datetime
 plt.rcParams['font.sans-serif'] = ['SimHei']
 
 
-# Create your views here.
+# Create your views here.mkfontscale
 
 def index(request):
     return render(request, 'DataProcessing/menu.html')

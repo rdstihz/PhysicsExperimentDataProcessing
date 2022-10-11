@@ -24,4 +24,21 @@ export class ElectrostaticFieldResult {
         this.$result.find("#electrostatic-field-result-data3-r").html(data.data3.R.toFixed(2));
     }
 
+    clear_data() {
+        //data1
+        this.$result.find("#electrostatic-field-result-data1-x0").html("");
+        this.$result.find("#electrostatic-field-result-data1-y0").html("");
+        this.$result.find("#electrostatic-field-result-data1-r").html("");
+
+        //data2
+        this.$result.find("#electrostatic-field-result-data2-x0").html("");
+        this.$result.find("#electrostatic-field-result-data2-y0").html("");
+        this.$result.find("#electrostatic-field-result-data2-r").html("");
+
+        //data3
+        this.$result.find("#electrostatic-field-result-data3-x0").html("");
+        this.$result.find("#electrostatic-field-result-data3-y0").html("");
+        this.$result.find("#electrostatic-field-result-data3-r").html("");
+    }
+
 }

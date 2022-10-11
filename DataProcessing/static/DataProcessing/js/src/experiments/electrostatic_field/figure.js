@@ -131,4 +131,8 @@ export class ElectrostaticFieldFigure {
         this.redraw();
     }
 
+    clear_data() {
+        this.drawRectangle();
+    }
+
 }

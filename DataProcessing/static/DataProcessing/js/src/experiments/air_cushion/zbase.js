@@ -16,6 +16,24 @@ export class AirCushion {
             let result = this.calc(data);
             this.fillresult(result);
         });
+        $('#air-cushion-button-clear').click(e => {
+            for (let i = 1; i <= 3; i++) {
+                $(`#air-cushion-date-h${i}`).val("");
+                $(`#air-cushion-date-down1-${i}`).val("");
+                $(`#air-cushion-date-down2-${i}`).val("");
+                $(`#air-cushion-date-up1-${i}`).val("");
+                $(`#air-cushion-date-up2-${i}`).val("");
+            }
+            $(`#air-cushion-inputdata-S`).val("");
+            $(`#air-cushion-inputdata-L`).val("");
+            $(`#air-cushion-inputdata-dL`).val("");
+
+            for (let i = 0; i < 3; i++) {
+                $(`#air-cushion-acceleration${i + 1}`).html("");
+                $(`#air-cushion-g-acceleration${i + 1}`).html("");
+            }
+            $(`#air-cushion-mean-acceleration`).html("");
+        });
     }
 
 
@@ -68,7 +86,6 @@ export class AirCushion {
     }
 
     fillresult(result) {
-        console.log(result);
         for (let i = 0; i < 3; i++) {
             $(`#air-cushion-acceleration${i + 1}`).html(result.a[i]);
             $(`#air-cushion-g-acceleration${i + 1}`).html(result.g[i]);
